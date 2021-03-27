@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -19,8 +20,14 @@
                   <Image url="@../images/actemium%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnAfmelden" layoutX="745.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnAfmeldenOnAction" text="Afmelden" />
-            <Label fx:id="lblWelkom" layoutX="609.0" layoutY="29.0" text="Welkom Technieker" />
+            <Button fx:id="btnAfmelden" layoutX="745.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnAfmeldenOnAction" text="Afmelden" textFill="#004289">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="lblWelkom" layoutX="585.0" layoutY="28.0" text="Welkom Technieker" textFill="#004289">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
          </children>
       </Pane>
       <GridPane hgap="50.0" layoutX="172.0" layoutY="136.0" prefHeight="328.0" prefWidth="485.0" vgap="50.0">
@@ -33,7 +40,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnOpenstaandeTickets" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnOpenstaandeTicketsOnAction" prefHeight="235.0" prefWidth="378.0" text="Openstaande tickets">
+            <Button fx:id="btnOpenstaandeTickets" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnOpenstaandeTicketsOnAction" prefHeight="235.0" prefWidth="378.0" text="Openstaande tickets" textFill="#004289">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,8 +48,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="btnStatistieken" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnStatistiekenOnAction" prefHeight="192.0" prefWidth="394.0" text="Statistieken" GridPane.rowIndex="1">
+            <Button fx:id="btnStatistieken" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnStatistiekenOnAction" prefHeight="192.0" prefWidth="394.0" text="Statistieken" textFill="#004289" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,8 +60,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="btnAfgehandeldeTickets" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnAfgehandeldeTicketsOnAction" prefHeight="282.0" prefWidth="432.0" text="Afgehandelde tickets" GridPane.columnIndex="1">
+            <Button fx:id="btnAfgehandeldeTickets" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnAfgehandeldeTicketsOnAction" prefHeight="282.0" prefWidth="432.0" text="Afgehandelde tickets" textFill="#004289" GridPane.columnIndex="1">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,8 +72,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="btnKnowledgebase" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnKnowledgebaseOnAction" prefHeight="263.0" prefWidth="443.0" text="Knowledge base" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btnKnowledgebase" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnKnowledgebaseOnAction" prefHeight="263.0" prefWidth="443.0" text="Knowledge base" textFill="#004289" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -68,6 +84,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Button>
          </children>
       </GridPane>
