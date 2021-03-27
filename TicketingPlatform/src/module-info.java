@@ -4,6 +4,6 @@ module TicketingPlatform {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	
-	exports main;
-	exports domein;
+	//exports main;
+	//exports domein;
 }
