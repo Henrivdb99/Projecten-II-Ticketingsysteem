@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@actemium%20logo.png" />
+                  <Image url="@../images/actemium%20logo.png" />
                </image>
             </ImageView>
             <Button fx:id="btnAfmelden" layoutX="718.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnAfmeldenOnAction" text="Afmelden" />
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Klanten.png" />
+                        <Image url="@../images/Klanten.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Werknemers.png" />
+                        <Image url="@../images/Werknemers.png" />
                      </image>
                   </ImageView>
                </graphic>

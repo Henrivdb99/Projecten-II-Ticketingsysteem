@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@actemium%20logo.png" />
+                  <Image url="@../images/actemium%20logo.png" />
                </image>
             </ImageView>
             <Button fx:id="btnAfmelden" layoutX="718.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnAfmeldenOnAction" text="Afmelden" />
@@ -38,7 +38,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@InBehandelingTicket.png" />
+                        <Image url="@../images/InBehandelingTicket.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,7 +47,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@AfgehandeldTicket.png" />
+                        <Image url="@../images/AfgehandeldTicket.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -56,7 +56,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Statistieken.png" />
+                        <Image url="@../images/Statistieken.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -65,7 +65,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Knowledgebase.png" />
+                        <Image url="@../images/Knowledgebase.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -74,7 +74,7 @@
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@NewTicket.png" />
+                        <Image url="@../images/NewTicket.png" />
                      </image>
                   </ImageView>
                </graphic>
