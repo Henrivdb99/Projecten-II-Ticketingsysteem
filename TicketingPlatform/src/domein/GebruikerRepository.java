@@ -23,12 +23,11 @@ public class GebruikerRepository {
 			if (gebruiker.getWachtwoord().equals(wachtwoord)) {
 				return gebruiker;
 			} else {
-				System.out.println("Fout wachtwoord");
+				throw new IllegalArgumentException("Fout wachtwoord");
 			} 
-		} else {
-			System.out.println("Gebruiker nog niet geregistreerd");
 		}
-		return null;
+		throw new IllegalArgumentException("Gebruiker nog niet geregistreerd");
+		
 	}
 	
 

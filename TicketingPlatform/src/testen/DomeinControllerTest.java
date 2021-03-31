@@ -34,7 +34,7 @@ class DomeinControllerTest {
 		"admin@gmail.com, wachtwoord3", "techinieker@gmail.com, wachtwoord4"})
 	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
-		Mockito.when(gebruikerRepositoryDummy.geefGebruiker(email)).
+		Mockito.when(gebruikerRepositoryDummy.geefGebruiker(email, wachtwoord)).
 		thenReturn(new Gebruiker(email, wachtwoord));
 		
 		//act
@@ -44,7 +44,7 @@ class DomeinControllerTest {
 		Assertions.assertEquals(wachtwoord, dc.getGebruiker().getWachtwoord());
 		
 		//mock verify
-		Mockito.verify(gebruikerRepositoryDummy).geefGebruiker(email);
+		Mockito.verify(gebruikerRepositoryDummy).geefGebruiker(email, wachtwoord);
 
 	}
 
