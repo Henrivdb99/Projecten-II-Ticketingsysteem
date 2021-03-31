@@ -41,14 +41,13 @@ public class DomeinController {
 
 
 
-	public boolean meldAan(String email, String wachtwoord) {
+	public void meldAan(String email, String wachtwoord) {
 		Gebruiker gevondenGebruiker = gebruikerRepo.geefGebruiker(email, wachtwoord);
 		if (gevondenGebruiker != null) 
 	    {
 	    	setGebruiker(gevondenGebruiker);
 	        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
 	    }
-    return gevondenGebruiker != null;
 	}
 
 

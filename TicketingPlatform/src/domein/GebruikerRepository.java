@@ -15,9 +15,10 @@ public class GebruikerRepository {
 	public GebruikerRepository() {
 		mapper = new GebruikerMapper();
 		gebruikers = new HashSet<>();
+		GebruikerData gebruikerData = new GebruikerData(this); //gebruikers in domein vullen
 	}
 
-	public List<domein.Gebruiker> geefGebruikers() {
+	public List<Gebruiker> geefGebruikers() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -30,7 +31,7 @@ public class GebruikerRepository {
 			if (gebruiker.getWachtwoord().equals(wachtwoord)) {
 				return gebruiker;
 			} else {
-				throw new IllegalArgumentException("Fout wachtwoord");
+				throw new IllegalArgumentException("Gebruikersnaam en wachtwoord komen niet overeen");
 			} 
 		}
 		throw new IllegalArgumentException("Gebruiker nog niet geregistreerd");
