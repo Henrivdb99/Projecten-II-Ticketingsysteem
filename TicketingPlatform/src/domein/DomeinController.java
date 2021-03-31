@@ -9,6 +9,10 @@ public class DomeinController {
 	
 
 	public DomeinController() {
+		gebruikerRepo = new GebruikerRepository();
+		contractRepo = new ContractRepository();
+		ticketRepo = new TicketRepository();
+
 	}
 
 
@@ -37,7 +41,19 @@ public class DomeinController {
 
 
 
-	public void meldAan(String email, String wachtwoord) {
-		throw new UnsupportedOperationException();
+	public boolean meldAan(String email, String wachtwoord) {
+		Gebruiker gevondenGebruiker = gebruikerRepo.geefGebruiker(email, wachtwoord);
+		if (gevondenGebruiker != null) 
+	    {
+	    	setGebruiker(gevondenGebruiker);
+	        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
+	    }
+    return gevondenGebruiker != null;
+	}
+
+
+
+	private void setGebruiker(Gebruiker gebruiker) {
+		this.gebruiker = gebruiker;
 	}
 }
