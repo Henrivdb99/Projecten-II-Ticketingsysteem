@@ -10,9 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import domein.DomeinController;
-import domein.Gebruiker;
-import domein.GebruikerRepository;
+import domein.*;
 
 @ExtendWith(MockitoExtension.class)
 class DomeinControllerTest {
@@ -35,7 +33,7 @@ class DomeinControllerTest {
 	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
 		Mockito.when(gebruikerRepositoryDummy.geefGebruiker(email, wachtwoord)).
-		thenReturn(new Gebruiker(email, wachtwoord));
+		thenReturn(new Administrator(email, wachtwoord));
 		
 		//act
 		dc.meldAan(email, wachtwoord);

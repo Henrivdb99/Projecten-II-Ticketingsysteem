@@ -1,6 +1,6 @@
 package domein;
 
-public class Gebruiker {
+public abstract class Gebruiker {
 
 	private String emailAdres;
 	private String wachtwoord;
