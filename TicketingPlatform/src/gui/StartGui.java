@@ -1,6 +1,6 @@
 package gui;
 
-import domein.DomeinController;
+import domein.GebruikerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class StartGui extends Application {
 
-	public static DomeinController dc = new DomeinController();
+	public static GebruikerController dc = new GebruikerController();
 	
     @Override
     public void start(Stage stage) throws Exception {

@@ -11,19 +11,20 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import domein.*;
+import repository.GebruikerDaoJPA;
 
 @ExtendWith(MockitoExtension.class)
-class DomeinControllerTest {
+class GebruikerControllerTest {
 
 	@Mock
-	private GebruikerRepository gebruikerRepositoryDummy;
+	private GebruikerDaoJPA gebruikerRepositoryDummy;
 	@InjectMocks
-	private DomeinController dc;
+	private GebruikerController dc;
 	
 	
 	@BeforeEach
 	public void before() {
-	dc = new DomeinController();
+	dc = new GebruikerController();
 	}
 
 	

@@ -2,7 +2,7 @@ package gui;
 
 import java.io.IOException;
 
-import domein.DomeinController;
+import domein.GebruikerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +25,7 @@ public class LoginSchermController {
 	@FXML
 	private Label lblFout, lblWachtwoord, lblGebruikersnaam, lblLogin;
 	
-	private DomeinController dc = StartGui.dc;
+	private GebruikerController dc = StartGui.dc;
 	public LoginSchermController() {
 		
 	}
