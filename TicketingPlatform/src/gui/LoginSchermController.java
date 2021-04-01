@@ -35,7 +35,8 @@ public class LoginSchermController {
 		String wachtwoord = txfWachtwoord.getText();		
 		
 	     
-	     if(dc.meldAan(username, wachtwoord)) {
+	     try {
+	    	dc.meldAan(username, wachtwoord);
 	    	Parent logIn = FXMLLoader.load(getClass().getResource("DashboardSchermAdministrator.fxml"));
 	 		Scene logInScene = new Scene(logIn);
 	 		
@@ -44,8 +45,8 @@ public class LoginSchermController {
 	 		venster.show();	 
 	 		
 		 
-	     } else {
-	    	 this.lblFout.setText("foutlogin");
+	     } catch(IllegalArgumentException e) {
+	    	 this.lblFout.setText(e.getMessage());
 	     }
 	    
 	 }
