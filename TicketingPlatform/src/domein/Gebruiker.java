@@ -1,7 +1,16 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public abstract class Gebruiker {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String emailAdres;
 	private String wachtwoord;
 	
@@ -15,7 +24,9 @@ public abstract class Gebruiker {
 	public Gebruiker() {
 
 	}
-
+	public int getId() {
+		return id;
+	}
 
 	public String getEmailAdres() {
 		return emailAdres;
@@ -23,6 +34,54 @@ public abstract class Gebruiker {
 	public String getWachtwoord() {
 		return wachtwoord;
 	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public void setEmailAdres(String emailAdres) {
+		this.emailAdres = emailAdres;
+	}
+
+
+	public void setWachtwoord(String wachtwoord) {
+		this.wachtwoord = wachtwoord;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Gebruiker [id=" + id + ", emailAdres=" + emailAdres + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gebruiker other = (Gebruiker) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
+	
 	
 	
 }
