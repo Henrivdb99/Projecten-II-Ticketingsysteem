@@ -10,7 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import domein.*;
+import domein.Administrator;
+import domein.GebruikerController;
 import repository.GebruikerDaoJPA;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,7 +34,7 @@ class GebruikerControllerTest {
 		"admin@gmail.com, wachtwoord3", "techinieker@gmail.com, wachtwoord4"})
 	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
-		Mockito.when(gebruikerRepositoryDummy.geefGebruiker(email, wachtwoord)).
+		Mockito.when(gebruikerRepositoryDummy.getGebruikerByEmail(email)).
 		thenReturn(new Administrator(email, wachtwoord));
 		
 		//act
@@ -43,7 +44,7 @@ class GebruikerControllerTest {
 		Assertions.assertEquals(wachtwoord, dc.getGebruiker().getWachtwoord());
 		
 		//mock verify
-		Mockito.verify(gebruikerRepositoryDummy).geefGebruiker(email, wachtwoord);
+		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
 
 	}
 

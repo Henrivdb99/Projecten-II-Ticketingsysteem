@@ -19,7 +19,6 @@ public class GebruikerController {
 		if(withInit) {
 			GebruikerData.run();
 		}
-	
 		gebruikerRepo = new GebruikerDaoJPA();
 		contractRepo = new ContractRepository();
 		ticketRepo = new TicketRepository();
