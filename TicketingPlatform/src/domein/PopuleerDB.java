@@ -1,8 +1,9 @@
 package domein;
 
 import repository.GebruikerDaoJPA;
+import repository.GenericDaoJPA;
 
-public class GebruikerData {
+public class PopuleerDB {
 	
     public static void run() {
         GebruikerDaoJPA gebruikerdao = new GebruikerDaoJPA();
@@ -16,9 +17,7 @@ public class GebruikerData {
 		gebruikerdao.insert(new Technieker("techinieker@gmail.com", "wachtwoord4"));
 
         GebruikerDaoJPA.commitTransaction();
-        
-        
-  
+          
     }
 
 }

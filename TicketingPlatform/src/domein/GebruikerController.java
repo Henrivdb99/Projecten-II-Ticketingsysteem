@@ -6,8 +6,6 @@ import repository.GenericDaoJPA;
 public class GebruikerController {
 
 	private Gebruiker gebruiker;
-	private TicketRepository ticketRepo;
-	private ContractRepository contractRepo;
 	private GebruikerDaoJPA gebruikerRepo;
 	
 	
@@ -18,23 +16,15 @@ public class GebruikerController {
 
 	public GebruikerController(boolean withInit) {
 		if(withInit) {
-			GebruikerData.run();
+			PopuleerDB.run();
 		}
 		gebruikerRepo = new GebruikerDaoJPA();
-		contractRepo = new ContractRepository();
-		ticketRepo = new TicketRepository();
-
 	}
 
 	public Gebruiker getGebruiker() {
 		return gebruiker;
 	}
-	public TicketRepository getTicketRepo() {
-		return ticketRepo;
-	}
-	public ContractRepository getContractRepo() {
-		return contractRepo;
-	}
+	
 	public GebruikerDaoJPA getGebruikerRepo() {
 		return gebruikerRepo;
 	}
@@ -58,6 +48,6 @@ public class GebruikerController {
 	}
 	
     public void close() {
-        GenericDaoJPA.closePersistency();
+        GebruikerDaoJPA.closePersistency();
     }
 }
