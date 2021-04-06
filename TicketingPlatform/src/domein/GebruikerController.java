@@ -8,16 +8,8 @@ public class GebruikerController {
 	private Gebruiker gebruiker;
 	private GebruikerDaoJPA gebruikerRepo;
 	
-	
 
 	public GebruikerController() {
-		this(false);
-	}
-
-	public GebruikerController(boolean withInit) {
-		if(withInit) {
-			PopuleerDB.run();
-		}
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
 
