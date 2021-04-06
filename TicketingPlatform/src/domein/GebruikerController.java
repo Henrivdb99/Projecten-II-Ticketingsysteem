@@ -1,6 +1,7 @@
 package domein;
 
 import repository.GebruikerDaoJPA;
+import repository.GenericDaoJPA;
 
 public class GebruikerController {
 
@@ -55,4 +56,8 @@ public class GebruikerController {
 	private void setGebruiker(Gebruiker gebruiker) {
 		this.gebruiker = gebruiker;
 	}
+	
+    public void close() {
+        GenericDaoJPA.closePersistency();
+    }
 }

@@ -16,10 +16,9 @@ public class GebruikerData {
 		gebruikerdao.insert(new Technieker("techinieker@gmail.com", "wachtwoord4"));
 
         GebruikerDaoJPA.commitTransaction();
-    }
-
-	void populeerData() {
-
         
+        
+  
     }
+
 }

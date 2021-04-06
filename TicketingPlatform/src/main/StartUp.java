@@ -9,6 +9,8 @@ public class StartUp {
 		
 		GebruikerController gc = new GebruikerController(true);
 
+		//gc.close();
+		System.out.println("Goodbye world");
 	}
 
 }
