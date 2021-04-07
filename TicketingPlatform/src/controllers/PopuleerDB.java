@@ -7,6 +7,7 @@ import domein.Contract;
 import domein.ContractEnContractTypeStatus;
 import domein.ContractType;
 import domein.Klant;
+import domein.KnowledgeBase;
 import domein.ManierVanAanmakenTicket;
 import domein.SupportManager;
 import domein.Technieker;
@@ -65,6 +66,16 @@ public class PopuleerDB {
         contractdao.insert(contract1);
         contractdao.insert(contract2);
         contractdao.insert(contract3);
+        
+        GenericDaoJPA<KnowledgeBase> knowledgebasedao = new GenericDaoJPA<>(KnowledgeBase.class);
+        knowledgebasedao.insert(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Hoe kan ik mijn wachtwoord aanpassen?","loremIpsum", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Wat doe ik bij Error 5038","loremIpsum", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Hoe annuleer ik een ticket?","Oplossing 4", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Mijn nieuwe contract staat niet op actief","Oplossing 5", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Ik kan mijn bijlage niet uploaden","Oplossing 6", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Waar vind ik  mijn oude contracten terug?","Oplossing 7", LocalDate.now()));
+        knowledgebasedao.insert(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
         
 		gebruikerdao.insert(klant1);
 		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord2"));

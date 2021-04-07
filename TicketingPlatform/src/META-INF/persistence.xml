@@ -10,6 +10,7 @@
 		<class>domein.Ticket</class>
 		<class>domein.Contract</class>
 		<class>domein.ContractType</class>
+		<class>domein.KnowledgeBase</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TicketingPLatformJava?serverTimezone=UTC" />
