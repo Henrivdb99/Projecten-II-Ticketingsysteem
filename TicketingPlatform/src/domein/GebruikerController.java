@@ -1,45 +1,33 @@
 package domein;
 
-import repository.GebruikerDaoJPA;
-import repository.GenericDaoJPA;
+import repository.*;
 
 public class GebruikerController {
 
 	private Gebruiker gebruiker;
 	private GebruikerDaoJPA gebruikerRepo;
-	
-
-	public GebruikerController() {
-		gebruikerRepo = new GebruikerDaoJPA();
-	}
 
 	public Gebruiker getGebruiker() {
-		return gebruiker;
+		return this.gebruiker;
 	}
-	
+
+	public void setGebruiker(Gebruiker value) {
+		this.gebruiker = value;
+	}
+
 	public GebruikerDaoJPA getGebruikerRepo() {
-		return gebruikerRepo;
+		return this.gebruikerRepo;
 	}
 
-	
+	public GebruikerController() {
+		throw new UnsupportedOperationException();
+	}
+
 	public void meldAan(String email, String wachtwoord) {
-		Gebruiker gevondenGebruiker = gebruikerRepo.getGebruikerByEmail(email);
-		if (gevondenGebruiker.getWachtwoord().equals(wachtwoord)) 
-	    {
-	    	setGebruiker(gevondenGebruiker);
-	        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
-	    } else {
-	    	throw new IllegalArgumentException("Foute wachtwoord");
-	    }
+		throw new UnsupportedOperationException();
 	}
 
-
-
-	private void setGebruiker(Gebruiker gebruiker) {
-		this.gebruiker = gebruiker;
+	public void close() {
+		throw new UnsupportedOperationException();
 	}
-	
-    public void close() {
-        GebruikerDaoJPA.closePersistency();
-    }
 }

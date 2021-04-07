@@ -1,25 +1,28 @@
 package domein;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
-public class Ticket {
+public class Ticket implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titel;
+	@Transient
 	private TicketStatus status;
+	@Column(name = "datumAanmaken")
 	private LocalDate datumAanmaken;
 	private String omschrijving;
 	private String typeTicket;
-	private String klantId;
-	private String techniekerId;
 	
 	
 
@@ -27,16 +30,13 @@ public class Ticket {
 
 	}
 
-	public Ticket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, String typeTicket,
-			String klantId, String technieker) 
+	public Ticket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, String typeTicket) 
 	{
 		this.titel = titel;
 		this.status = ticketStatus;
 		this.datumAanmaken = date;
 		this.omschrijving = omschrijving;
 		this.typeTicket = typeTicket;
-		this.klantId = klantId;
-		this.techniekerId = technieker;
 	}
 
 	
@@ -58,10 +58,10 @@ public class Ticket {
 	public void setStatus(TicketStatus status) {
 		this.status = status;
 	}
-	public LocalDate getDatumAanmaken() {
+	public java.time.LocalDate getDatumAanmaken() {
 		return datumAanmaken;
 	}
-	public void setDatumAanmaken(LocalDate datumAanmaken) {
+	public void setDatumAanmaken(java.time.LocalDate datumAanmaken) {
 		this.datumAanmaken = datumAanmaken;
 	}
 	public String getOmschrijving() {
@@ -75,18 +75,6 @@ public class Ticket {
 	}
 	public void setTypeTicket(String typeTicket) {
 		this.typeTicket = typeTicket;
-	}
-	public String getKlantId() {
-		return klantId;
-	}
-	public void setKlantId(String klantId) {
-		this.klantId = klantId;
-	}
-	public String getTechniekerId() {
-		return techniekerId;
-	}
-	public void setTechniekerId(String techniekerId) {
-		this.techniekerId = techniekerId;
 	}
 	
 	

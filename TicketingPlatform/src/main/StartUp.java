@@ -1,7 +1,7 @@
 package main;
 
-import domein.GebruikerController;
-import domein.PopuleerDB;
+import controllers.GebruikerController;
+import controllers.PopuleerDB;
 
 public class StartUp {
 

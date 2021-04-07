@@ -10,9 +10,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import controllers.GebruikerController;
 import domein.Administrator;
-import domein.GebruikerController;
 import repository.GebruikerDaoJPA;
+import repository.*;
+import controllers.*;
 
 @ExtendWith(MockitoExtension.class)
 class GebruikerControllerTest {

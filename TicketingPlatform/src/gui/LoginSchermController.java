@@ -2,7 +2,7 @@ package gui;
 
 import java.io.IOException;
 
-import domein.GebruikerController;
+import controllers.GebruikerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
+import domein.*;
+import javafx.event.*;
 
 public class LoginSchermController {
 	@FXML
@@ -25,7 +28,8 @@ public class LoginSchermController {
 	@FXML
 	private Label lblFout, lblWachtwoord, lblGebruikersnaam, lblLogin;
 	
-	private GebruikerController dc = StartGui.dc;
+	private GebruikerController attribute = gui.StartGui.dc;
+	private DomeinController dc = StartGui.dc;
 	public LoginSchermController() {
 		
 	}
@@ -36,7 +40,7 @@ public class LoginSchermController {
 		
 	     
 	     try {
-	    	dc.meldAan(username, wachtwoord);
+	    	attribute.meldAan(username, wachtwoord);
 	    	Parent logIn = FXMLLoader.load(getClass().getResource("DashboardSchermAdministrator.fxml"));
 	 		Scene logInScene = new Scene(logIn);
 	 		
