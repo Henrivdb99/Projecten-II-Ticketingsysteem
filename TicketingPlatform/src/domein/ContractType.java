@@ -2,13 +2,21 @@ package domein;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class ContractType implements Serializable {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contractTypeId;
     private String naam;
     private ContractEnContractTypeStatus status;
     private ManierVanAanmakenTicket manierVanAanmakenTicket;
-    private TijdstipTicketAanmaken TijdstipTicketAanmaken;
+    private TijdstipTicketAanmaken tijdstipTicketAanmaken;
     private int minimaleDoorlooptijd;
     private int maximaleAfhandeltijd;
     private double contractPrijs;
@@ -26,7 +34,7 @@ public class ContractType implements Serializable {
 		this.naam = naam;
 		this.status = status;
 		this.manierVanAanmakenTicket = manierVanAanmakenTicket;
-		TijdstipTicketAanmaken = tijdstipTicketAanmaken;
+		this.tijdstipTicketAanmaken = tijdstipTicketAanmaken;
 		this.minimaleDoorlooptijd = minimaleDoorlooptijd;
 		this.maximaleAfhandeltijd = maximaleAfhandeltijd;
 		this.contractPrijs = contractPrijs;
@@ -59,10 +67,10 @@ public class ContractType implements Serializable {
 		this.manierVanAanmakenTicket = manierVanAanmakenTicket;
 	}
 	public TijdstipTicketAanmaken getTijdstipTicketAanmaken() {
-		return TijdstipTicketAanmaken;
+		return tijdstipTicketAanmaken;
 	}
 	public void setTijdstipTicketAanmaken(TijdstipTicketAanmaken tijdstipTicketAanmaken) {
-		TijdstipTicketAanmaken = tijdstipTicketAanmaken;
+		this.tijdstipTicketAanmaken = tijdstipTicketAanmaken;
 	}
 	public int getMinimaleDoorlooptijd() {
 		return minimaleDoorlooptijd;

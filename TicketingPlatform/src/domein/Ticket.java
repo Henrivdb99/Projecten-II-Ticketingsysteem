@@ -2,14 +2,11 @@ package domein;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Ticket implements Serializable {
@@ -18,9 +15,7 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titel;
-	@Transient
 	private TicketStatus status;
-	@Column(name = "datumAanmaken")
 	private LocalDate datumAanmaken;
 	private String omschrijving;
 	private String typeTicket;

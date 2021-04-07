@@ -3,35 +3,44 @@ package domein;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Contract implements Serializable {
-	
-    private int contractId;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int contractId;
 	private int doorlooptijd;
-    private ContractType contractType;
-    private LocalDate startDatum;
-    private LocalDate eindDatum;
-    private ContractEnContractTypeStatus contractStatus;
-    private Klant klant;
+	@ManyToOne
+	private ContractType contractType;
+	private LocalDate startDatum;
+	private LocalDate eindDatum;
+	private ContractEnContractTypeStatus contractStatus;
+	private Klant klant;
 
- 
-    public Contract() 
-    {
-    	
-    }
+	public Contract() {
 
-	public Contract(int doorlooptijd, ContractType contractType, LocalDate startDatum, LocalDate eindDatum,
-			Klant klant) {
-		this(doorlooptijd, contractType, eindDatum, eindDatum, klant, ContractEnContractTypeStatus.InBehandeling);
 	}
 
-	public Contract(int doorlooptijd, ContractType contractType, LocalDate startDatum, LocalDate eindDatum, 
-			Klant klant, ContractEnContractTypeStatus contractStatus) {
-		this.doorlooptijd = doorlooptijd;
-		this.contractType = contractType;
-		this.startDatum = startDatum;
-		this.eindDatum = eindDatum;
-		this.contractStatus = contractStatus;
-		this.klant = klant;
+	public Contract(int doorlooptijd, ContractType contractType, LocalDate startDatum, Klant klant) 
+	{
+		this(startDatum, contractType, doorlooptijd, klant, ContractEnContractTypeStatus.InBehandeling);
+	}
+
+	public Contract(LocalDate startDatum, ContractType contractType, int doorlooptijd, Klant klant,
+			ContractEnContractTypeStatus contractStatus)
+	{
+		setDoorlooptijd(doorlooptijd);
+		setContractType(contractType);
+		setStartDatum(startDatum);
+		setEindDatum(startDatum.plusYears(doorlooptijd));
+		setContractStatus(contractStatus);
+		setKlant(klant);
 	}
 
 	public int getContractId() {
@@ -47,10 +56,9 @@ public class Contract implements Serializable {
 	}
 
 	public void setDoorlooptijd(int doorlooptijd) {
-        if (doorlooptijd > 3 || doorlooptijd < 1)
-        {
-            throw new IllegalArgumentException("Doorlooptijd moet binnen het domein [1, 3] liggen");
-        }
+		if (doorlooptijd > 3 || doorlooptijd < 1) {
+			throw new IllegalArgumentException("Doorlooptijd moet binnen het domein [1, 3] liggen");
+		}
 
 		this.doorlooptijd = doorlooptijd;
 	}
@@ -60,10 +68,9 @@ public class Contract implements Serializable {
 	}
 
 	public void setContractType(ContractType contractType) {
-		if (contractType == null)
-        {
-            throw new IllegalArgumentException("ContractType mag niet leeg zijn");
-        }
+		if (contractType == null) {
+			throw new IllegalArgumentException("ContractType mag niet leeg zijn");
+		}
 		this.contractType = contractType;
 	}
 
@@ -82,7 +89,6 @@ public class Contract implements Serializable {
 	public void setEindDatum(LocalDate eindDatum) {
 		this.eindDatum = eindDatum;
 	}
-
 
 	public ContractEnContractTypeStatus getContractStatus() {
 		return contractStatus;
