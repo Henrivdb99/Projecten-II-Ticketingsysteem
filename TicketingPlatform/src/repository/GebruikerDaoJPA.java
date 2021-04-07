@@ -25,43 +25,6 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
             throw new EntityNotFoundException();
         } 
     }
-
-	@Override
-	public List<Gebruiker> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <U> Gebruiker get(U id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Gebruiker update(Gebruiker object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Gebruiker object) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insert(Gebruiker object) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public <U> boolean exists(U id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	
 	
 	
