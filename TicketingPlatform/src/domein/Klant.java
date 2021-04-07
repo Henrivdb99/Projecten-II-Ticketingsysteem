@@ -15,9 +15,6 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Klant extends Gebruiker {
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id")
-	private Set<Ticket> tickets = new HashSet<>();
 
 	public Klant() {
 		super();
@@ -28,15 +25,4 @@ public class Klant extends Gebruiker {
 	}
 	
 	
-	public Set<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(Set<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-
-	public void addTicket(Ticket ticket) {
-		tickets.add(ticket);
-	}
 }

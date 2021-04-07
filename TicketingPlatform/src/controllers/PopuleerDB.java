@@ -29,21 +29,22 @@ public class PopuleerDB {
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum", "1");
         
-        klant1.addTicket(ticket1);
-        klant1.addTicket(ticket2);
-        klant1.addTicket(ticket2);
-        technieker1.addTicket(ticket1);
-        technieker1.addTicket(ticket2);
-        technieker1.addTicket(ticket3);
-        
+
+        ticket1.setKlant(klant1);
+        ticket2.setKlant(klant1);
+        ticket3.setKlant(klant1);
+        ticket1.setTechnieker(technieker1);
+        ticket2.setTechnieker(technieker1);
+        ticket3.setTechnieker(technieker1);
+
         
         GenericDaoJPA<Ticket> ticketdao = new GenericDaoJPA<>(Ticket.class);
         
-        /*
+        
         ticketdao.insert(ticket1);
         ticketdao.insert(ticket2);
         ticketdao.insert(ticket3);
-        */
+        
         
 		gebruikerdao.insert(klant1);
 		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord2"));

@@ -14,10 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Technieker extends Gebruiker {
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id")
-	private Set<Ticket> tickets = new HashSet<>();
+
 
 	public Technieker() {
 	}
@@ -25,19 +22,6 @@ public class Technieker extends Gebruiker {
 	public Technieker(String emailAdres, String wachtwoord) {
 		super(emailAdres, wachtwoord);
 	}
-
-	public Set<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(Set<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-	
-	public void addTicket(Ticket ticket) {
-		tickets.add(ticket);
-	}
-	
 	
 
 }

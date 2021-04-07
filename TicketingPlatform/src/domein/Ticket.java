@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -23,8 +24,10 @@ public class Ticket implements Serializable {
 	private LocalDate datumAanmaken;
 	private String omschrijving;
 	private String typeTicket;
-	
-	
+	@ManyToOne
+	private Klant klant;
+	@ManyToOne
+	private Technieker technieker;
 
 	public Ticket() {
 
@@ -75,6 +78,22 @@ public class Ticket implements Serializable {
 	}
 	public void setTypeTicket(String typeTicket) {
 		this.typeTicket = typeTicket;
+	}
+
+	public Klant getKlant() {
+		return klant;
+	}
+
+	public void setKlant(Klant klant) {
+		this.klant = klant;
+	}
+
+	public Technieker getTechnieker() {
+		return technieker;
+	}
+
+	public void setTechnieker(Technieker technieker) {
+		this.technieker = technieker;
 	}
 	
 	
