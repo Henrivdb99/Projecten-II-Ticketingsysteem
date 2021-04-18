@@ -1,4 +1,4 @@
-package gui;
+package main;
 
 import controllers.GebruikerController;
 import javafx.application.Application;
@@ -12,10 +12,8 @@ import javafx.stage.*;
 
 public class StartGui extends Application {
 
-	public static GebruikerController attribute = new GebruikerController();
+	private GebruikerController gc = new GebruikerController();
 	
-    public static DomeinController dc = new DomeinController();
-
 	@Override
     public void start(Stage stage) throws Exception {
     	AnchorPane root = (AnchorPane) FXMLLoader.load(StartGui.class.getResource("/gui/LoginScherm.fxml"));

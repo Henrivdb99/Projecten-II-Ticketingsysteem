@@ -28,19 +28,23 @@ public class LoginSchermController {
 	@FXML
 	private Label lblFout, lblWachtwoord, lblGebruikersnaam, lblLogin;
 	
-	private GebruikerController attribute = gui.StartGui.dc;
-	private DomeinController dc = StartGui.dc;
+	private GebruikerController gc;
+	
 	public LoginSchermController() {
 		
 	}
 	
+	public LoginSchermController(GebruikerController gc) {
+		this.gc = gc;
+	}
+
 	public void btnInloggenOnAction(ActionEvent event) throws IOException {
 		String username = txfGebruikersnaam.getText();
 		String wachtwoord = txfWachtwoord.getText();		
 		
 	     
 	     try {
-	    	attribute.meldAan(username, wachtwoord);
+	    	gc.meldAan(username, wachtwoord);
 	    	Parent logIn = FXMLLoader.load(getClass().getResource("DashboardSchermAdministrator.fxml"));
 	 		Scene logInScene = new Scene(logIn);
 	 		
