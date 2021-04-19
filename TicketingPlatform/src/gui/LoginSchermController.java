@@ -6,19 +6,17 @@ import controllers.GebruikerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
 import domein.*;
 import javafx.event.*;
 
-public class LoginSchermController {
+public class LoginSchermController extends AnchorPane {
 	@FXML
 	private TextField txfGebruikersnaam;
 	@FXML
@@ -27,36 +25,38 @@ public class LoginSchermController {
 	private Button btnInloggen;
 	@FXML
 	private Label lblFout, lblWachtwoord, lblGebruikersnaam, lblLogin;
-	
-	private GebruikerController gc;
-	
-	public LoginSchermController() {
-		
-	}
-	
+
+	private GebruikerController gebruikerController;
+
 	public LoginSchermController(GebruikerController gc) {
-		this.gc = gc;
+		this.gebruikerController = gc;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScherm.fxml"));
+		loader.setRoot(this);
+		loader.setController(this);
+		try {
+			loader.load();
+		} catch (IOException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 
 	public void btnInloggenOnAction(ActionEvent event) throws IOException {
 		String username = txfGebruikersnaam.getText();
-		String wachtwoord = txfWachtwoord.getText();		
-		
-	     
-	     try {
-	    	gc.meldAan(username, wachtwoord);
-	    	Parent logIn = FXMLLoader.load(getClass().getResource("DashboardSchermAdministrator.fxml"));
-	 		Scene logInScene = new Scene(logIn);
-	 		
-	 		Stage venster = (Stage)((Node)event.getSource()).getScene().getWindow();
-	 		venster.setScene(logInScene);
-	 		venster.show();	 
-	 		
-		 
-	     } catch(IllegalArgumentException e) {
-	    	 this.lblFout.setText(e.getMessage());
-	     }
-	    
-	 }
+		String wachtwoord = txfWachtwoord.getText();
+
+		try {
+			//gebruikerController.meldAan(username, wachtwoord);
+			DashboardSchermAdministratorController dsac = new DashboardSchermAdministratorController(this);
+			Scene scene = new Scene(dsac);
+			Stage stage = (Stage)this.getScene().getWindow();
+			stage.setScene(scene);
+			stage.show();
+			
+
+		} catch (IllegalArgumentException e) {
+			this.lblFout.setText(e.getMessage());
+		}
 
 	}
+
+}
