@@ -30,8 +30,6 @@ public class DashboardSchermAdministratorController extends AnchorPane{
 			loader.setController(this);
 			loader.load();
 			
-			this.parent= loginSchermController;
-			this.gc = gebruikerController;
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
