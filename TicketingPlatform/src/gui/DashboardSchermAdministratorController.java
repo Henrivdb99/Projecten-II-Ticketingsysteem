@@ -1,15 +1,14 @@
 package gui;
 
+import java.io.IOException;
+
+import controllers.GebruikerController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
-import javafx.event.ActionEvent;
 
 public class DashboardSchermAdministratorController extends AnchorPane{
 	@FXML
@@ -19,15 +18,20 @@ public class DashboardSchermAdministratorController extends AnchorPane{
 	@FXML
 	private Button btnWerknemersBeheren;
 
-	private LoginSchermController ls;
+	private LoginSchermController parent;
+	private GebruikerController gc;
 	
-	public DashboardSchermAdministratorController(LoginSchermController loginSchermController) {
-		this.ls= loginSchermController;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardSchermAdministrator.fxml"));
-		loader.setRoot(this);
-		loader.setController(this);
+	public DashboardSchermAdministratorController(LoginSchermController loginSchermController, GebruikerController gebruikerController) {
+		this.parent= loginSchermController;
+		this.gc = gebruikerController;
 		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardSchermAdministrator.fxml"));
+			loader.setRoot(this);
+			loader.setController(this);
 			loader.load();
+			
+			this.parent= loginSchermController;
+			this.gc = gebruikerController;
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -36,7 +40,7 @@ public class DashboardSchermAdministratorController extends AnchorPane{
 	@FXML
 	public void btnAfmeldenOnAction(ActionEvent event) {
 		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.ls.getScene());
+		stage.setScene(this.parent.getScene());
 	}
 	// Event Listener on Button[#btnKlantenBeheren].onAction
 	@FXML

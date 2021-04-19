@@ -8,8 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+/*
+ * @NamedQueries({
+ * 
+ * @NamedQuery(name = "Gebruiker.findByEmail", query =
+ * "select g from Gebruiker g where g.email = :email") })
+ */
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Gebruiker implements Serializable {
 
