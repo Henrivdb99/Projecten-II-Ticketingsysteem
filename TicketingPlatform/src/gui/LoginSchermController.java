@@ -80,6 +80,6 @@ public class LoginSchermController extends AnchorPane {
 	
 	private void setPlaceholders() {
 		this.txfGebruikersnaam.setText("supportmanager@gmail.com");
-		this.txfWachtwoord.setText("wachtwoord2");
+		this.txfWachtwoord.setText("wachtwoord1");
 	}
 }
