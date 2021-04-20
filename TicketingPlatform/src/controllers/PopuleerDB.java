@@ -29,7 +29,7 @@ public class PopuleerDB {
         //GenericDaoJpa<Winkel> winkeldao = new GenericDaoJpa<>(Winkel.class);
        
         Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1");
-        Technieker technieker1 = new Technieker("colinwatkins@gmail.com", "wachtwoord4");
+        Technieker technieker1 = new Technieker("colinwatkins@gmail.com", "wachtwoord1");
         
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
@@ -78,8 +78,8 @@ public class PopuleerDB {
         knowledgebasedao.insert(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
         
 		gebruikerdao.insert(klant1);
-		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord2"));
-		gebruikerdao.insert(new Administrator("admin@gmail.com", "wachtwoord3"));
+		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord1"));
+		gebruikerdao.insert(new Administrator("admin@gmail.com", "wachtwoord1"));
 		gebruikerdao.insert(technieker1);
 
 	
