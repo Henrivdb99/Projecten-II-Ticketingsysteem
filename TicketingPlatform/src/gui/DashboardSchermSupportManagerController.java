@@ -20,6 +20,11 @@ public class DashboardSchermSupportManagerController extends DashboardSchermGebr
 	public DashboardSchermSupportManagerController(LoginSchermController loginSchermController,
 			GebruikerController gebruikerController) {
 		super(loginSchermController, gebruikerController);
+		btnOpenstaandeTickets.setDisable(false);
+		btnAfgehandeldeTickets.setDisable(false);
+		btnStatistieken.setDisable(false);
+		btnKnowledgeBaseBeheren.setDisable(false);
+		btnNieuwTicketAanmaken.setDisable(false);
 		// TODO Auto-generated constructor stub
 		
 	}

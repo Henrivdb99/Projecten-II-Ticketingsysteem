@@ -22,15 +22,11 @@ public class DashboardSchermAdministratorController extends DashboardSchermGebru
 	public DashboardSchermAdministratorController(LoginSchermController loginSchermController,
 			GebruikerController gebruikerController) {
 		super(loginSchermController, gebruikerController);
+		btnKlantenBeheren.setDisable(false);
+		btnWerknemersBeheren.setDisable(false);
 		// TODO Auto-generated constructor stub
 	}
 
-	// Event Listener on Button[#btnAfmelden].onAction
-	@FXML
-	public void btnAfmeldenOnAction(ActionEvent event) {
-		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.parent.getScene());
-	}
 	// Event Listener on Button[#btnKlantenBeheren].onAction
 	@FXML
 	public void btnKlantenBeherenOnAction(ActionEvent event) {

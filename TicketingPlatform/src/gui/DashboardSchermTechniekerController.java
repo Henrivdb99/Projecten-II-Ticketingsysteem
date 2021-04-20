@@ -17,6 +17,10 @@ public class DashboardSchermTechniekerController extends DashboardSchermGebruike
 	
 	public DashboardSchermTechniekerController(LoginSchermController loginSchermController, GebruikerController gebruikerController) {
 		super(loginSchermController, gebruikerController);
+		btnOpenstaandeTickets.setDisable(false);
+		btnAfgehandeldeTickets.setDisable(false);
+		btnStatistieken.setDisable(false);
+		btnKnowledgeBaseBeheren.setDisable(false);
 	}
 	
 	
