@@ -6,6 +6,7 @@ import domein.Administrator;
 import domein.Contract;
 import domein.ContractEnContractTypeStatus;
 import domein.ContractType;
+import domein.GebruikerStatus;
 import domein.Klant;
 import domein.KnowledgeBase;
 import domein.ManierVanAanmakenTicket;
@@ -28,8 +29,8 @@ public class PopuleerDB {
 
         //GenericDaoJpa<Winkel> winkeldao = new GenericDaoJpa<>(Winkel.class);
        
-        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1");
-        Technieker technieker1 = new Technieker("colinwatkins@gmail.com", "wachtwoord1");
+        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", "049952754");
+        Technieker technieker1 = new Technieker("colinwatkins@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", "042252754");
         
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
@@ -78,8 +79,8 @@ public class PopuleerDB {
         knowledgebasedao.insert(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
         
 		gebruikerdao.insert(klant1);
-		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord1"));
-		gebruikerdao.insert(new Administrator("admin@gmail.com", "wachtwoord1"));
+		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754"));
+		gebruikerdao.insert(new Administrator("admin@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777"));
 		gebruikerdao.insert(technieker1);
 
 	

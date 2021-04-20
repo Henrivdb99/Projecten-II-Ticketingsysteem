@@ -13,8 +13,8 @@ public class Administrator extends Gebruiker {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Administrator(String emailAdres, String wachtwoord) {
-		super(emailAdres, wachtwoord);
+	public Administrator(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
+		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummer);
 		// TODO Auto-generated constructor stub
 	}
 }

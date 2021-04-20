@@ -1,6 +1,8 @@
 package domein;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,28 +15,86 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Gebruiker.findByEmail",
-                         query = "select g from Gebruiker g where g.emailAdres = :email")
-})
+		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email") })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Gebruiker implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String emailAdres;
 	private String wachtwoord;
-	
-	
-	public Gebruiker(String emailAdres, String wachtwoord) {
-		this.emailAdres = emailAdres;
-		this.wachtwoord = wachtwoord;
+	private LocalDate registratieDatum;
+	private GebruikerStatus status;
+	private String naam;
+	private String voornaam;
+	private String adres;
+	private String telefoonnummer;
+
+	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
+		setEmailAdres(emailAdres);
+		setWachtwoord(wachtwoord);
+		setStatus(status);
+		setNaam(naam);
+		setVoornaam(voornaam);
+		setAdres(adres);
+		setTelefoonnummer(telefoonnummer);
+		setRegistratieDatum(LocalDate.now());
 	}
-	
-	
 	public Gebruiker() {
 
 	}
+
+	public LocalDate getRegistratieDatum() {
+		return registratieDatum;
+	}
+
+	private void setRegistratieDatum(LocalDate registratieDatum) {
+		this.registratieDatum = registratieDatum;
+	}
+
+	public GebruikerStatus getStatus() {
+		return status;
+	}
+
+	private void setStatus(GebruikerStatus status) {
+		this.status = status;
+	}
+
+	public String getNaam() {
+		return naam;
+	}
+
+	private void setNaam(String naam) {
+		this.naam = naam;
+	}
+
+	public String getVoornaam() {
+		return voornaam;
+	}
+
+	private void setVoornaam(String voornaam) {
+		this.voornaam = voornaam;
+	}
+
+	public String getAdres() {
+		return adres;
+	}
+
+	private void setAdres(String adres) {
+		this.adres = adres;
+	}
+
+	public String getTelefoonnummer() {
+		return telefoonnummer;
+	}
+
+	private void setTelefoonnummer(String telefoonnummer) {
+		this.telefoonnummer = telefoonnummer;
+	}
+
+	
+
 	public int getId() {
 		return id;
 	}
@@ -42,31 +102,27 @@ public abstract class Gebruiker implements Serializable {
 	public String getEmailAdres() {
 		return emailAdres;
 	}
+
 	public String getWachtwoord() {
 		return wachtwoord;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public void setEmailAdres(String emailAdres) {
 		this.emailAdres = emailAdres;
 	}
-
 
 	public void setWachtwoord(String wachtwoord) {
 		this.wachtwoord = wachtwoord;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Gebruiker [id=" + id + ", emailAdres=" + emailAdres + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -75,7 +131,6 @@ public abstract class Gebruiker implements Serializable {
 		result = prime * result + id;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,9 +145,5 @@ public abstract class Gebruiker implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
 }

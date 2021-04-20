@@ -1,5 +1,7 @@
 package domein;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,8 +15,8 @@ public class SupportManager extends Gebruiker {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SupportManager(String emailAdres, String wachtwoord) {
-		super(emailAdres, wachtwoord);
+	public SupportManager(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
+		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummer);
 		// TODO Auto-generated constructor stub
 	}
 }
