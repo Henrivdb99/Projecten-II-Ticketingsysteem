@@ -14,6 +14,13 @@ public class GebruikerController {
 	public GebruikerController() {
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
+	
+
+	public GebruikerController(GebruikerDaoJPA gebruikerRepo) {
+		this.gebruikerRepo = gebruikerRepo;
+	}
+
+
 
 	public Gebruiker getGebruiker() {
 		return gebruiker;

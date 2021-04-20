@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Gebruiker.findByEmail",
-                         query = "select g from Gebruiker g where g.emailAdres = :email")            
+                         query = "select g from Gebruiker g where g.emailAdres = :email")
 })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Gebruiker implements Serializable {
