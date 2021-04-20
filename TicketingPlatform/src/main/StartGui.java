@@ -15,6 +15,7 @@ public class StartGui extends Application {
 		PopuleerDB.run();
 		Scene scene = new Scene(new LoginSchermController(gc));
 		stage.setScene(scene);
+		stage.setTitle("Actemium");
 		stage.show();
 	}
 

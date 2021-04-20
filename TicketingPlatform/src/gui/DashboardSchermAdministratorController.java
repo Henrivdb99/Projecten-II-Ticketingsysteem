@@ -10,7 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DashboardSchermAdministratorController extends AnchorPane{
+public class DashboardSchermAdministratorController extends DashboardSchermGebruikerController{
+	
 	@FXML
 	private Button btnAfmelden;
 	@FXML
@@ -18,22 +19,12 @@ public class DashboardSchermAdministratorController extends AnchorPane{
 	@FXML
 	private Button btnWerknemersBeheren;
 
-	private LoginSchermController parent;
-	private GebruikerController gc;
-	
-	public DashboardSchermAdministratorController(LoginSchermController loginSchermController, GebruikerController gebruikerController) {
-		this.parent= loginSchermController;
-		this.gc = gebruikerController;
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardSchermAdministrator.fxml"));
-			loader.setRoot(this);
-			loader.setController(this);
-			loader.load();
-			
-		} catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
+	public DashboardSchermAdministratorController(LoginSchermController loginSchermController,
+			GebruikerController gebruikerController) {
+		super(loginSchermController, gebruikerController);
+		// TODO Auto-generated constructor stub
 	}
+
 	// Event Listener on Button[#btnAfmelden].onAction
 	@FXML
 	public void btnAfmeldenOnAction(ActionEvent event) {
