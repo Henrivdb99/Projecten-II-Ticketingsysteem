@@ -71,6 +71,8 @@ public class LoginSchermController extends AnchorPane {
 
 		} catch (IllegalArgumentException e) {		
 			System.out.println(e.getMessage());
+			txfGebruikersnaam.selectAll();
+			txfGebruikersnaam.requestFocus();
 			this.lblFout.setText(e.getMessage());
 		}
 

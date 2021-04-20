@@ -53,11 +53,11 @@
             </Label>
             <PasswordField fx:id="txfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txfGebruikersnaam" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnInloggen" mnemonicParsing="false" onAction="#btnInloggenOnAction" prefHeight="25.0" prefWidth="143.0" text="Inloggen" textFill="#004289" GridPane.rowIndex="3">
+            <Button fx:id="btnInloggen" defaultButton="true" mnemonicParsing="false" onAction="#btnInloggenOnAction" prefHeight="25.0" prefWidth="143.0" text="Inloggen" textFill="#004289" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Label fx:id="lblFout" prefHeight="18.0" prefWidth="244.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lblFout" prefHeight="72.0" prefWidth="244.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
