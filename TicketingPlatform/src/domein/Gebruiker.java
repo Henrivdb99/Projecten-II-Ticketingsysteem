@@ -13,6 +13,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email") })
@@ -22,14 +25,11 @@ public abstract class Gebruiker implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String emailAdres;
+	private StringProperty emailAdres, naam, voornaam, adres, telefoonnummer;
 	private String wachtwoord;
 	private LocalDate registratieDatum;
 	private GebruikerStatus status;
-	private String naam;
-	private String voornaam;
-	private String adres;
-	private String telefoonnummer;
+	
 
 	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
 		setEmailAdres(emailAdres);
@@ -53,8 +53,8 @@ public abstract class Gebruiker implements Serializable {
 		this.registratieDatum = registratieDatum;
 	}
 
-	public GebruikerStatus getStatus() {
-		return status;
+	public String getStatus() {
+		return status.toString();
 	}
 
 	private void setStatus(GebruikerStatus status) {
@@ -62,45 +62,43 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	public String getNaam() {
-		return naam;
+		return naam.get();
 	}
 
 	private void setNaam(String naam) {
-		this.naam = naam;
+		this.naam = new SimpleStringProperty(naam);
 	}
 
 	public String getVoornaam() {
-		return voornaam;
+		return voornaam.get();
 	}
 
 	private void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
+		this.voornaam = new SimpleStringProperty(voornaam);
 	}
 
 	public String getAdres() {
-		return adres;
+		return adres.get();
 	}
 
 	private void setAdres(String adres) {
-		this.adres = adres;
+		this.adres = new SimpleStringProperty(adres);
 	}
 
 	public String getTelefoonnummer() {
-		return telefoonnummer;
+		return telefoonnummer.get();
 	}
 
 	private void setTelefoonnummer(String telefoonnummer) {
-		this.telefoonnummer = telefoonnummer;
+		this.adres = new SimpleStringProperty(telefoonnummer);
 	}
-
-	
 
 	public int getId() {
 		return id;
 	}
 
 	public String getEmailAdres() {
-		return emailAdres;
+		return emailAdres.get();
 	}
 
 	public String getWachtwoord() {
@@ -112,7 +110,7 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	public void setEmailAdres(String emailAdres) {
-		this.emailAdres = emailAdres;
+		this.emailAdres = new SimpleStringProperty(emailAdres);
 	}
 
 	public void setWachtwoord(String wachtwoord) {
@@ -121,7 +119,7 @@ public abstract class Gebruiker implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Gebruiker [id=" + id + ", emailAdres=" + emailAdres + "]";
+		return "Gebruiker [id=" + getId() + ", emailAdres=" + getEmailAdres() + "]";
 	}
 
 	@Override
