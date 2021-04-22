@@ -6,6 +6,8 @@ import gui.LoginSchermController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.application.*;
+import javafx.stage.*;
 
 public class StartGui extends Application {
 

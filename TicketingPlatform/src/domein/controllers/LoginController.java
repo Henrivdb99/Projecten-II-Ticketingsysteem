@@ -3,17 +3,13 @@ package domein.controllers;
 import javax.persistence.EntityNotFoundException;
 
 import domein.models.Gebruiker;
-import domein.models.TypeGebruiker;
 import persistentie.GebruikerDaoJPA;
-import prullenbak.DashboardSchermAdministratorController;
-import prullenbak.DashboardSchermSupportManagerController;
-import prullenbak.DashboardSchermTechniekerController;
 
 public class LoginController {
 
-	private Gebruiker aangemeldeGebruiker;
+	private Gebruiker aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
-	
+
 
 	public LoginController() {
 		gebruikerRepo = new GebruikerDaoJPA();
@@ -30,7 +26,7 @@ public class LoginController {
 		return aangemeldeGebruiker;
 	}
 	
-	public GebruikerDaoJPA getGebruikerRepo() {
+	public GebruikerDaoJPA getgebruikerRepo() {
 		return gebruikerRepo;
 	}
 
@@ -77,7 +73,7 @@ public class LoginController {
 	public String geefNaamEnVoornaamAangemeldeGebruiker() {
 		if(aangemeldeGebruiker == null)
 			throw new IllegalArgumentException("Er is geen gebruiker aangemeld");
-		return aangemeldeGebruiker.getVoornaam() + aangemeldeGebruiker.getNaam();
+		return aangemeldeGebruiker.getVoornaam() + " " + aangemeldeGebruiker.getNaam();
 	} 
 
 	private void setAangemeldeGebruiker(Gebruiker gebruiker) {
@@ -87,4 +83,9 @@ public class LoginController {
     public void close() {
         GebruikerDaoJPA.closePersistency();
     }
+
+
+	public GebruikerDaoJPA getGebruikerRepo() {
+		return this.gebruikerRepo;
+	}
 }

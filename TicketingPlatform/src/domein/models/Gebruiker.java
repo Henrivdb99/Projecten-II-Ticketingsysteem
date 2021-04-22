@@ -12,11 +12,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import java.io.*;
+import java.time.*;
+import javax.persistence.*;
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email") })
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email")
 public abstract class Gebruiker implements Serializable {
 
 	@Id
@@ -24,7 +25,9 @@ public abstract class Gebruiker implements Serializable {
 	private int id;
 	private String emailAdres;
 	private String wachtwoord;
+	@Column(name = "registratieDatum")
 	private LocalDate registratieDatum;
+	@Transient
 	private GebruikerStatus status;
 	private String naam;
 	private String voornaam;
@@ -45,11 +48,11 @@ public abstract class Gebruiker implements Serializable {
 
 	}
 
-	public LocalDate getRegistratieDatum() {
+	public java.time.LocalDate getRegistratieDatum() {
 		return registratieDatum;
 	}
 
-	private void setRegistratieDatum(LocalDate registratieDatum) {
+	public void setRegistratieDatum(java.time.LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
 	}
 
@@ -57,7 +60,7 @@ public abstract class Gebruiker implements Serializable {
 		return status;
 	}
 
-	private void setStatus(GebruikerStatus status) {
+	public void setStatus(GebruikerStatus status) {
 		this.status = status;
 	}
 

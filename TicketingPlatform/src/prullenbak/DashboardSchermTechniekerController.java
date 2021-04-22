@@ -5,6 +5,10 @@ import gui.DashboardSchermGebruikerController;
 import gui.LoginSchermController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import gui.*;
+import javafx.scene.control.*;
+import domein.controllers.*;
+import controllers.*;
 
 public class DashboardSchermTechniekerController extends DashboardSchermGebruikerController {
 	@FXML
@@ -27,6 +31,18 @@ public class DashboardSchermTechniekerController extends DashboardSchermGebruike
 		btnAfgehandeldeTickets.setVisible(true);
 		btnStatistieken.setVisible(true);
 		btnKnowledgeBaseBeheren.setVisible(true);
+	}
+
+
+	public DashboardSchermTechniekerController(LoginSchermController loginSchermController,
+			LoginController gebruikerController) {
+		throw new UnsupportedOperationException();
+	}
+
+
+	public DashboardSchermTechniekerController(LoginSchermController loginSchermController,
+			LoginController gebruikerController) {
+		throw new UnsupportedOperationException();
 	}
 	
 	

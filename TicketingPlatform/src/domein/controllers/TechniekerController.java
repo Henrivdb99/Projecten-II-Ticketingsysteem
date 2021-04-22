@@ -1,6 +1,5 @@
 package domein.controllers;
 
-import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
 
 public class TechniekerController extends AangemeldeGebruikerController {

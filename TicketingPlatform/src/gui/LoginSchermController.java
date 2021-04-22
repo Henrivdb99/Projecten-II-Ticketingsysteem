@@ -14,9 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import prullenbak.DashboardSchermAdministratorController;
-import prullenbak.DashboardSchermSupportManagerController;
-import prullenbak.DashboardSchermTechniekerController;
 
 public class LoginSchermController extends AnchorPane {
 	@FXML
@@ -33,12 +30,12 @@ public class LoginSchermController extends AnchorPane {
 	private Button btnInloggen;
 	@FXML
 	private Label lblFout;
-
-	protected LoginController gc;
+	
+	protected LoginController lg;
 
 	public LoginSchermController(LoginController gebruikerController) {
 		super();
-		this.gc = gebruikerController;				
+		this.lg = gebruikerController;				
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScherm.fxml"));
 			loader.setRoot(this);
@@ -57,8 +54,8 @@ public class LoginSchermController extends AnchorPane {
 		String wachtwoord = txfWachtwoord.getText();
 
 		try {
-			gc.meldAan(username, wachtwoord);
-			AangemeldeGebruikerController ac = gc.geefJuisteController();
+			lg.meldAan(username, wachtwoord);
+			AangemeldeGebruikerController ac = lg.geefJuisteController();
 			
 			DashboardSchermGebruikerController child = new DashboardSchermGebruikerController(this, ac);
 			
@@ -81,4 +78,5 @@ public class LoginSchermController extends AnchorPane {
 		this.txfGebruikersnaam.setText("supportmanager@gmail.com");
 		this.txfWachtwoord.setText("wachtwoord1");
 	}
+
 }

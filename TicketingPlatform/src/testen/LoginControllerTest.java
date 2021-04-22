@@ -14,9 +14,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import domein.controllers.LoginController;
 import domein.models.Administrator;
 import persistentie.GebruikerDaoJPA;
+import persistentie.*;
+import domein.controllers.*;
 
 @ExtendWith(MockitoExtension.class)
-class GebruikerControllerTest {
+class LoginControllerTest {
 
 	@Mock
 	private GebruikerDaoJPA gebruikerRepositoryDummy;

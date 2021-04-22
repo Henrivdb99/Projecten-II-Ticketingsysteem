@@ -8,6 +8,7 @@ import domein.*;
 import domein.models.Gebruiker;
 
 import java.util.*;
+import domein.models.*;
 
 public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements GebruikerDao  {
 	

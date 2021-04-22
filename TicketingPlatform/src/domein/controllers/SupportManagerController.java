@@ -2,6 +2,7 @@ package domein.controllers;
 
 import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
+import domein.models.*;
 
 public class SupportManagerController extends AangemeldeGebruikerController{
 

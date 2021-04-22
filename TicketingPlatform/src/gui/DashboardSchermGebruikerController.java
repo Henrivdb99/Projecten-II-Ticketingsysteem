@@ -3,8 +3,6 @@ package gui;
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.controllers.LoginController;
-import domein.models.Gebruiker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +32,9 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	private Button btnWerknemersBeheren;
 	
 	private LoginSchermController parent;
-	private AangemeldeGebruikerController ac;
 	
+	private AangemeldeGebruikerController ac;
+
 	public DashboardSchermGebruikerController(LoginSchermController loginSchermController, AangemeldeGebruikerController ac) {
 		this.parent= loginSchermController;
 		this.ac = ac;
@@ -56,7 +55,7 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	// Event Listener on Button[#btnAfmelden].onAction
 	@FXML
 	public void btnAfmeldenOnAction(ActionEvent event) {
-		parent.gc.meldAf();
+		parent.lg.meldAf();
 		Stage stage = (Stage) (getScene().getWindow());
 		stage.setScene(this.parent.getScene());
 	}
@@ -97,7 +96,7 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	}
 	
 	private void welcomeMessage()  {
-		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), parent.gc.geefNaamEnVoornaamAangemeldeGebruiker()));
+		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), parent.lg.geefNaamEnVoornaamAangemeldeGebruiker()));
 	}
 
 	private void managePermissions() {
@@ -136,4 +135,6 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 		}
 		
 	}
+
+
 }
