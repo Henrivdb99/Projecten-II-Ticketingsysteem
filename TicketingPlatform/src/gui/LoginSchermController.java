@@ -34,7 +34,7 @@ public class LoginSchermController extends AnchorPane {
 	@FXML
 	private Label lblFout;
 
-	private LoginController gc;
+	protected LoginController gc;
 
 	public LoginSchermController(LoginController gebruikerController) {
 		super();

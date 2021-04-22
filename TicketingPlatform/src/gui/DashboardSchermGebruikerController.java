@@ -41,6 +41,7 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	// Event Listener on Button[#btnAfmelden].onAction
 	@FXML
 	public void btnAfmeldenOnAction(ActionEvent event) {
+		parent.gc.meldAf();
 		Stage stage = (Stage) (getScene().getWindow());
 		stage.setScene(this.parent.getScene());
 	}

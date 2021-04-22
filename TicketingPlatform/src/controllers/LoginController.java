@@ -58,6 +58,10 @@ public class LoginController {
 			default -> throw new IllegalArgumentException("Unexpected value: " + aangemeldeGebruiker.getClass());
 		};
 	}
+	
+	public void meldAf() {
+		setAangemeldeGebruiker(null);
+	}
 
 	/*public TypeGebruiker geefTypeGebruiker() {
 		if(aangemeldeGebruiker == null)
