@@ -1,13 +1,13 @@
-package controllers;
+package domein.controllers;
 
 import javax.persistence.EntityNotFoundException;
 
-import domein.Gebruiker;
-import domein.TypeGebruiker;
+import domein.models.Gebruiker;
+import domein.models.TypeGebruiker;
+import persistentie.GebruikerDaoJPA;
 import prullenbak.DashboardSchermAdministratorController;
 import prullenbak.DashboardSchermSupportManagerController;
 import prullenbak.DashboardSchermTechniekerController;
-import repository.GebruikerDaoJPA;
 
 public class LoginController {
 

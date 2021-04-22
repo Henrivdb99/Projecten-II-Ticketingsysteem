@@ -1,7 +1,7 @@
 package main;
 
-import controllers.LoginController;
-import controllers.PopuleerDB;
+import domein.PopuleerDB;
+import domein.controllers.LoginController;
 import gui.LoginSchermController;
 import javafx.application.Application;
 import javafx.scene.Scene;

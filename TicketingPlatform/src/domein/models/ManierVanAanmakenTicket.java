@@ -1,4 +1,4 @@
-package domein;
+package domein.models;
 
 public enum ManierVanAanmakenTicket {
 	  Email,

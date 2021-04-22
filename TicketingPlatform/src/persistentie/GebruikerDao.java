@@ -1,9 +1,9 @@
-package repository;
+package persistentie;
 
 import javax.persistence.EntityNotFoundException;
 
-import domein.Gebruiker;
 import domein.*;
+import domein.models.Gebruiker;
 
 public interface GebruikerDao extends GenericDao<Gebruiker>  {
         public Gebruiker getGebruikerByEmail(String email) throws EntityNotFoundException;   

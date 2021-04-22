@@ -1,6 +1,6 @@
-package controllers;
+package domein.controllers;
 
-import domein.Gebruiker;
+import domein.models.Gebruiker;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 

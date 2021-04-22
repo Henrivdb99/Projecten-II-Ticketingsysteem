@@ -1,22 +1,22 @@
-package controllers;
+package domein;
 
 import java.time.LocalDate;
 
-import domein.Administrator;
-import domein.Contract;
-import domein.ContractEnContractTypeStatus;
-import domein.ContractType;
-import domein.GebruikerStatus;
-import domein.Klant;
-import domein.KnowledgeBase;
-import domein.ManierVanAanmakenTicket;
-import domein.SupportManager;
-import domein.Technieker;
-import domein.Ticket;
-import domein.TicketStatus;
-import domein.TijdstipTicketAanmaken;
-import repository.GebruikerDaoJPA;
-import repository.GenericDaoJPA;
+import domein.models.Administrator;
+import domein.models.Contract;
+import domein.models.ContractEnContractTypeStatus;
+import domein.models.ContractType;
+import domein.models.GebruikerStatus;
+import domein.models.Klant;
+import domein.models.KnowledgeBase;
+import domein.models.ManierVanAanmakenTicket;
+import domein.models.SupportManager;
+import domein.models.Technieker;
+import domein.models.Ticket;
+import domein.models.TicketStatus;
+import domein.models.TijdstipTicketAanmaken;
+import persistentie.GebruikerDaoJPA;
+import persistentie.GenericDaoJPA;
 
 public class PopuleerDB {
 	

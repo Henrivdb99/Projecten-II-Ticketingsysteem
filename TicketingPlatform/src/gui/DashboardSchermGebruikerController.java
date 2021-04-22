@@ -2,9 +2,9 @@ package gui;
 
 import java.io.IOException;
 
-import controllers.AangemeldeGebruikerController;
-import controllers.LoginController;
-import domein.Gebruiker;
+import domein.controllers.AangemeldeGebruikerController;
+import domein.controllers.LoginController;
+import domein.models.Gebruiker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

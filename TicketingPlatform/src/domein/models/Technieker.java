@@ -1,4 +1,4 @@
-package domein;
+package domein.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;

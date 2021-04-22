@@ -1,4 +1,4 @@
-package domein;
+package domein.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;

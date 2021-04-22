@@ -1,8 +1,8 @@
-package controllers;
+package domein.controllers;
 
-import domein.Gebruiker;
-import domein.GebruikerStatus;
-import domein.TypeGebruiker;
+import domein.models.Gebruiker;
+import domein.models.GebruikerStatus;
+import domein.models.TypeGebruiker;
 
 public abstract class AangemeldeGebruikerController {
 	

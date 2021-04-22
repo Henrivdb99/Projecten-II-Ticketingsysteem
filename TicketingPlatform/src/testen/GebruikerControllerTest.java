@@ -3,7 +3,6 @@ package testen;
 import javax.persistence.EntityNotFoundException;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import controllers.LoginController;
-import domein.Administrator;
-import repository.GebruikerDaoJPA;
+import domein.controllers.LoginController;
+import domein.models.Administrator;
+import persistentie.GebruikerDaoJPA;
 
 @ExtendWith(MockitoExtension.class)
 class GebruikerControllerTest {
@@ -37,8 +36,8 @@ class GebruikerControllerTest {
 		//act
 		gc.meldAan(email, wachtwoord);
 		//assert
-		Assertions.assertEquals(email, gc.getGebruiker().getEmailAdres());
-		Assertions.assertEquals(wachtwoord, gc.getGebruiker().getWachtwoord());
+		Assertions.assertEquals(email, gc.getAangemeldeGebruiker().getEmailAdres());
+		Assertions.assertEquals(wachtwoord, gc.getAangemeldeGebruiker().getWachtwoord());
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
@@ -57,7 +56,7 @@ class GebruikerControllerTest {
 		
 		//assert
 		Assertions.assertThrows(IllegalArgumentException.class, () -> gc.meldAan(email, wachtwoord));
-		Assertions.assertEquals(null, gc.getGebruiker());
+		Assertions.assertEquals(null, gc.getAangemeldeGebruiker());
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);

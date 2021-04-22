@@ -2,8 +2,8 @@ package gui;
 
 import java.io.IOException;
 
-import controllers.AangemeldeGebruikerController;
-import controllers.LoginController;
+import domein.controllers.AangemeldeGebruikerController;
+import domein.controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

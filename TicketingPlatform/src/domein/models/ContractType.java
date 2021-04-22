@@ -1,4 +1,4 @@
-package domein;
+package domein.models;
 
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ public class ContractType implements Serializable {
 	
 	
 	public ContractType(String naam, ContractEnContractTypeStatus status,
-			ManierVanAanmakenTicket manierVanAanmakenTicket, domein.TijdstipTicketAanmaken tijdstipTicketAanmaken,
+			ManierVanAanmakenTicket manierVanAanmakenTicket, domein.models.TijdstipTicketAanmaken tijdstipTicketAanmaken,
 			int minimaleDoorlooptijd, int maximaleAfhandeltijd, double contractPrijs) {
 		this.naam = naam;
 		this.status = status;

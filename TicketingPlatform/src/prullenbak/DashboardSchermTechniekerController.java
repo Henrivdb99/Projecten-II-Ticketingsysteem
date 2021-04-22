@@ -1,6 +1,6 @@
 package prullenbak;
 
-import controllers.LoginController;
+import domein.controllers.LoginController;
 import gui.DashboardSchermGebruikerController;
 import gui.LoginSchermController;
 import javafx.fxml.FXML;

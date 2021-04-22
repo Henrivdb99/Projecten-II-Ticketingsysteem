@@ -1,10 +1,12 @@
-package repository;
+package persistentie;
 
 import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
-import domein.Gebruiker;
+
 import domein.*;
+import domein.models.Gebruiker;
+
 import java.util.*;
 
 public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements GebruikerDao  {

@@ -2,7 +2,7 @@ package prullenbak;
 
 import java.io.IOException;
 
-import controllers.LoginController;
+import domein.controllers.LoginController;
 import gui.DashboardSchermGebruikerController;
 import gui.LoginSchermController;
 import javafx.event.ActionEvent;
