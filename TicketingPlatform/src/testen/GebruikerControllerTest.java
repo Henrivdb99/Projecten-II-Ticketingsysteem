@@ -22,7 +22,7 @@ class GebruikerControllerTest {
 	@Mock
 	private GebruikerDaoJPA gebruikerRepositoryDummy;
 	@InjectMocks
-	private GebruikerController dc;
+	private GebruikerController gc;
 	
 	
 	
@@ -32,13 +32,13 @@ class GebruikerControllerTest {
 	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
 		Mockito.when(gebruikerRepositoryDummy.getGebruikerByEmail(email)).
-		thenReturn(new Administrator(email, wachtwoord));
+		thenReturn(new Administrator(email, wachtwoord, null, "", "", "", ""));
 		
 		//act
-		dc.meldAan(email, wachtwoord);
+		gc.meldAan(email, wachtwoord);
 		//assert
-		Assertions.assertEquals(email, dc.getGebruiker().getEmailAdres());
-		Assertions.assertEquals(wachtwoord, dc.getGebruiker().getWachtwoord());
+		Assertions.assertEquals(email, gc.getGebruiker().getEmailAdres());
+		Assertions.assertEquals(wachtwoord, gc.getGebruiker().getWachtwoord());
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
@@ -56,8 +56,8 @@ class GebruikerControllerTest {
 		//act
 		
 		//assert
-		Assertions.assertThrows(IllegalArgumentException.class, () -> dc.meldAan(email, wachtwoord));
-		Assertions.assertEquals(null, dc.getGebruiker());
+		Assertions.assertThrows(IllegalArgumentException.class, () -> gc.meldAan(email, wachtwoord));
+		Assertions.assertEquals(null, gc.getGebruiker());
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
