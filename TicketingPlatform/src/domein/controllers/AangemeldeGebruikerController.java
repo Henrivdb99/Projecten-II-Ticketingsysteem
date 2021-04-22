@@ -1,14 +1,29 @@
 package domein.controllers;
 
+import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
-import domein.models.*;
+import persistentie.GebruikerDaoJPA;
 
 public abstract class AangemeldeGebruikerController {
 	
+	protected GebruikerDaoJPA gebruikerRepo;
+	
 	public AangemeldeGebruikerController() {
-		
+		this(new GebruikerDaoJPA());
 	}
 	
+	public AangemeldeGebruikerController(GebruikerDaoJPA gebruikerRepo) {
+		this.gebruikerRepo = gebruikerRepo;
+	}
+
+	public GebruikerDaoJPA getGebruikerRepo() {
+		return gebruikerRepo;
+	}
+
+	public void setGebruikerRepo(GebruikerDaoJPA gebruikerRepo) {
+		this.gebruikerRepo = gebruikerRepo;
+	}
+
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 
 	public Gebruiker geefGebruiker(int id) {
@@ -30,6 +45,8 @@ public abstract class AangemeldeGebruikerController {
 	public void verwijderGebruiker(int id) {
 		throw new UnsupportedOperationException();
 	}
+	
+	
 	
 	
 }
