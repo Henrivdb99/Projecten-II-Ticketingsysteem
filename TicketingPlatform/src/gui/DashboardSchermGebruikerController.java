@@ -18,6 +18,20 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	private Button btnAfmelden;
 	@FXML
 	private Label lblWelkom;
+	@FXML
+	private Button btnOpenstaandeTickets;
+	@FXML
+	private Button btnAfgehandeldeTickets;
+	@FXML
+	private Button btnStatistieken;
+	@FXML
+	private Button btnKnowledgeBaseBeheren;
+	@FXML
+	private Button btnNieuwTicketAanmaken;
+	@FXML
+	private Button btnKlantenBeheren;
+	@FXML
+	private Button btnWerknemersBeheren;
 	
 	private LoginSchermController parent;
 	private AangemeldeGebruikerController ac;
@@ -32,6 +46,7 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 			loader.load();
 			
 			welcomeMessage();
+			managePermissions();
 			
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
@@ -82,6 +97,43 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	}
 	
 	private void welcomeMessage()  {
-		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), ac.geefNaamEnVoornaamAangemeldeGebruiker()));
+		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), parent.gc.geefNaamEnVoornaamAangemeldeGebruiker()));
+	}
+
+	private void managePermissions() {
+		switch(ac.geefAangemeldeGebruikerType()) {
+			case Administrator -> {
+				btnKlantenBeheren.setDisable(false);
+				btnWerknemersBeheren.setDisable(false);
+				btnKlantenBeheren.setVisible(true);
+				btnWerknemersBeheren.setVisible(true);
+			}
+			case Technieker -> {
+				btnOpenstaandeTickets.setDisable(false);
+				btnAfgehandeldeTickets.setDisable(false);
+				btnStatistieken.setDisable(false);
+				btnKnowledgeBaseBeheren.setDisable(false);
+				btnOpenstaandeTickets.setVisible(true);
+				btnAfgehandeldeTickets.setVisible(true);
+				btnStatistieken.setVisible(true);
+				btnKnowledgeBaseBeheren.setVisible(true);		
+						}
+			case SupportManager -> {
+				btnOpenstaandeTickets.setDisable(false);
+				btnAfgehandeldeTickets.setDisable(false);
+				btnStatistieken.setDisable(false);
+				btnKnowledgeBaseBeheren.setDisable(false);
+				btnNieuwTicketAanmaken.setDisable(false);
+				btnOpenstaandeTickets.setVisible(true);
+				btnAfgehandeldeTickets.setVisible(true);
+				btnStatistieken.setVisible(true);
+				btnKnowledgeBaseBeheren.setVisible(true);
+				btnNieuwTicketAanmaken.setVisible(true);
+			}
+			default -> {
+				
+			}
+		}
+		
 	}
 }

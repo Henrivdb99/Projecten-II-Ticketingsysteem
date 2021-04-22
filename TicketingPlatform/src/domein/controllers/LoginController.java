@@ -52,9 +52,9 @@ public class LoginController {
 	
 	public AangemeldeGebruikerController geefJuisteController() {
 		return switch(aangemeldeGebruiker.getClass().getSimpleName()) {
-			case "Technieker" -> new TechniekerController(aangemeldeGebruiker);
-			case "Administrator" -> new AdministratorController(aangemeldeGebruiker);
-			case "SupportManager" -> new SupportManagerController(aangemeldeGebruiker);
+			case "Technieker" -> new TechniekerController();
+			case "Administrator" -> new AdministratorController();
+			case "SupportManager" -> new SupportManagerController();
 			default -> throw new IllegalArgumentException("Unexpected value: " + aangemeldeGebruiker.getClass());
 		};
 	}
@@ -74,11 +74,11 @@ public class LoginController {
 		};
 	}*/
 	
-	/*public String geefNaamEnVoornaamAangemeldeGebruiker() {
+	public String geefNaamEnVoornaamAangemeldeGebruiker() {
 		if(aangemeldeGebruiker == null)
 			throw new IllegalArgumentException("Er is geen gebruiker aangemeld");
 		return aangemeldeGebruiker.getVoornaam() + aangemeldeGebruiker.getNaam();
-	} */
+	} 
 
 	private void setAangemeldeGebruiker(Gebruiker gebruiker) {
 		this.aangemeldeGebruiker = gebruiker;
