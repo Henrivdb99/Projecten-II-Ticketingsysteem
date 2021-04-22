@@ -26,10 +26,11 @@ public class PopuleerDB {
     public static void run() {
         GebruikerDaoJPA gebruikerdao = new GebruikerDaoJPA();
         GebruikerDaoJPA.startTransaction();
-
-        //GenericDaoJpa<Winkel> winkeldao = new GenericDaoJpa<>(Winkel.class);
+        
        
         Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", "049952754");
+        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754");
+        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777");
         Technieker technieker1 = new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", "042252754");
         
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
@@ -79,8 +80,8 @@ public class PopuleerDB {
         knowledgebasedao.insert(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
         
 		gebruikerdao.insert(klant1);
-		gebruikerdao.insert(new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754"));
-		gebruikerdao.insert(new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777"));
+		gebruikerdao.insert(supportManager1);
+		gebruikerdao.insert(administrator1);
 		gebruikerdao.insert(technieker1);
 
 	
