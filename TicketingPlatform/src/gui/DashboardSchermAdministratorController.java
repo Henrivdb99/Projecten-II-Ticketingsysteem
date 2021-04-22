@@ -24,6 +24,8 @@ public class DashboardSchermAdministratorController extends DashboardSchermGebru
 		super(loginSchermController, gebruikerController);
 		btnKlantenBeheren.setDisable(false);
 		btnWerknemersBeheren.setDisable(false);
+		btnKlantenBeheren.setVisible(true);
+		btnWerknemersBeheren.setVisible(true);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -25,6 +25,11 @@ public class DashboardSchermSupportManagerController extends DashboardSchermGebr
 		btnStatistieken.setDisable(false);
 		btnKnowledgeBaseBeheren.setDisable(false);
 		btnNieuwTicketAanmaken.setDisable(false);
+		btnOpenstaandeTickets.setVisible(true);
+		btnAfgehandeldeTickets.setVisible(true);
+		btnStatistieken.setVisible(true);
+		btnKnowledgeBaseBeheren.setVisible(true);
+		btnNieuwTicketAanmaken.setVisible(true);
 		// TODO Auto-generated constructor stub
 		
 	}

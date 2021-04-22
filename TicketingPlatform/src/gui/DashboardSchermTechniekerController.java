@@ -21,6 +21,10 @@ public class DashboardSchermTechniekerController extends DashboardSchermGebruike
 		btnAfgehandeldeTickets.setDisable(false);
 		btnStatistieken.setDisable(false);
 		btnKnowledgeBaseBeheren.setDisable(false);
+		btnOpenstaandeTickets.setVisible(true);
+		btnAfgehandeldeTickets.setVisible(true);
+		btnStatistieken.setVisible(true);
+		btnKnowledgeBaseBeheren.setVisible(true);
 	}
 	
 	
