@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import controllers.GebruikerController;
+import controllers.LoginController;
 import domein.Administrator;
 import repository.GebruikerDaoJPA;
 
@@ -22,7 +22,7 @@ class GebruikerControllerTest {
 	@Mock
 	private GebruikerDaoJPA gebruikerRepositoryDummy;
 	@InjectMocks
-	private GebruikerController gc;
+	private LoginController gc;
 	
 	
 	

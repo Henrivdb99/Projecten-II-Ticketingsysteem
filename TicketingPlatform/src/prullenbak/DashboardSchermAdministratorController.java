@@ -1,8 +1,10 @@
-package gui;
+package prullenbak;
 
 import java.io.IOException;
 
-import controllers.GebruikerController;
+import controllers.LoginController;
+import gui.DashboardSchermGebruikerController;
+import gui.LoginSchermController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,7 @@ public class DashboardSchermAdministratorController extends DashboardSchermGebru
 	private Button btnWerknemersBeheren;
 
 	public DashboardSchermAdministratorController(LoginSchermController loginSchermController,
-			GebruikerController gebruikerController) {
+			LoginController gebruikerController) {
 		super(loginSchermController, gebruikerController);
 		btnKlantenBeheren.setDisable(false);
 		btnWerknemersBeheren.setDisable(false);

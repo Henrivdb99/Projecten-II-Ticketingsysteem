@@ -1,6 +1,6 @@
 package main;
 
-import controllers.GebruikerController;
+import controllers.LoginController;
 import controllers.PopuleerDB;
 
 public class StartUp {
@@ -8,7 +8,7 @@ public class StartUp {
 	public static void main(String[] args) {
 		System.out.println("Hello world");
 		
-		GebruikerController gc = new GebruikerController();
+		LoginController gc = new LoginController();
 		
 		PopuleerDB.run();
 

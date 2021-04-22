@@ -2,8 +2,8 @@ package gui;
 
 import java.io.IOException;
 
-import controllers.GebruikerController;
-import domein.Technieker;
+import controllers.AangemeldeGebruikerController;
+import controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import prullenbak.DashboardSchermAdministratorController;
+import prullenbak.DashboardSchermSupportManagerController;
+import prullenbak.DashboardSchermTechniekerController;
 
 public class LoginSchermController extends AnchorPane {
 	@FXML
@@ -31,9 +34,9 @@ public class LoginSchermController extends AnchorPane {
 	@FXML
 	private Label lblFout;
 
-	private GebruikerController gc;
+	private LoginController gc;
 
-	public LoginSchermController(GebruikerController gebruikerController) {
+	public LoginSchermController(LoginController gebruikerController) {
 		super();
 		this.gc = gebruikerController;				
 		try {
@@ -55,14 +58,10 @@ public class LoginSchermController extends AnchorPane {
 
 		try {
 			gc.meldAan(username, wachtwoord);
-			DashboardSchermGebruikerController child;
+			AangemeldeGebruikerController ac = gc.geefJuisteController();
 			
-			child = switch(gc.getGebruiker().getClass().getSimpleName()) {
-				case "Technieker" ->  new DashboardSchermTechniekerController(this, gc);
-				case "Administrator" ->  new DashboardSchermAdministratorController(this, gc);
-				case "SupportManager" ->  new DashboardSchermSupportManagerController(this, gc);
-				default -> throw new IllegalArgumentException("Unexpected value: " + gc.getGebruiker().getClass());
-			};
+			DashboardSchermGebruikerController child = new DashboardSchermGebruikerController(this, ac);
+			
 			Scene scene = new Scene(child);
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setScene(scene);

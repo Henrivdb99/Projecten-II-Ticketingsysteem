@@ -1,6 +1,6 @@
 package main;
 
-import controllers.GebruikerController;
+import controllers.LoginController;
 import controllers.PopuleerDB;
 import gui.LoginSchermController;
 import javafx.application.Application;
@@ -11,7 +11,7 @@ public class StartGui extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {	
-		GebruikerController gc  = new GebruikerController();		
+		LoginController gc  = new LoginController();		
 		PopuleerDB.run();
 		Scene scene = new Scene(new LoginSchermController(gc));
 		stage.setScene(scene);

@@ -2,7 +2,8 @@ package gui;
 
 import java.io.IOException;
 
-import controllers.GebruikerController;
+import controllers.AangemeldeGebruikerController;
+import controllers.LoginController;
 import domein.Gebruiker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,18 +13,18 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public abstract class DashboardSchermGebruikerController extends AnchorPane {
+public class DashboardSchermGebruikerController extends AnchorPane {
 	@FXML
 	private Button btnAfmelden;
 	@FXML
 	private Label lblWelkom;
 	
-	protected LoginSchermController parent;
-	protected GebruikerController gc;
+	private LoginSchermController parent;
+	private AangemeldeGebruikerController ac;
 	
-	public DashboardSchermGebruikerController(LoginSchermController loginSchermController, GebruikerController gebruikerController) {
+	public DashboardSchermGebruikerController(LoginSchermController loginSchermController, AangemeldeGebruikerController ac) {
 		this.parent= loginSchermController;
-		this.gc = gebruikerController;
+		this.ac = ac;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardSchermGebruiker.fxml"));
 			loader.setRoot(this);
@@ -80,7 +81,6 @@ public abstract class DashboardSchermGebruikerController extends AnchorPane {
 	}
 	
 	private void welcomeMessage()  {
-		Gebruiker g = gc.getGebruiker();
-		this.lblWelkom.setText(String.format("Welkom %s %s!", g.getClass().getSimpleName(), g.getEmailAdres()));
+		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), ac.geefNaamEnVoornaamAangemeldeGebruiker()));
 	}
 }
