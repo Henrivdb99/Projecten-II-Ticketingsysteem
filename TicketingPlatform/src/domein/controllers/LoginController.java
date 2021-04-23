@@ -10,7 +10,6 @@ public class LoginController {
 	private Gebruiker aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
 
-
 	public LoginController() {
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
@@ -34,7 +33,7 @@ public class LoginController {
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
 			Gebruiker gevondenGebruiker = gebruikerRepo.getGebruikerByEmail(email);
-			if (gevondenGebruiker.getWachtwoord().equals(wachtwoord)) 
+			if (checkPassword(wachtwoord, gevondenGebruiker.getWachtwoord())) 
 		    {
 		    	setAangemeldeGebruiker(gevondenGebruiker);
 		        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
@@ -44,6 +43,17 @@ public class LoginController {
 		} catch(EntityNotFoundException e) {
 			throw new IllegalArgumentException("Email adres is niet gekend");
 		}
+	}
+	
+	public static boolean checkPassword(String password_plaintext, String stored_hash) {
+		boolean password_verified = false;
+
+		if(null == stored_hash || !stored_hash.startsWith("$2a$"))
+			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+
+		password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+
+		return(password_verified);
 	}
 	
 	public AangemeldeGebruikerController geefJuisteController() {
