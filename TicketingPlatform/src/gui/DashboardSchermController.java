@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DashboardSchermGebruikerController extends AnchorPane {
+public class DashboardSchermController extends AnchorPane {
 	@FXML
 	private Button btnAfmelden;
 	@FXML
@@ -35,11 +35,11 @@ public class DashboardSchermGebruikerController extends AnchorPane {
 	
 	private AangemeldeGebruikerController ac;
 
-	public DashboardSchermGebruikerController(LoginSchermController loginSchermController, AangemeldeGebruikerController ac) {
+	public DashboardSchermController(LoginSchermController loginSchermController, AangemeldeGebruikerController ac) {
 		this.parent= loginSchermController;
 		this.ac = ac;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardSchermGebruiker.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardScherm.fxml"));
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();

@@ -3,7 +3,7 @@ package prullenbak;
 import java.io.IOException;
 
 import domein.controllers.LoginController;
-import gui.DashboardSchermGebruikerController;
+import gui.DashboardSchermController;
 import gui.LoginSchermController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import domein.controllers.*;
 import javafx.event.*;
 import controllers.*;
 
-public class DashboardSchermAdministratorController extends DashboardSchermGebruikerController{
+public class DashboardSchermAdministratorController extends DashboardSchermController{
 	
 	@FXML
 	private Button btnAfmelden;

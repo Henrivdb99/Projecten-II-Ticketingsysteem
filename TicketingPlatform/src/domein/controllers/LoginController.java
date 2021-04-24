@@ -56,7 +56,7 @@ public class LoginController {
 		return(password_verified);
 	}
 	
-	public AangemeldeGebruikerController geefJuisteController() {
+	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException {
 		return switch(aangemeldeGebruiker.getClass().getSimpleName()) {
 			case "Technieker" -> new TechniekerController();
 			case "Administrator" -> new AdministratorController();
@@ -80,7 +80,7 @@ public class LoginController {
 		};
 	}*/
 	
-	public String geefNaamEnVoornaamAangemeldeGebruiker() {
+	public String geefNaamEnVoornaamAangemeldeGebruiker() throws IllegalArgumentException {
 		if(aangemeldeGebruiker == null)
 			throw new IllegalArgumentException("Er is geen gebruiker aangemeld");
 		return aangemeldeGebruiker.getVoornaam() + " " + aangemeldeGebruiker.getNaam();

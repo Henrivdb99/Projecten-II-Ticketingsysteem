@@ -57,7 +57,7 @@ public class LoginSchermController extends AnchorPane {
 			lg.meldAan(username, wachtwoord);
 			AangemeldeGebruikerController ac = lg.geefJuisteController();
 			
-			DashboardSchermGebruikerController child = new DashboardSchermGebruikerController(this, ac);
+			DashboardSchermController child = new DashboardSchermController(this, ac);
 			
 			Scene scene = new Scene(child);
 			Stage stage = (Stage) this.getScene().getWindow();

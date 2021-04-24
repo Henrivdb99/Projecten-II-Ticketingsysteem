@@ -1,7 +1,7 @@
 package prullenbak;
 
 import domein.controllers.LoginController;
-import gui.DashboardSchermGebruikerController;
+import gui.DashboardSchermController;
 import gui.LoginSchermController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import domein.controllers.*;
 import controllers.*;
 
-public class DashboardSchermTechniekerController extends DashboardSchermGebruikerController {
+public class DashboardSchermTechniekerController extends DashboardSchermController {
 	@FXML
 	private Button btnOpenstaandeTickets;
 	@FXML
