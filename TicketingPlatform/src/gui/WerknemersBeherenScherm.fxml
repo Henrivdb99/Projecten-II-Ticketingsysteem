@@ -19,6 +19,7 @@
             </ImageView>
             <Button fx:id="btnWerknemerToevoegen" layoutX="846.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnWerknemerToevoegenOnAction" text="Werknemer Toevoegen" />
             <Button fx:id="btnWerknemerWijzigen" layoutX="719.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnWerknemerWijzigenOnAction" text="Werknemer Wijzigen" />
+            <Button fx:id="btnTerug" layoutX="654.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnTerugOnAction" prefHeight="25.0" prefWidth="65.0" text="Terug" />
          </children></Pane>
    </top>
    <center>
