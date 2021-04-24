@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-import domein.controllers.AangemeldeGebruikerController;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.TableView;
@@ -23,6 +22,8 @@ public class WerknemersBeherenSchermController extends BorderPane {
 	@FXML
 	private Button btnTerug;
 	@FXML
+	private Button btnWerknemerDetails;
+	@FXML
 	private TableView tblView;
 	@FXML
 	private TableColumn ColGebruikersnaam;
@@ -35,14 +36,10 @@ public class WerknemersBeherenSchermController extends BorderPane {
 	@FXML
 	private TableColumn ColStatus;
 
-	private DashboardSchermGebruikerController parent;
+	private DashboardSchermController parent;
 
-	private AangemeldeGebruikerController ac;
-
-	public WerknemersBeherenSchermController(DashboardSchermGebruikerController dsgc,
-			AangemeldeGebruikerController ac) {
-		this.parent = dsgc;
-		this.ac = ac;
+	public WerknemersBeherenSchermController(DashboardSchermController dashboardSchermController) {
+		this.parent = dashboardSchermController;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemersBeherenScherm.fxml"));
 			loader.setRoot(this);
@@ -76,5 +73,16 @@ public class WerknemersBeherenSchermController extends BorderPane {
 	public void btnTerugOnAction(ActionEvent event) {
 		Stage stage = (Stage) (getScene().getWindow());
 		stage.setScene(this.parent.getScene());
+	}
+
+	// Event Listener on Button[#btnWerknemerDetails].onAction
+	@FXML
+	public void btnWerknemerDetailsOnAction(ActionEvent event) {
+		WerknemerDetailsSchermController werknemerDetailsSchermController = new WerknemerDetailsSchermController(this);
+
+		Scene scene = new Scene(werknemerDetailsSchermController);
+		Stage stage = (Stage) this.getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();
 	}
 }
