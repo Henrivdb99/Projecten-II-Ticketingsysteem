@@ -3,6 +3,7 @@ package domein.controllers;
 import javax.persistence.EntityNotFoundException;
 
 import domein.models.Gebruiker;
+import domein.models.TypeGebruiker;
 import persistentie.GebruikerDaoJPA;
 
 public class LoginController {
@@ -57,10 +58,10 @@ public class LoginController {
 	}
 	
 	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException {
-		return switch(aangemeldeGebruiker.getClass().getSimpleName()) {
-			case "Technieker" -> new TechniekerController();
-			case "Administrator" -> new AdministratorController();
-			case "SupportManager" -> new SupportManagerController();
+		return switch(TypeGebruiker.valueOf(aangemeldeGebruiker.getClass().getSimpleName())) {
+			case Technieker -> new TechniekerController();
+			case Administrator -> new AdministratorController();
+			case SupportManager -> new SupportManagerController();
 			default -> throw new IllegalArgumentException("Unexpected value: " + aangemeldeGebruiker.getClass());
 		};
 	}

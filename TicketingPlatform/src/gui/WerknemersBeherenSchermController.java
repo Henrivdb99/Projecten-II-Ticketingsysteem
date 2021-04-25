@@ -132,7 +132,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		colVoornaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("voornaam"));
 		colRol.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("rol"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("status"));
-        tblView.setItems(getWerknemers());
+        tblView.setItems(ac.geefWerknemers());
         
 	}
 }

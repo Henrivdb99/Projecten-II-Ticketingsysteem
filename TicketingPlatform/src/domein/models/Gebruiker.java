@@ -17,7 +17,17 @@ import java.time.*;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email")
+@NamedQueries({
+	@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
+		/*
+		 * @NamedQuery(name = "Gebruiker.geefWerknemers", query =
+		 * "select g from Gebruiker where g.dtype = 'Administrator' or g.dtype = 'Technieker' or g.dtype = 'SupportManager'"
+		 * ),
+		 * 
+		 * @NamedQuery(name = "Gebruiker.geefKlanten", query =
+		 * "select g from Gebruiker g where g.dtype = 'Klant'")
+		 */
+})
 public abstract class Gebruiker implements Serializable {
 
 	@Id

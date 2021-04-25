@@ -1,7 +1,13 @@
 package domein.controllers;
 
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
 import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import persistentie.GebruikerDaoJPA;
 
 public abstract class AangemeldeGebruikerController {
@@ -27,23 +33,33 @@ public abstract class AangemeldeGebruikerController {
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 
 	public Gebruiker geefGebruiker(int id) {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public String[] geefGebruikers() {
-		throw new UnsupportedOperationException();
+	public ObservableList<Gebruiker> geefWerknemers() {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+	
+	public ObservableList<Gebruiker> geefKlanten() {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
 	public void voegGebruikerToe(String[] gegevens) {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
 	public void updateGebruiker(int id, String[] gegevens) {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
 	public void verwijderGebruiker(int id) {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String gsmnummer,
+			String vasteLijnWerk, String rol, String wachtwoord, String adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+		
 	}
 	
 	

@@ -94,7 +94,7 @@ public class WerknemerToevoegenSchermController extends GridPane {
 				if (cboRol.getValue() != null) {
 					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-						ac.nieuweWerknemerAanmaken(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(),
+						ac.voegMedewerkerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(),
 								txfGsmNummer.getText(), "TODO", cboRol.getValue().toString(), txfWachtwoord.getText(),
 								samengesteldAdres);
 					} else {

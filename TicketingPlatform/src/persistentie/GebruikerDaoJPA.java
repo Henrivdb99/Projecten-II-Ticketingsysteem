@@ -1,6 +1,8 @@
 package persistentie;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
@@ -32,15 +34,25 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
 
 	@Override
 	public List<Gebruiker> geefWerknemers() throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findAll().stream().filter(g -> !(g instanceof Klant)).collect(Collectors.toList());
+		/*try {
+            return em.createNamedQuery("Gebruiker.geefWerknemers", Gebruiker.class)
+                .getResultList();
+        } catch (NoResultException ex) {
+            throw new EntityNotFoundException();
+        } */
 	}
     
 
 	@Override
 	public List<Gebruiker> geefKlanten() throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findAll().stream().filter(g -> (g instanceof Klant)).collect(Collectors.toList());
+		/*try {
+            return em.createNamedQuery("Gebruiker.geefKlanten", Gebruiker.class)
+                .getResultList();
+        } catch (NoResultException ex) {
+            throw new EntityNotFoundException();
+        } */
 	}
 
 	
