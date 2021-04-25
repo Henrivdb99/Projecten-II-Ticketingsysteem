@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import domein.controllers.AangemeldeGebruikerController;
+import domein.controllers.AdministratorController;
 import domein.models.Administrator;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
@@ -50,10 +52,12 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	private TableColumn<Gebruiker, String> colStatus;
 
 	private DashboardSchermController parent;
+	private AdministratorController ac;
 	private Gebruiker selectedUser;
 
-	public WerknemersBeherenSchermController(DashboardSchermController dashboardSchermController) {
+	public WerknemersBeherenSchermController(DashboardSchermController dashboardSchermController, AdministratorController ac) {
 		this.parent = dashboardSchermController;
+		this.ac= ac;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemersBeherenScherm.fxml"));
 			loader.setRoot(this);
@@ -70,7 +74,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	// Event Listener on Button[#btnWerknemerToevoegen].onAction
 	@FXML
 	public void btnWerknemerToevoegenOnAction(ActionEvent event) {
-		WerknemerToevoegenSchermController wtsc = new WerknemerToevoegenSchermController(this);
+		WerknemerToevoegenSchermController wtsc = new WerknemerToevoegenSchermController(this, ac);
 
 		Scene scene = new Scene(wtsc);
 		Stage stage = (Stage) this.getScene().getWindow();

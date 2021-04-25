@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
+import domein.controllers.AdministratorController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,7 +94,7 @@ public class DashboardSchermController extends AnchorPane {
 	// Event Listener on Button[#btnWerknemersBeheren].onAction
 	@FXML
 	public void btnWerknemersBeherenOnAction(ActionEvent event) {
-		WerknemersBeherenSchermController wbsc = new WerknemersBeherenSchermController(this);
+		WerknemersBeherenSchermController wbsc = new WerknemersBeherenSchermController(this, (AdministratorController) this.ac);
 		
 		Scene scene = new Scene(wbsc);
 		Stage stage = (Stage) this.getScene().getWindow();
