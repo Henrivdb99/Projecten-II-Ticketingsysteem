@@ -66,7 +66,7 @@ public class WerknemerToevoegenSchermController extends GridPane {
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
-			
+
 			cboRol.setItems(FXCollections.observableArrayList(TypeGebruiker.values()));
 
 		} catch (IOException ex) {
@@ -84,13 +84,32 @@ public class WerknemerToevoegenSchermController extends GridPane {
 	// Event Listener on Button[#btnWerknemerAanmaken].onAction
 	@FXML
 	public void btnWerknemerAanmakenOnAction(ActionEvent event) {
-		String samengesteldAdres= txfStraat.getText() + " " + txfHuisnummer.getText() + ", " + txfPostcode.getText() + " " + txfStad.getText(); 
-		if(txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText()))
-		{
-			ac.nieuweWerknemerAanmaken(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), txfGsmNummer.getText(), "TODO", cboRol.getValue().toString(), txfWachtwoord.getText(), samengesteldAdres);
+
+		String samengesteldAdres = txfStraat.getText() + " " + txfHuisnummer.getText() + ", " + txfPostcode.getText()
+				+ " " + txfStad.getText();
+
+		try {
+
+			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
+				if (cboRol.getValue() != null) {
+					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
+							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
+						ac.nieuweWerknemerAanmaken(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(),
+								txfGsmNummer.getText(), "TODO", cboRol.getValue().toString(), txfWachtwoord.getText(),
+								samengesteldAdres);
+					} else {
+						lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
+					}
+
+				} else {
+					lblFout.setText("Gelieve een rol te selecteren.");
+				}
+			} else {
+				lblFout.setText("Wachtwoorden zijn niet identiek.");
+			}
+		} catch (IllegalArgumentException e) {
+			lblFout.setText(e.getMessage());
 		}
-		else {
-			lblFout.setText("Wachtwoorden zijn niet identiek.");
-		}
+
 	}
 }

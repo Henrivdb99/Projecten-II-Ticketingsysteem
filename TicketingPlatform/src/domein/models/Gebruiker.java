@@ -48,7 +48,7 @@ public abstract class Gebruiker implements Serializable {
 
 	}
 
-	public java.time.LocalDate getRegistratieDatum() {
+	public LocalDate getRegistratieDatum() {
 		return registratieDatum;
 	}
 	
@@ -57,7 +57,7 @@ public abstract class Gebruiker implements Serializable {
 		return this.getClass().getSimpleName();
 	}
 
-	public void setRegistratieDatum(java.time.LocalDate registratieDatum) {
+	public void setRegistratieDatum(LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
 	}
 
@@ -74,7 +74,11 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	private void setNaam(String naam) {
-		this.naam = naam;
+		if(!naam.isBlank())
+		{
+			this.naam = naam;
+		}
+		else throw new IllegalArgumentException("Naam is verplicht");
 	}
 
 	public String getVoornaam() {
@@ -82,24 +86,33 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	private void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
+		if(!voornaam.isBlank())
+		{
+			this.voornaam = voornaam;
+		}
+		else throw new IllegalArgumentException("Voornaam is verplicht");	}
 
 	public String getAdres() {
 		return adres;
 	}
 
 	private void setAdres(String adres) {
-		this.adres = adres;
-	}
+		if(!adres.isBlank())
+		{
+			this.adres = adres;
+		}
+		else throw new IllegalArgumentException("Adres is verplicht");	}
 
 	public String getTelefoonnummer() {
 		return telefoonnummer;
 	}
 
 	private void setTelefoonnummer(String telefoonnummer) {
-		this.telefoonnummer = telefoonnummer;
-	}
+		if(!telefoonnummer.isBlank())
+		{
+			this.telefoonnummer = telefoonnummer;
+		}
+		else throw new IllegalArgumentException("Telefoonnummer is verplicht");	}
 
 	
 
@@ -120,12 +133,18 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	public void setEmailAdres(String emailAdres) {
-		this.emailAdres = emailAdres;
-	}
+		if(!emailAdres.isBlank())
+		{
+			this.emailAdres = emailAdres;
+		}
+		else throw new IllegalArgumentException("E-mailadres is verplicht");	}
 
 	public void setWachtwoord(String wachtwoord) {
-		this.wachtwoord = wachtwoord;
-	}
+		if(!wachtwoord.isBlank())
+		{
+			this.wachtwoord = wachtwoord;
+		}
+		else throw new IllegalArgumentException("Wachtwoord is verplicht");	}
 
 	@Override
 	public String toString() {
