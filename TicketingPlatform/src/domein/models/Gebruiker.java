@@ -51,6 +51,11 @@ public abstract class Gebruiker implements Serializable {
 	public java.time.LocalDate getRegistratieDatum() {
 		return registratieDatum;
 	}
+	
+	public String getRol()
+	{
+		return this.getClass().getSimpleName();
+	}
 
 	public void setRegistratieDatum(java.time.LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
