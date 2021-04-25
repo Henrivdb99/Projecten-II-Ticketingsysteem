@@ -16,9 +16,6 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
         super(Gebruiker.class);
     }
 
-	public List<Gebruiker> geefGebruikers() {
-		throw new UnsupportedOperationException();
-	}
 
     @Override
     public Gebruiker getGebruikerByEmail(String email) throws EntityNotFoundException {
@@ -30,6 +27,22 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
             throw new EntityNotFoundException();
         } 
     }
+   
+
+
+	@Override
+	public List<Gebruiker> geefWerknemers() throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+
+	@Override
+	public List<Gebruiker> geefKlanten() throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

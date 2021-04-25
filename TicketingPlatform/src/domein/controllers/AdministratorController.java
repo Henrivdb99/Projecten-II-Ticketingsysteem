@@ -2,6 +2,7 @@ package domein.controllers;
 
 import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
+import javafx.collections.ObservableList;
 
 import javax.persistence.criteria.CriteriaBuilder.Case;
 
@@ -18,6 +19,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public TypeGebruiker geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
 		return TypeGebruiker.Administrator;
+	}
+	
+	public ObservableList<Gebruiker>  geefWerknemers() {
+		throw new UnsupportedOperationException();
 	}
 
 	public void nieuweWerknemerAanmaken(String naam, String voornaam, String email, String gsmnummer,
