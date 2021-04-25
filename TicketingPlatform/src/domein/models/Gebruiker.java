@@ -129,7 +129,7 @@ public abstract class Gebruiker implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Gebruiker [id=" + id + ", emailAdres=" + emailAdres + "]";
+		return String.format("Gebruiker met id %s, email %s, wachtwoord %s, adres %s, naam %s, voornaam %s, telefoonnummer %s, registratiedatum %s",getId(), getEmailAdres(), getWachtwoord(), getAdres(), getNaam(), getVoornaam(), getTelefoonnummer(), getRegistratieDatum());
 	}
 
 	@Override
