@@ -44,10 +44,6 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public void voegGebruikerToe(String[] gegevens) {
-		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
-	}
-
 	public void updateGebruiker(int id, String[] gegevens) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}

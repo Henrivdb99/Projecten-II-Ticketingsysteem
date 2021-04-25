@@ -2,6 +2,7 @@ package domein.controllers;
 
 import javax.persistence.EntityNotFoundException;
 
+import domein.Hashing;
 import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
 import persistentie.GebruikerDaoJPA;
@@ -34,7 +35,7 @@ public class LoginController {
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
 			Gebruiker gevondenGebruiker = gebruikerRepo.getGebruikerByEmail(email);
-			if (checkPassword(wachtwoord, gevondenGebruiker.getWachtwoord())) 
+			if (Hashing.checkPassword(wachtwoord, gevondenGebruiker.getWachtwoord())) 
 		    {
 		    	setAangemeldeGebruiker(gevondenGebruiker);
 		        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
@@ -46,16 +47,6 @@ public class LoginController {
 		}
 	}
 	
-	public static boolean checkPassword(String password_plaintext, String stored_hash) {
-		boolean password_verified = false;
-
-		if(null == stored_hash || !stored_hash.startsWith("$2a$"))
-			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
-
-		password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
-
-		return(password_verified);
-	}
 	
 	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException {
 		return switch(TypeGebruiker.valueOf(aangemeldeGebruiker.getClass().getSimpleName())) {

@@ -22,17 +22,16 @@ import persistentie.GenericDaoJPA;
 public class PopuleerDB {
 	
     public static int userId = 1; //"210771fc - 21f2 - 47e4 - a902 - 986e2d199105";
-    private static int workload = 12;
-	
+    
     public static void run() {
         GebruikerDaoJPA gebruikerdao = new GebruikerDaoJPA();
         GebruikerDaoJPA.startTransaction();
         
        
-        Klant klant1 = new Klant("klant@gmail.com", hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", "049952754");
-        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", hashPassword("wachtwoord1"),GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754");
-        Administrator administrator1 = new Administrator("administrator@gmail.com", hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777");
-        Technieker technieker1 = new Technieker("technieker@gmail.com", hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", "042252754");
+        Klant klant1 = new Klant("klant@gmail.com", Hashing.hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", "049952754");
+        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", Hashing.hashPassword("wachtwoord1"),GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754");
+        Administrator administrator1 = new Administrator("administrator@gmail.com", Hashing.hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777");
+        Technieker technieker1 = new Technieker("technieker@gmail.com", Hashing.hashPassword("wachtwoord1"), GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", "042252754");
         
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
@@ -89,10 +88,5 @@ public class PopuleerDB {
         GebruikerDaoJPA.commitTransaction();
           
     }
-    public static String hashPassword(String password_plaintext) {
-		String salt = BCrypt.gensalt(workload);
-		String hashed_password = BCrypt.hashpw(password_plaintext, salt);
 
-		return(hashed_password);
-	}
 }
