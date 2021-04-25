@@ -52,10 +52,10 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	private TableColumn<Gebruiker, String> colStatus;
 
 	private DashboardSchermController parent;
-	private AdministratorController ac;
+	private AangemeldeGebruikerController ac;
 	private Gebruiker selectedUser;
 
-	public WerknemersBeherenSchermController(DashboardSchermController dashboardSchermController, AdministratorController ac) {
+	public WerknemersBeherenSchermController(DashboardSchermController dashboardSchermController, AangemeldeGebruikerController ac) {
 		this.parent = dashboardSchermController;
 		this.ac= ac;
 		try {

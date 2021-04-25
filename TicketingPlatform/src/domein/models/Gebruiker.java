@@ -19,14 +19,13 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
-		/*
-		 * @NamedQuery(name = "Gebruiker.geefWerknemers", query =
-		 * "select g from Gebruiker where g.dtype = 'Administrator' or g.dtype = 'Technieker' or g.dtype = 'SupportManager'"
-		 * ),
-		 * 
-		 * @NamedQuery(name = "Gebruiker.geefKlanten", query =
-		 * "select g from Gebruiker g where g.dtype = 'Klant'")
-		 */
+		
+		  @NamedQuery(name = "Gebruiker.geefWerknemers", query =
+			  "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager"),
+		  
+		  @NamedQuery(name = "Gebruiker.geefKlanten", query =
+		  "select g from Gebruiker g where TYPE(g) = Klant")
+		 
 })
 public abstract class Gebruiker implements Serializable {
 

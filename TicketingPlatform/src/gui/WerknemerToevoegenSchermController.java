@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import domein.controllers.AangemeldeGebruikerController;
 import domein.controllers.AdministratorController;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
@@ -54,10 +55,10 @@ public class WerknemerToevoegenSchermController extends GridPane {
 	private PasswordField txfWachtwoordBevestigen;
 
 	private WerknemersBeherenSchermController parent;
-	private AdministratorController ac;
+	private AangemeldeGebruikerController ac;
 
 	public WerknemerToevoegenSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController,
-			AdministratorController ac) {
+			AangemeldeGebruikerController ac) {
 		this.parent = werknemersBeherenSchermController;
 		this.ac = ac;
 

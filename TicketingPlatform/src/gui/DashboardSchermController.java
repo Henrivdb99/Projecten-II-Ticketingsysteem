@@ -94,7 +94,7 @@ public class DashboardSchermController extends AnchorPane {
 	// Event Listener on Button[#btnWerknemersBeheren].onAction
 	@FXML
 	public void btnWerknemersBeherenOnAction(ActionEvent event) {
-		WerknemersBeherenSchermController wbsc = new WerknemersBeherenSchermController(this, (AdministratorController) this.ac);
+		WerknemersBeherenSchermController wbsc = new WerknemersBeherenSchermController(this, this.ac);
 		
 		Scene scene = new Scene(wbsc);
 		Stage stage = (Stage) this.getScene().getWindow();

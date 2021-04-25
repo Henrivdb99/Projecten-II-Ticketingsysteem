@@ -34,25 +34,25 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
 
 	@Override
 	public List<Gebruiker> geefWerknemers() throws EntityNotFoundException {
-		return super.findAll().stream().filter(g -> !(g instanceof Klant)).collect(Collectors.toList());
-		/*try {
+		//return super.findAll().stream().filter(g -> !(g instanceof Klant)).collect(Collectors.toList());
+		try {
             return em.createNamedQuery("Gebruiker.geefWerknemers", Gebruiker.class)
                 .getResultList();
         } catch (NoResultException ex) {
             throw new EntityNotFoundException();
-        } */
+        } 
 	}
     
 
 	@Override
 	public List<Gebruiker> geefKlanten() throws EntityNotFoundException {
-		return super.findAll().stream().filter(g -> (g instanceof Klant)).collect(Collectors.toList());
-		/*try {
+		//return super.findAll().stream().filter(g -> (g instanceof Klant)).collect(Collectors.toList());
+		try {
             return em.createNamedQuery("Gebruiker.geefKlanten", Gebruiker.class)
                 .getResultList();
         } catch (NoResultException ex) {
             throw new EntityNotFoundException();
-        } */
+        } 
 	}
 
 	
