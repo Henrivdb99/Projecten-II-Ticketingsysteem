@@ -24,13 +24,13 @@
          </children></Pane>
    </top>
    <center>
-      <TableView fx:id="tblView" prefHeight="725.0" prefWidth="805.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tblView" onMouseClicked="#userClickedOnTable" prefHeight="725.0" prefWidth="805.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="ColGebruikersnaam" prefWidth="140.44439017772675" text="Gebruikersnaam" />
-          <TableColumn fx:id="ColNaam" prefWidth="43.55560302734375" text="Naam" />
-            <TableColumn fx:id="ColVoornaam" prefWidth="75.0" text="Voornaam" />
-            <TableColumn fx:id="ColRol" prefWidth="75.0" text="Rol" />
-            <TableColumn fx:id="ColStatus" prefWidth="144.4443359375" text="Status" />
+          <TableColumn fx:id="colGebruikersnaam" prefWidth="140.44439017772675" text="Gebruikersnaam" />
+          <TableColumn fx:id="colNaam" prefWidth="43.55560302734375" text="Naam" />
+            <TableColumn fx:id="colVoornaam" prefWidth="75.0" text="Voornaam" />
+            <TableColumn fx:id="colRol" prefWidth="75.0" text="Rol" />
+            <TableColumn fx:id="colStatus" prefWidth="144.4443359375" text="Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
