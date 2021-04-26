@@ -12,6 +12,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import domein.controllers.BCrypt;
+
 import java.io.*;
 import java.time.*;
 import javax.persistence.*;
@@ -42,6 +45,8 @@ public abstract class Gebruiker implements Serializable {
 	private String voornaam;
 	private String adres;
 	private String telefoonnummer;
+	@Transient
+	private static final int workload = 12;
 
 	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
 		setEmailAdres(emailAdres);
@@ -55,6 +60,24 @@ public abstract class Gebruiker implements Serializable {
 	}
 	public Gebruiker() {
 
+	}
+	
+    private String hashPassword(String password_plaintext) {
+		String salt = BCrypt.gensalt(workload);
+		String hashed_password = BCrypt.hashpw(password_plaintext, salt);
+
+		return(hashed_password);
+	}
+    
+	public boolean checkPassword(String password_plaintext) {
+		boolean password_verified = false;
+
+		if(null == getWachtwoord() || !getWachtwoord().startsWith("$2a$"))
+			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+
+		password_verified = BCrypt.checkpw(password_plaintext, getWachtwoord());
+
+		return(password_verified);
 	}
 
 	public LocalDate getRegistratieDatum() {
@@ -151,7 +174,7 @@ public abstract class Gebruiker implements Serializable {
 	public void setWachtwoord(String wachtwoord) {
 		if(!wachtwoord.isBlank())
 		{
-			this.wachtwoord = wachtwoord;
+			this.wachtwoord = this.hashPassword(wachtwoord);
 		}
 		else throw new IllegalArgumentException("Wachtwoord is verplicht");	}
 

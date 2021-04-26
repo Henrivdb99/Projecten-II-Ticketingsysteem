@@ -1,18 +1,18 @@
 package domein.controllers;
 
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
+import domein.models.Administrator;
 import domein.models.Gebruiker;
+import domein.models.GebruikerStatus;
+import domein.models.SupportManager;
+import domein.models.Technieker;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDaoJPA;
-
-import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaBuilder.Case;
-
-import domein.Hashing;
-import domein.models.*;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
@@ -52,14 +52,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			String vasteLijnWerk, String rol, String wachtwoord, String adres) 
 	{
 		
-		String gehashteWachtwoord= Hashing.hashPassword(wachtwoord);
-		
 		Gebruiker nieuweGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, gehashteWachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
+		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				gsmnummer);
-		case Administrator -> new Administrator(email, gehashteWachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
+		case Administrator -> new Administrator(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				gsmnummer);
-		case SupportManager -> new SupportManager(email, gehashteWachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
+		case SupportManager -> new SupportManager(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				gsmnummer);
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};

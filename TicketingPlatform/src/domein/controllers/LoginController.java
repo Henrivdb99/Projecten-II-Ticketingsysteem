@@ -2,7 +2,6 @@ package domein.controllers;
 
 import javax.persistence.EntityNotFoundException;
 
-import domein.Hashing;
 import domein.models.Gebruiker;
 import domein.models.TypeGebruiker;
 import persistentie.GebruikerDaoJPA;
@@ -35,7 +34,7 @@ public class LoginController {
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
 			Gebruiker gevondenGebruiker = gebruikerRepo.getGebruikerByEmail(email);
-			if (Hashing.checkPassword(wachtwoord, gevondenGebruiker.getWachtwoord())) 
+			if (gevondenGebruiker.checkPassword(wachtwoord))
 		    {
 		    	setAangemeldeGebruiker(gevondenGebruiker);
 		        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
