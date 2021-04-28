@@ -54,14 +54,17 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
+	public void voegGebruikerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
 			String rol, String wachtwoord, String adres) {
 
 		Gebruiker nieuweGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers);
+		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, 
+				telefoonnummers);
 		case Administrator -> new Administrator(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				telefoonnummers);
 		case SupportManager -> new SupportManager(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
+				telefoonnummers);
+		case Klant -> new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				telefoonnummers);
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
@@ -72,19 +75,35 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		GenericDaoJPA.commitTransaction();
 
 	}
-	
+
 	@Override
-	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String adres) {
-
-		Gebruiker nieuweGebruiker = new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,	telefoonnummers);
-
-		System.out.println(nieuweGebruiker);
-		klanten.add(nieuweGebruiker);
+	public void updateGebruiker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String adres) {
+		Gebruiker teüpdaten = geefGebruiker(id);
+		Gebruiker geupdated = maakGebruikerAan(TypeGebruiker.valueOf(rol));
+		
+		geupdated.setNaam(naam);
+		geupdated.setEmailAdres(email);
+		geupdated.setTelefoonnummers(telefoonnummers);
+		geupdated.setAdres(adres);
+		if (wachtwoord == null || wachtwoord.isBlank() || wachtwoord.isEmpty() )
+			geupdated.setGehashteWachtwoord(teüpdaten.getWachtwoord()); //behoud wachtwoord
+		else
+			geupdated.setWachtwoord(wachtwoord);
+		
 		GenericDaoJPA.startTransaction();
-		gebruikerRepo.insert(nieuweGebruiker);
+		gebruikerRepo.delete(teüpdaten);
+		gebruikerRepo.update(geupdated);
 		GenericDaoJPA.commitTransaction();
-
+		
 	}
-
-
+	
+	private Gebruiker maakGebruikerAan(TypeGebruiker rol) {
+		return switch (rol) {
+		case Technieker -> new Technieker();
+		case Administrator -> new Administrator();
+		case SupportManager -> new SupportManager();
+		case Klant -> new Klant();
+		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
+		};
+	}
 }

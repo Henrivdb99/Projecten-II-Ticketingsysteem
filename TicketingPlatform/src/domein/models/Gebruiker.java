@@ -105,7 +105,7 @@ public abstract class Gebruiker implements Serializable {
 		return naam;
 	}
 
-	private void setNaam(String naam) {
+	public final void setNaam(String naam) {
 		if(!naam.isBlank())
 		{
 			this.naam = naam;
@@ -117,7 +117,7 @@ public abstract class Gebruiker implements Serializable {
 		return voornaam;
 	}
 
-	private void setVoornaam(String voornaam) {
+	public final void setVoornaam(String voornaam) {
 		if(!voornaam.isBlank())
 		{
 			this.voornaam = voornaam;
@@ -128,7 +128,7 @@ public abstract class Gebruiker implements Serializable {
 		return adres;
 	}
 
-	private void setAdres(String adres) {
+	public final void setAdres(String adres) {
 		if(!adres.isBlank())
 		{
 			this.adres = adres;
@@ -139,7 +139,7 @@ public abstract class Gebruiker implements Serializable {
 		return telefoonnummers;
 	}
 
-	private void setTelefoonnummers(String[] telefoonnummers) {
+	public final void setTelefoonnummers(String[] telefoonnummers) {
 		if(!telefoonnummers[0].isBlank() || !telefoonnummers[1].isBlank())
 		{
 			this.telefoonnummers = telefoonnummers;
@@ -164,19 +164,23 @@ public abstract class Gebruiker implements Serializable {
 		this.id = id;
 	}
 
-	public void setEmailAdres(String emailAdres) {
+	public final void setEmailAdres(String emailAdres) {
 		if(!emailAdres.isBlank())
 		{
 			this.emailAdres = emailAdres;
 		}
 		else throw new IllegalArgumentException("E-mailadres is verplicht");	}
 
-	public void setWachtwoord(String wachtwoord) {
+	public final void setWachtwoord(String wachtwoord) {
 		if(!wachtwoord.isBlank())
 		{
 			this.wachtwoord = this.hashPassword(wachtwoord);
 		}
 		else throw new IllegalArgumentException("Wachtwoord is verplicht");	}
+	
+	public final void setGehashteWachtwoord(String gehashteWachtwoord) {
+		this.wachtwoord = gehashteWachtwoord;
+	}
 
 	@Override
 	public String toString() {
@@ -204,5 +208,6 @@ public abstract class Gebruiker implements Serializable {
 			return false;
 		return true;
 	}
+	
 
 }
