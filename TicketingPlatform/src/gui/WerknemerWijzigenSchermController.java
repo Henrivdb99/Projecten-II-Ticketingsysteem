@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
+import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
@@ -22,15 +23,13 @@ import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.ChoiceBox;
 
-public class WerknemerToevoegenSchermController extends GridPane {
+public class WerknemerWijzigenSchermController extends GridPane{
 	@FXML
 	private Button btnTerug;
 	@FXML
 	private Button btnWerknemerAanmaken;
 	@FXML
 	private Label lblFout;
-	@FXML
-	private Label lblStatus;
 	@FXML
 	private Label lblTitel;
 	@FXML
@@ -54,20 +53,24 @@ public class WerknemerToevoegenSchermController extends GridPane {
 	@FXML
 	private ChoiceBox<TypeGebruiker> cboRol;
 	@FXML
-	private ChoiceBox<GebruikerStatus> cboStatus;
-	@FXML
 	private PasswordField txfWachtwoord;
 	@FXML
 	private PasswordField txfWachtwoordBevestigen;
+	@FXML
+	private ChoiceBox cboStatus;
+	@FXML
+	private Label lblStatus;
+
 
 	// Event Listener on Button[#btnTerug].onAction
 	private WerknemersBeherenSchermController parent;
+	private Gebruiker selectedUser;
 	private AangemeldeGebruikerController ac;
-
-	public WerknemerToevoegenSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController,
-			AangemeldeGebruikerController ac) {
+	public WerknemerWijzigenSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController,
+			Gebruiker selectedUser, AangemeldeGebruikerController ac) {
 		this.parent = werknemersBeherenSchermController;
-		this.ac = ac;
+		this.selectedUser = selectedUser;
+		this.ac= ac;
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemerToevoegenScherm.fxml"));
@@ -76,9 +79,16 @@ public class WerknemerToevoegenSchermController extends GridPane {
 			loader.load();
 
 			cboRol.setItems(FXCollections.observableArrayList(TypeGebruiker.values()));
-			cboStatus.setVisible(false);
-			lblStatus.setVisible(false);
-
+			lblTitel.setText("Werknemer wijzigen");
+			btnWerknemerAanmaken.setText("Werknemer wijzigen");
+			
+			txfNaam.setText(selectedUser.getNaam());
+			txfVoornaam.setText(selectedUser.getVoornaam());
+			txfEmail.setText(selectedUser.getEmailAdres());
+			txfGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
+			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
+			cboRol.setValue(TypeGebruiker.valueOf(selectedUser.getRol()));
+			cboStatus.setValue(selectedUser.getStatus());
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
