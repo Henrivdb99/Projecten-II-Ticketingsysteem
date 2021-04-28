@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class KlantDetailsSchermController extends GridPane {
 	@FXML
-	private Label lblPersoneelsnummer;
+	private Label lblKlantNummer;
 	@FXML
 	private Label lblNaam;
 	@FXML
@@ -42,6 +42,7 @@ public class KlantDetailsSchermController extends GridPane {
 			loader.setController(this);
 			loader.load();
 			
+			lblKlantNummer.setText(Integer.toString(selectedUser.getId()));
 			lblNaam.setText(selectedUser.getNaam());
 			lblVoornaam.setText(selectedUser.getVoornaam());
 			lblEmailGebruikersnaam.setText(selectedUser.getEmailAdres());
