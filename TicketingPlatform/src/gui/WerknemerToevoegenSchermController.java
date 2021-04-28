@@ -101,13 +101,8 @@ public class WerknemerToevoegenSchermController extends GridPane {
 				if (cboRol.getValue() != null) {
 					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-<<<<<<< Upstream, based on branch 'main' of https://github.com/HoGentProjectenII/2021-java-g-23.git
-						ac.voegGebruikerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue().toString(), txfWachtwoord.getText(),
-								samengesteldAdres);
-=======
 						ac.voegMedewerkerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue().toString(), txfWachtwoord.getText(),
 								new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
->>>>>>> 9ae5f66 Added adressen in String[]
 					} else {
 						lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
 					}

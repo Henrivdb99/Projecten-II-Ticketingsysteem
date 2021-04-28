@@ -53,6 +53,42 @@ public abstract class AangemeldeGebruikerController {
 	}
 
 	public void voegGebruikerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+	
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+		
+	}
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+	
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+		
+	}
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+	
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+		
+	}
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+	
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String[] adres) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+		
+	}
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 		
 	}

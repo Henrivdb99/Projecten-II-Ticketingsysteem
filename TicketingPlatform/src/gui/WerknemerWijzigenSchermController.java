@@ -57,20 +57,20 @@ public class WerknemerWijzigenSchermController extends GridPane{
 	@FXML
 	private PasswordField txfWachtwoordBevestigen;
 	@FXML
-	private ChoiceBox cboStatus;
+	private ChoiceBox<GebruikerStatus> cboStatus;
 	@FXML
 	private Label lblStatus;
-
 
 	// Event Listener on Button[#btnTerug].onAction
 	private WerknemersBeherenSchermController parent;
 	private Gebruiker selectedUser;
 	private AangemeldeGebruikerController ac;
+
 	public WerknemerWijzigenSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController,
 			Gebruiker selectedUser, AangemeldeGebruikerController ac) {
 		this.parent = werknemersBeherenSchermController;
 		this.selectedUser = selectedUser;
-		this.ac= ac;
+		this.ac = ac;
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemerToevoegenScherm.fxml"));
@@ -79,6 +79,7 @@ public class WerknemerWijzigenSchermController extends GridPane{
 			loader.load();
 
 			cboRol.setItems(FXCollections.observableArrayList(TypeGebruiker.values()));
+			cboStatus.setItems(FXCollections.observableArrayList(GebruikerStatus.values()));
 			lblTitel.setText("Werknemer wijzigen");
 			btnWerknemerAanmaken.setText("Werknemer wijzigen");
 			
@@ -89,6 +90,11 @@ public class WerknemerWijzigenSchermController extends GridPane{
 			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			cboRol.setValue(TypeGebruiker.valueOf(selectedUser.getRol()));
 			cboStatus.setValue(selectedUser.getStatus());
+			txfStraat.setText(selectedUser.getAdres()[0]);
+			txfHuisnummer.setText(selectedUser.getAdres()[1]);
+			txfPostcode.setText(selectedUser.getAdres()[2]);
+			txfStad.setText(selectedUser.getAdres()[3]);
+
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -105,9 +111,6 @@ public class WerknemerWijzigenSchermController extends GridPane{
 	@FXML
 	public void btnWerknemerAanmakenOnAction(ActionEvent event) {
 
-		String samengesteldAdres = txfStraat.getText() + " " + txfHuisnummer.getText() + ", " + txfPostcode.getText()
-				+ " " + txfStad.getText();
-
 		try {
 
 			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
@@ -116,10 +119,20 @@ public class WerknemerWijzigenSchermController extends GridPane{
 							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
 						ac.voegGebruikerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue().toString(), txfWachtwoord.getText(),
 								samengesteldAdres);
+					if (cboStatus.getValue() != null) {
+						if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
+								|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
+							ac.wijzigMedewerker(selectedUser.getId(), txfNaam.getText(), txfVoornaam.getText(),
+									txfEmail.getText(), new String[] { txfGsmNummer.getText(), txfVasteLijn.getText() },
+									cboRol.getValue().toString(), cboStatus.getValue(), txfWachtwoord.getText(),
+									new String[] { txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(),
+											txfStad.getText() });
+						} else {
+							lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
+						}
 					} else {
-						lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
+						lblFout.setText("Gelieve een status te selecteren.");
 					}
-
 				} else {
 					lblFout.setText("Gelieve een rol te selecteren.");
 				}
@@ -132,4 +145,3 @@ public class WerknemerWijzigenSchermController extends GridPane{
 
 	}
 }
-

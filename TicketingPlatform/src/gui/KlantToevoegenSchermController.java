@@ -81,18 +81,17 @@ public class KlantToevoegenSchermController extends GridPane {
 	// Event Listener on Button[#btnKlantAanmaken].onAction
 	@FXML
 	public void btnKlantAanmakenOnAction(ActionEvent event) {
+
+		String samengesteldAdres = txfStraat.getText() + " " + txfHuisnummer.getText() + ", " + txfPostcode.getText()
+				+ " " + txfStad.getText();
+
 		try {
 
 			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
 				if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 						|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-<<<<<<< Upstream, based on branch 'main' of https://github.com/HoGentProjectenII/2021-java-g-23.git
 					ac.voegGebruikerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), ""}, "Klant", txfWachtwoord.getText(),
-							samengesteldAdres);
-=======
-					ac.voegKlantToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), ""}, txfWachtwoord.getText(),
 							new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
->>>>>>> 9ae5f66 Added adressen in String[]
 				} else {
 					lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
 				}
