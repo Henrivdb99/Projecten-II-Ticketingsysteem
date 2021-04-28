@@ -17,6 +17,7 @@ import persistentie.GenericDaoJPA;
 public class AdministratorController extends AangemeldeGebruikerController {
 
 	private ObservableList<Gebruiker> werknemers;
+	private ObservableList<Gebruiker> klanten;
 
 	public AdministratorController() {
 		super();
@@ -32,7 +33,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public ObservableList<Gebruiker> geefWerknemers() {
 		try {
-			werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
+			this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
 
 			return this.werknemers;
 
@@ -44,8 +45,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public ObservableList<Gebruiker> geefKlanten() {
 		try {
-			List<Gebruiker> klanten = gebruikerRepo.geefKlanten();
-			return FXCollections.observableArrayList(klanten);
+			this.klanten = FXCollections.observableArrayList(klanten);
+			
+			return this.klanten;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
