@@ -37,7 +37,7 @@ public abstract class Gebruiker implements Serializable {
 	private String wachtwoord;
 	@Column(name = "registratieDatum")
 	private LocalDate registratieDatum;
-	@Transient
+	
 	private GebruikerStatus status;
 	private String naam;
 	private String voornaam;
