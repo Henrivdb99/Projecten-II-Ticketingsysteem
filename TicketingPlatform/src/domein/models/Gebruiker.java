@@ -21,14 +21,12 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
-		
-		  @NamedQuery(name = "Gebruiker.geefWerknemers", query =
-			  "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager order by g.naam"),
-		  
-		  @NamedQuery(name = "Gebruiker.geefKlanten", query =
-		  "select g from Gebruiker g where TYPE(g) = Klant")
-		 
+		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
+
+		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager order by g.naam"),
+
+		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant")
+
 })
 public abstract class Gebruiker implements Serializable {
 
@@ -48,7 +46,8 @@ public abstract class Gebruiker implements Serializable {
 	@Transient
 	private static final int workload = 12;
 
-	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers) {
+	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam,
+			String[] adres, String[] telefoonnummers) {
 		setEmailAdres(emailAdres);
 		setWachtwoord(wachtwoord);
 		setStatus(status);
@@ -58,38 +57,38 @@ public abstract class Gebruiker implements Serializable {
 		setTelefoonnummers(telefoonnummers);
 		setRegistratieDatum(LocalDate.now());
 	}
+
 	public Gebruiker() {
 
 	}
-	
-    private String hashPassword(String password_plaintext) {
+
+	private String hashPassword(String password_plaintext) {
 		String salt = BCrypt.gensalt(workload);
 		String hashed_password = BCrypt.hashpw(password_plaintext, salt);
 
-		return(hashed_password);
+		return (hashed_password);
 	}
-    
+
 	public boolean checkPassword(String password_plaintext) {
 		boolean password_verified = false;
 
-		if(null == getWachtwoord() || !getWachtwoord().startsWith("$2a$"))
+		if (null == getWachtwoord() || !getWachtwoord().startsWith("$2a$"))
 			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
 		password_verified = BCrypt.checkpw(password_plaintext, getWachtwoord());
 
-		return(password_verified);
+		return (password_verified);
 	}
 
 	public LocalDate getRegistratieDatum() {
 		return registratieDatum;
 	}
-	
-	public String getRol()
-	{
+
+	public String getRol() {
 		return this.getClass().getSimpleName();
 	}
 
-	public void setRegistratieDatum(LocalDate registratieDatum) {
+	private void setRegistratieDatum(LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
 	}
 
@@ -97,7 +96,7 @@ public abstract class Gebruiker implements Serializable {
 		return status;
 	}
 
-	public void setStatus(GebruikerStatus status) {
+	private void setStatus(GebruikerStatus status) {
 		this.status = status;
 	}
 
@@ -105,48 +104,42 @@ public abstract class Gebruiker implements Serializable {
 		return naam;
 	}
 
-	public final void setNaam(String naam) {
-		if(!naam.isBlank())
-		{
+	private void setNaam(String naam) {
+		if (!naam.isBlank()) {
 			this.naam = naam;
-		}
-		else throw new IllegalArgumentException("Naam is verplicht");
+		} else
+			throw new IllegalArgumentException("Naam is verplicht");
 	}
 
 	public String getVoornaam() {
 		return voornaam;
 	}
 
-	public final void setVoornaam(String voornaam) {
-		if(!voornaam.isBlank())
-		{
+	private void setVoornaam(String voornaam) {
+		if (!voornaam.isBlank()) {
 			this.voornaam = voornaam;
-		}
-		else throw new IllegalArgumentException("Voornaam is verplicht");	}
+		} else
+			throw new IllegalArgumentException("Voornaam is verplicht");
+	}
 
-	public String getAdres() {
+	public String[] getAdres() {
 		return adres;
 	}
 
-	public final void setAdres(String adres) {
-		if(!adres.isBlank())
-		{
-			this.adres = adres;
-		}
-		else throw new IllegalArgumentException("Adres is verplicht");	}
+	private void setAdres(String[] adres) {
+		this.adres = adres;
+	}
 
 	public String[] getTelefoonnummers() {
 		return telefoonnummers;
 	}
 
-	public final void setTelefoonnummers(String[] telefoonnummers) {
-		if(!telefoonnummers[0].isBlank() || !telefoonnummers[1].isBlank())
-		{
+	private void setTelefoonnummers(String[] telefoonnummers) {
+		if (!telefoonnummers[0].isBlank() || !telefoonnummers[1].isBlank()) {
 			this.telefoonnummers = telefoonnummers;
-		}
-		else throw new IllegalArgumentException("Telefoonnummer is verplicht");	}
-
-	
+		} else
+			throw new IllegalArgumentException("Telefoonnummer is verplicht");
+	}
 
 	public int getId() {
 		return id;
@@ -164,27 +157,30 @@ public abstract class Gebruiker implements Serializable {
 		this.id = id;
 	}
 
-	public final void setEmailAdres(String emailAdres) {
-		if(!emailAdres.isBlank())
-		{
+	private void setEmailAdres(String emailAdres) {
+		if (!emailAdres.isBlank()) {
 			this.emailAdres = emailAdres;
-		}
-		else throw new IllegalArgumentException("E-mailadres is verplicht");	}
+		} else
+			throw new IllegalArgumentException("E-mailadres is verplicht");
+	}
 
-	public final void setWachtwoord(String wachtwoord) {
-		if(!wachtwoord.isBlank())
-		{
+	private void setWachtwoord(String wachtwoord) {
+		if (!wachtwoord.isBlank()) {
 			this.wachtwoord = this.hashPassword(wachtwoord);
-		}
-		else throw new IllegalArgumentException("Wachtwoord is verplicht");	}
-	
+		} else
+			throw new IllegalArgumentException("Wachtwoord is verplicht");
+	}
+
 	public final void setGehashteWachtwoord(String gehashteWachtwoord) {
 		this.wachtwoord = gehashteWachtwoord;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Gebruiker met id %s, email %s, wachtwoord %s, adres %s, naam %s, voornaam %s, telefoonnummers %s, registratiedatum %s",getId(), getEmailAdres(), getWachtwoord(), getAdres(), getNaam(), getVoornaam(), getTelefoonnummers(), getRegistratieDatum());
+		return String.format(
+				"Gebruiker met id %s, email %s, wachtwoord %s, adres %s, naam %s, voornaam %s, telefoonnummers %s, registratiedatum %s",
+				getId(), getEmailAdres(), getWachtwoord(), getAdres(), getNaam(), getVoornaam(), getTelefoonnummers(),
+				getRegistratieDatum());
 	}
 
 	@Override
@@ -208,6 +204,5 @@ public abstract class Gebruiker implements Serializable {
 			return false;
 		return true;
 	}
-	
 
 }

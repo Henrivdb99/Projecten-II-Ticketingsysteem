@@ -23,7 +23,7 @@ import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.ChoiceBox;
 
-public class WerknemerWijzigenSchermController extends GridPane{
+public class WerknemerWijzigenSchermController extends GridPane {
 	@FXML
 	private Button btnTerug;
 	@FXML
@@ -82,7 +82,7 @@ public class WerknemerWijzigenSchermController extends GridPane{
 			cboStatus.setItems(FXCollections.observableArrayList(GebruikerStatus.values()));
 			lblTitel.setText("Werknemer wijzigen");
 			btnWerknemerAanmaken.setText("Werknemer wijzigen");
-			
+
 			txfNaam.setText(selectedUser.getNaam());
 			txfVoornaam.setText(selectedUser.getVoornaam());
 			txfEmail.setText(selectedUser.getEmailAdres());
@@ -115,10 +115,6 @@ public class WerknemerWijzigenSchermController extends GridPane{
 
 			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
 				if (cboRol.getValue() != null) {
-					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
-							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-						ac.voegGebruikerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue().toString(), txfWachtwoord.getText(),
-								samengesteldAdres);
 					if (cboStatus.getValue() != null) {
 						if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 								|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {

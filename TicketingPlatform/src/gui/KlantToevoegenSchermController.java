@@ -90,7 +90,7 @@ public class KlantToevoegenSchermController extends GridPane {
 			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
 				if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 						|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-					ac.voegGebruikerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), ""}, "Klant", txfWachtwoord.getText(),
+					ac.voegKlantToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), ""}, txfWachtwoord.getText(),
 							new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
 				} else {
 					lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
