@@ -24,7 +24,7 @@ import javax.persistence.*;
 	@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
 		
 		  @NamedQuery(name = "Gebruiker.geefWerknemers", query =
-			  "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager"),
+			  "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager order by g.naam"),
 		  
 		  @NamedQuery(name = "Gebruiker.geefKlanten", query =
 		  "select g from Gebruiker g where TYPE(g) = Klant")
