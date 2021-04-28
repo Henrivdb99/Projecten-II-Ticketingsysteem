@@ -87,6 +87,10 @@ public class PopuleerDB {
 		gebruikerdao.insert(supportManager1);
 		gebruikerdao.insert(administrator1);
 		gebruikerdao.insert(technieker1);
+		gebruikerdao.insert(gebruiker1);
+		gebruikerdao.insert(gebruiker2);
+		gebruikerdao.insert(gebruiker3);
+		gebruikerdao.insert(gebruiker4);
 
 	
         GebruikerDaoJPA.commitTransaction();
