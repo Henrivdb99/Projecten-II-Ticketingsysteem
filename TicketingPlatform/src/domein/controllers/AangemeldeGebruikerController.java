@@ -52,8 +52,7 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public void voegMedewerkerToe(String naam, String voornaam, String email, String gsmnummer,
-			String vasteLijnWerk, String rol, String wachtwoord, String adres) {
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String adres) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 		
 	}

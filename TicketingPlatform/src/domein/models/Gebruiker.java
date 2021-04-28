@@ -44,18 +44,18 @@ public abstract class Gebruiker implements Serializable {
 	private String naam;
 	private String voornaam;
 	private String adres;
-	private String telefoonnummer;
+	private String[] telefoonnummers;
 	@Transient
 	private static final int workload = 12;
 
-	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
+	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String[] telefoonnummers) {
 		setEmailAdres(emailAdres);
 		setWachtwoord(wachtwoord);
 		setStatus(status);
 		setNaam(naam);
 		setVoornaam(voornaam);
 		setAdres(adres);
-		setTelefoonnummer(telefoonnummer);
+		setTelefoonnummers(telefoonnummers);
 		setRegistratieDatum(LocalDate.now());
 	}
 	public Gebruiker() {
@@ -135,14 +135,14 @@ public abstract class Gebruiker implements Serializable {
 		}
 		else throw new IllegalArgumentException("Adres is verplicht");	}
 
-	public String getTelefoonnummer() {
-		return telefoonnummer;
+	public String[] getTelefoonnummers() {
+		return telefoonnummers;
 	}
 
-	private void setTelefoonnummer(String telefoonnummer) {
-		if(!telefoonnummer.isBlank())
+	private void setTelefoonnummers(String[] telefoonnummers) {
+		if(!telefoonnummers[0].isBlank() && !telefoonnummers[1].isBlank())
 		{
-			this.telefoonnummer = telefoonnummer;
+			this.telefoonnummers = telefoonnummers;
 		}
 		else throw new IllegalArgumentException("Telefoonnummer is verplicht");	}
 
@@ -180,7 +180,7 @@ public abstract class Gebruiker implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("Gebruiker met id %s, email %s, wachtwoord %s, adres %s, naam %s, voornaam %s, telefoonnummer %s, registratiedatum %s",getId(), getEmailAdres(), getWachtwoord(), getAdres(), getNaam(), getVoornaam(), getTelefoonnummer(), getRegistratieDatum());
+		return String.format("Gebruiker met id %s, email %s, wachtwoord %s, adres %s, naam %s, voornaam %s, telefoonnummers %s, registratiedatum %s",getId(), getEmailAdres(), getWachtwoord(), getAdres(), getNaam(), getVoornaam(), getTelefoonnummers(), getRegistratieDatum());
 	}
 
 	@Override

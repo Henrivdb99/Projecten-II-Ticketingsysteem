@@ -52,15 +52,15 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public void voegMedewerkerToe(String naam, String voornaam, String email, String gsmnummer, String vasteLijnWerk,
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
 			String rol, String wachtwoord, String adres) {
 
 		Gebruiker nieuweGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, gsmnummer);
+		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers);
 		case Administrator -> new Administrator(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
-				gsmnummer);
+				telefoonnummers);
 		case SupportManager -> new SupportManager(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
-				gsmnummer);
+				telefoonnummers);
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
 		System.out.println(nieuweGebruiker);

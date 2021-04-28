@@ -110,19 +110,6 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
         this.btnWerknemerDetails.setDisable(false);
-	}
-	
-	public ObservableList<Gebruiker>  getWerknemers()
-    {
-        ObservableList<Gebruiker> werknemers = FXCollections.observableArrayList();
-        werknemers.add(new SupportManager("MOET NOG WORDEN OPGEHAALD VANUIT REPO", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754"));
-        werknemers.add(new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jichaelsen", "Jef", "Michaelstraat 46, 9000 Gent", "049952777"));
-        werknemers.add(new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Richaelsen", "Rutger", "Michaelstraat 46, 9000 Gent", "049952777"));
-        werknemers.add(new SupportManager("supportmanager2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Zichaelsen", "Richael", "Michaelstraat 46, 9000 Gent", "049952777"));
-        werknemers.add(new Technieker("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pichaelsen", "Pichael", "Michaelstraat 46, 9000 Gent", "049952777"));
-        werknemers.add(new SupportManager("supportmanager3@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777"));
-
-        return werknemers;
     }
 
 	@Override

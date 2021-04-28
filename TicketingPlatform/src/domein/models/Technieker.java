@@ -12,8 +12,8 @@ public class Technieker extends Gebruiker {
 	public Technieker() {
 	}
 
-	public Technieker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String telefoonnummer) {
-		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummer);
+	public Technieker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String[] telefoonnummers) {
+		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 	}
 	
 

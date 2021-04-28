@@ -28,10 +28,10 @@ public class PopuleerDB {
         GebruikerDaoJPA.startTransaction();
         
        
-        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", "049952754");
-        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", "049912754");
-        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", "049952777");
-        Technieker technieker1 = new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", "042252754");
+        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", new String[] {"049952754", "092214365"});
+        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", new String[] {"04991754", "099914365"});
+        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", new String[] {"049952804", "092214185"});
+        Technieker technieker1 = new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
         
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
