@@ -16,6 +16,8 @@ import persistentie.GenericDaoJPA;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
+	private ObservableList<Gebruiker> werknemers;
+
 	public AdministratorController() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,19 +28,21 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		// TODO Auto-generated method stub
 		return TypeGebruiker.Administrator;
 	}
-	
+
 	@Override
-	public ObservableList<Gebruiker>  geefWerknemers() {
+	public ObservableList<Gebruiker> geefWerknemers() {
 		try {
-			List<Gebruiker> werknemers = gebruikerRepo.geefWerknemers();
-			return FXCollections.observableArrayList(werknemers);
+			werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
+
+			return this.werknemers;
+
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
 	}
-	
+
 	@Override
-	public ObservableList<Gebruiker>  geefKlanten() {
+	public ObservableList<Gebruiker> geefKlanten() {
 		try {
 			List<Gebruiker> klanten = gebruikerRepo.geefKlanten();
 			return FXCollections.observableArrayList(klanten);
@@ -48,13 +52,11 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public void voegMedewerkerToe(String naam, String voornaam, String email, String gsmnummer,
-			String vasteLijnWerk, String rol, String wachtwoord, String adres) 
-	{
-		
+	public void voegMedewerkerToe(String naam, String voornaam, String email, String gsmnummer, String vasteLijnWerk,
+			String rol, String wachtwoord, String adres) {
+
 		Gebruiker nieuweGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
-				gsmnummer);
+		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, gsmnummer);
 		case Administrator -> new Administrator(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				gsmnummer);
 		case SupportManager -> new SupportManager(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
@@ -62,6 +64,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
 		System.out.println(nieuweGebruiker);
+		werknemers.add(nieuweGebruiker);
 		GenericDaoJPA.startTransaction();
 		gebruikerRepo.insert(nieuweGebruiker);
 		GenericDaoJPA.commitTransaction();
