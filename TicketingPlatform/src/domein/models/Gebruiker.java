@@ -140,7 +140,7 @@ public abstract class Gebruiker implements Serializable {
 	}
 
 	private void setTelefoonnummers(String[] telefoonnummers) {
-		if(!telefoonnummers[0].isBlank() && !telefoonnummers[1].isBlank())
+		if(!telefoonnummers[0].isBlank() || !telefoonnummers[1].isBlank())
 		{
 			this.telefoonnummers = telefoonnummers;
 		}

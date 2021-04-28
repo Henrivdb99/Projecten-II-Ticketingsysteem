@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import domein.models.Administrator;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
+import domein.models.Klant;
 import domein.models.SupportManager;
 import domein.models.Technieker;
 import domein.models.TypeGebruiker;
@@ -45,8 +46,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public ObservableList<Gebruiker> geefKlanten() {
 		try {
-			this.klanten = FXCollections.observableArrayList(klanten);
-			
+			this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());			
 			return this.klanten;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -72,5 +72,19 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		GenericDaoJPA.commitTransaction();
 
 	}
+	
+	@Override
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String adres) {
+
+		Gebruiker nieuweGebruiker = new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,	telefoonnummers);
+
+		System.out.println(nieuweGebruiker);
+		klanten.add(nieuweGebruiker);
+		GenericDaoJPA.startTransaction();
+		gebruikerRepo.insert(nieuweGebruiker);
+		GenericDaoJPA.commitTransaction();
+
+	}
+
 
 }
