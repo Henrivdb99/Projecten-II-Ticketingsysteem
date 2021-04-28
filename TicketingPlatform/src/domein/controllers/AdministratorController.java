@@ -88,6 +88,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		werknemers.add(gewijzigdeGebruiker);
 		System.out.println(gewijzigdeGebruiker);
 		GenericDaoJPA.startTransaction();
+		gebruikerRepo.delete(gebruiker);
 		gebruikerRepo.insert(gewijzigdeGebruiker);
 		GenericDaoJPA.commitTransaction();	}
 	
