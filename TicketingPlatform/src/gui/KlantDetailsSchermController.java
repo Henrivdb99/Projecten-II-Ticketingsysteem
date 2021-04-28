@@ -27,6 +27,8 @@ public class KlantDetailsSchermController extends GridPane {
 	@FXML
 	private Label lblGsmNummer;
 	@FXML
+	private Label lblTijdKlant;
+	@FXML
 	private Label lblStatus;
 	@FXML
 	private Button btnTerug;
@@ -48,6 +50,7 @@ public class KlantDetailsSchermController extends GridPane {
 			lblEmailGebruikersnaam.setText(selectedUser.getEmailAdres());
 			lblAdres.setText(selectedUser.getAdres());
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
+			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
 					
 		} catch (IOException ex) {
