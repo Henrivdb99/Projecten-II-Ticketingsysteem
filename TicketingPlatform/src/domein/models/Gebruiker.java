@@ -43,12 +43,12 @@ public abstract class Gebruiker implements Serializable {
 	private GebruikerStatus status;
 	private String naam;
 	private String voornaam;
-	private String adres;
+	private String[] adres;
 	private String[] telefoonnummers;
 	@Transient
 	private static final int workload = 12;
 
-	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String[] telefoonnummers) {
+	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers) {
 		setEmailAdres(emailAdres);
 		setWachtwoord(wachtwoord);
 		setStatus(status);

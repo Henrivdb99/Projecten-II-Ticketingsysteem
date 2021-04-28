@@ -52,7 +52,7 @@ public class WerknemerDetailsSchermController extends GridPane {
 			lblNaam.setText(selectedUser.getNaam());
 			lblVoornaam.setText(selectedUser.getVoornaam());
 			lblEmailGebruikersnaam.setText(selectedUser.getEmailAdres());
-			lblAdres.setText(selectedUser.getAdres());
+			lblAdres.setText(selectedUser.getAdres()[0] + " " + selectedUser.getAdres()[1] + ", " + selectedUser.getAdres()[2] + " " + selectedUser.getAdres()[3]);
 			lblVasteLijnWerk.setText(selectedUser.getTelefoonnummers()[1]);
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdInDienst.setText(selectedUser.getRegistratieDatum().toString());

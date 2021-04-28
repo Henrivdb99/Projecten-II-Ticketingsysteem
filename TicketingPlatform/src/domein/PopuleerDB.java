@@ -28,14 +28,14 @@ public class PopuleerDB {
         GebruikerDaoJPA.startTransaction();
         
        
-        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", "Jorisstraat 46, 9000 Gent", new String[] {"049952754", "092214365"});
-        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", "Tomstraat 46, 9000 Gent", new String[] {"04991754", "099914365"});
-        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", "Michaelstraat 46, 9000 Gent", new String[] {"049952804", "092214185"});
-        Technieker technieker1 = new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
-        Technieker gebruiker1 = new Technieker("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
-        SupportManager gebruiker2 = new SupportManager("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
-        SupportManager gebruiker3 = new SupportManager("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
-        Technieker gebruiker4 = new Technieker("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", "Pieterstraat 46, 9000 Gent", new String[] {"049192754", "092217665"});
+        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"});
+        SupportManager supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"});
+        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"});
+        Technieker technieker1 = new Technieker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
+        Technieker gebruiker1 = new Technieker("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
+        SupportManager gebruiker2 = new SupportManager("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
+        SupportManager gebruiker3 = new SupportManager("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
+        Technieker gebruiker4 = new Technieker("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
 
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");

@@ -13,7 +13,7 @@ public class Klant extends Gebruiker {
 		super();
 	}
 	//Moet nog worden uitgebreid met attributen, zie UC3 beheren gebruiker KLANT
-	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String[] telefoonnummers) {
+	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 	}
 	

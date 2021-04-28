@@ -15,7 +15,7 @@ public class SupportManager extends Gebruiker {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SupportManager(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String adres, String[] telefoonnummers) {
+	public SupportManager(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 		// TODO Auto-generated constructor stub
 	}

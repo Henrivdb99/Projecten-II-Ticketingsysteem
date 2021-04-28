@@ -48,7 +48,7 @@ public class KlantDetailsSchermController extends GridPane {
 			lblNaam.setText(selectedUser.getNaam());
 			lblVoornaam.setText(selectedUser.getVoornaam());
 			lblEmailGebruikersnaam.setText(selectedUser.getEmailAdres());
-			lblAdres.setText(selectedUser.getAdres());
+			lblAdres.setText(selectedUser.getAdres()[0] + " " + selectedUser.getAdres()[1] + ", " + selectedUser.getAdres()[2] + " " + selectedUser.getAdres()[3]);
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
