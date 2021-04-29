@@ -1,19 +1,21 @@
 package gui;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.controllers.AdministratorController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DashboardSchermController extends AnchorPane {
+public class DashboardSchermController extends AnchorPane implements Initializable  {
 	@FXML
 	private Button btnAfmelden;
 	@FXML
@@ -45,9 +47,7 @@ public class DashboardSchermController extends AnchorPane {
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
-			
-			welcomeMessage();
-			managePermissions();
+
 			
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
@@ -107,6 +107,12 @@ public class DashboardSchermController extends AnchorPane {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		welcomeMessage();
+		managePermissions();
+	}
 	
 	private void welcomeMessage()  {
 		this.lblWelkom.setText(String.format("Welkom %s %s!", ac.geefAangemeldeGebruikerType(), parent.lg.geefNaamEnVoornaamAangemeldeGebruiker()));
