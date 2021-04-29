@@ -89,17 +89,23 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		};
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
 		
+		
+		
 		if(wachtwoord == null || wachtwoord.isBlank())
 			gewijzigdeGebruiker.setGehashteWachtwoord(gebruiker.getWachtwoord()); //oude wachtwoord blijft
 		
+		gewijzigdeGebruiker.setId(id);
+		
 		werknemers.remove(gebruiker);
 		werknemers.add(gewijzigdeGebruiker);
+		
 		System.out.println(gewijzigdeGebruiker);
 		GenericDaoJPA.startTransaction();
-		gebruikerRepo.delete(gebruiker);
-		gebruikerRepo.insert(gewijzigdeGebruiker);
-		GenericDaoJPA.commitTransaction();	}
-	
+
+		gebruikerRepo.update(gewijzigdeGebruiker);
+		
+		GenericDaoJPA.commitTransaction();
+	}
 		
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
 
