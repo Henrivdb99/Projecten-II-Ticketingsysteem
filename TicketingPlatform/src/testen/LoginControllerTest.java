@@ -33,7 +33,7 @@ class LoginControllerTest {
 	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
 		Mockito.when(gebruikerRepositoryDummy.getGebruikerByEmail(email)).
-		thenReturn(new Administrator(email, wachtwoord, null, "", "", "", ""));
+		thenReturn(new Administrator(email, wachtwoord, null, "", "", null, null));
 		
 		//act
 		gc.meldAan(email, wachtwoord);
