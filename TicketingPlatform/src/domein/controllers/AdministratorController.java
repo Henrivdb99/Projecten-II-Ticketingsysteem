@@ -71,16 +71,19 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			GenericDaoJPA.startTransaction();	
 			
 			Gebruiker werknemer= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
-			if(naam != null) werknemer.setNaam(naam);
-			if(voornaam != null) werknemer.setVoornaam(voornaam);
-			if(email != null) werknemer.setEmailAdres(email);
+			if(naam != null && !naam.isBlank()) werknemer.setNaam(naam);
+			if(voornaam != null && !voornaam.isBlank()) werknemer.setVoornaam(voornaam);
+			if(email != null && !email.isBlank()) werknemer.setEmailAdres(email);
 			if(telefoonnummers != null) werknemer.setTelefoonnummers(telefoonnummers);
 			if(rol != null) werknemer.setRol(rol);
 			if(status != null) werknemer.setStatus(status);
-			if(wachtwoord != null) werknemer.setWachtwoord(wachtwoord);
+			if(wachtwoord != null && !wachtwoord.isBlank()) werknemer.setWachtwoord(wachtwoord);
 			if(adres != null) werknemer.setAdres(adres);
 			
 			GenericDaoJPA.commitTransaction();
+			
+			werknemers.remove(werknemer);
+			werknemers.add(werknemer);
 		} catch (Exception e) {
 			GenericDaoJPA.rollbackTransaction();
 			throw new IllegalArgumentException(e.getMessage(), e);
