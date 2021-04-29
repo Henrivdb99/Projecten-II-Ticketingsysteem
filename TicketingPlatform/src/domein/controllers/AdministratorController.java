@@ -84,6 +84,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
+		
+		if(wachtwoord == null)
+			gewijzigdeGebruiker.setGehashteWachtwoord(gebruiker.getWachtwoord()); //oude wachtwoord blijft
+		
 		werknemers.remove(gebruiker);
 		werknemers.add(gewijzigdeGebruiker);
 		System.out.println(gewijzigdeGebruiker);
