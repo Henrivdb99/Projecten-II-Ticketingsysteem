@@ -80,12 +80,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			nieuweWachtwoord = "niks";
 		
 		Gebruiker gewijzigdeGebruiker = switch (rol) {
-		case Technieker -> new Technieker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers);
-		case Administrator -> new Administrator(email, nieuweWachtwoord, status, naam, voornaam, adres,
-				telefoonnummers);
-		case SupportManager -> new SupportManager(email, nieuweWachtwoord, status, naam, voornaam, adres,
-				telefoonnummers);
-		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
+			case Technieker -> new Technieker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers);
+			case Administrator -> new Administrator(email, nieuweWachtwoord, status, naam, voornaam, adres,
+					telefoonnummers);
+			case SupportManager -> new SupportManager(email, nieuweWachtwoord, status, naam, voornaam, adres,
+					telefoonnummers);
+			default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
 		
@@ -102,7 +102,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		System.out.println(gewijzigdeGebruiker);
 		GenericDaoJPA.startTransaction();
 
-		gebruikerRepo.update(gewijzigdeGebruiker);
+		//gebruikerRepo.update(gewijzigdeGebruiker);
 		
 		GenericDaoJPA.commitTransaction();
 	}
