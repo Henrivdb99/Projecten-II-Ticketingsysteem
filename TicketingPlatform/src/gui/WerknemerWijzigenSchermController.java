@@ -120,7 +120,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 								|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
 							ac.wijzigMedewerker(selectedUser.getId(), txfNaam.getText(), txfVoornaam.getText(),
 									txfEmail.getText(), new String[] { txfGsmNummer.getText(), txfVasteLijn.getText() },
-									cboRol.getValue().toString(), cboStatus.getValue(), txfWachtwoord.getText(),
+									cboRol.getValue(), cboStatus.getValue(), txfWachtwoord.getText(),
 									new String[] { txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(),
 											txfStad.getText() });
 							//return

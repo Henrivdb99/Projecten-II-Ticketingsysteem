@@ -74,12 +74,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	}
 	@Override
-	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
 		String nieuweWachtwoord = wachtwoord;
 		if(wachtwoord == null || wachtwoord.isBlank())
 			nieuweWachtwoord = "niks";
 		
-		Gebruiker gewijzigdeGebruiker = switch (TypeGebruiker.valueOf(rol)) {
+		Gebruiker gewijzigdeGebruiker = switch (rol) {
 		case Technieker -> new Technieker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers);
 		case Administrator -> new Administrator(email, nieuweWachtwoord, status, naam, voornaam, adres,
 				telefoonnummers);

@@ -45,15 +45,11 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public void updateGebruiker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, String wachtwoord, String adres) {
-		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
-	}
-
 	public void verwijderGebruiker(int id) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	
