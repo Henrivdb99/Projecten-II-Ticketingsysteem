@@ -123,6 +123,10 @@ public class WerknemerWijzigenSchermController extends GridPane {
 									cboRol.getValue().toString(), cboStatus.getValue(), txfWachtwoord.getText(),
 									new String[] { txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(),
 											txfStad.getText() });
+							//return
+							Stage stage = (Stage) (getScene().getWindow());
+							stage.setScene(this.parent.getScene());
+							
 						} else {
 							lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
 						}

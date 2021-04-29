@@ -75,17 +75,21 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 	@Override
 	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, String rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+		String nieuweWachtwoord = wachtwoord;
+		if(wachtwoord == null || wachtwoord.isBlank())
+			nieuweWachtwoord = "niks";
+		
 		Gebruiker gewijzigdeGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
-		case Administrator -> new Administrator(email, wachtwoord, status, naam, voornaam, adres,
+		case Technieker -> new Technieker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers);
+		case Administrator -> new Administrator(email, nieuweWachtwoord, status, naam, voornaam, adres,
 				telefoonnummers);
-		case SupportManager -> new SupportManager(email, wachtwoord, status, naam, voornaam, adres,
+		case SupportManager -> new SupportManager(email, nieuweWachtwoord, status, naam, voornaam, adres,
 				telefoonnummers);
 		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
 		};
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
 		
-		if(wachtwoord == null)
+		if(wachtwoord == null || wachtwoord.isBlank())
 			gewijzigdeGebruiker.setGehashteWachtwoord(gebruiker.getWachtwoord()); //oude wachtwoord blijft
 		
 		werknemers.remove(gebruiker);
