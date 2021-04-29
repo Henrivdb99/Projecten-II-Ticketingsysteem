@@ -16,7 +16,7 @@ import domein.models.Administrator;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
 import domein.models.SupportManager;
-import domein.models.Technieker;
+import domein.models.Medewerker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

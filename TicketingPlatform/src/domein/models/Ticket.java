@@ -22,7 +22,7 @@ public class Ticket implements Serializable {
 	@ManyToOne
 	private Klant klant;
 	@ManyToOne
-	private Technieker technieker;
+	private Medewerker technieker;
 
 	public Ticket() {
 
@@ -83,11 +83,11 @@ public class Ticket implements Serializable {
 		this.klant = klant;
 	}
 
-	public Technieker getTechnieker() {
+	public Medewerker getTechnieker() {
 		return technieker;
 	}
 
-	public void setTechnieker(Technieker technieker) {
+	public void setTechnieker(Medewerker technieker) {
 		this.technieker = technieker;
 	}
 	

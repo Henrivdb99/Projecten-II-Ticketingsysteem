@@ -1,16 +1,11 @@
 package domein.controllers;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.persistence.EntityNotFoundException;
 
-import domein.models.Administrator;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
 import domein.models.Klant;
-import domein.models.SupportManager;
-import domein.models.Technieker;
+import domein.models.Medewerker;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,16 +51,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	@Override
 	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
-			String rol, String wachtwoord, String[] adres) {
+			TypeGebruiker rol, String wachtwoord, String[] adres) {
 
-		Gebruiker nieuweGebruiker = switch (TypeGebruiker.valueOf(rol)) {
-		case Technieker -> new Technieker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers);
-		case Administrator -> new Administrator(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
-				telefoonnummers);
-		case SupportManager -> new SupportManager(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
-				telefoonnummers);
-		default -> throw new IllegalArgumentException("Unexpected value: " + rol);
-		};
+		Gebruiker nieuweGebruiker = new Medewerker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers, rol);
 		System.out.println(nieuweGebruiker);
 		werknemers.add(nieuweGebruiker);
 		GenericDaoJPA.startTransaction();
@@ -79,14 +67,8 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		if(wachtwoord == null || wachtwoord.isBlank())
 			nieuweWachtwoord = "niks";
 		
-		Gebruiker gewijzigdeGebruiker = switch (rol) {
-			case Technieker -> new Technieker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers);
-			case Administrator -> new Administrator(email, nieuweWachtwoord, status, naam, voornaam, adres,
-					telefoonnummers);
-			case SupportManager -> new SupportManager(email, nieuweWachtwoord, status, naam, voornaam, adres,
-					telefoonnummers);
-			default -> throw new IllegalArgumentException("Unexpected value: " + rol);
-		};
+		Gebruiker gewijzigdeGebruiker = new Medewerker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
+
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
 		
 		
@@ -102,7 +84,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		System.out.println(gewijzigdeGebruiker);
 		GenericDaoJPA.startTransaction();
 
-		//gebruikerRepo.update(gewijzigdeGebruiker);
+		gebruikerRepo.update(gewijzigdeGebruiker);
 		
 		GenericDaoJPA.commitTransaction();
 	}

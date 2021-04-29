@@ -23,7 +23,7 @@ import javax.persistence.*;
 @NamedQueries({
 		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
 
-		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Administrator or TYPE(g) = Technieker or TYPE(g) = SupportManager order by g.naam"),
+		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Medewerker"),
 
 		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant")
 
@@ -82,10 +82,6 @@ public abstract class Gebruiker implements Serializable {
 
 	public LocalDate getRegistratieDatum() {
 		return registratieDatum;
-	}
-
-	public String getRol() {
-		return this.getClass().getSimpleName();
 	}
 
 	private void setRegistratieDatum(LocalDate registratieDatum) {

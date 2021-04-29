@@ -1,32 +1,23 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.controllers.AdministratorController;
-import domein.models.Administrator;
 import domein.models.Gebruiker;
-import domein.models.GebruikerStatus;
-import domein.models.SupportManager;
-import domein.models.Technieker;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableColumn;
 
 public class WerknemersBeherenSchermController extends BorderPane implements Initializable {
 	@FXML

@@ -1,27 +1,23 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
+import domein.models.Medewerker;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-
-import javafx.scene.control.Label;
-
-import javafx.scene.control.PasswordField;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class WerknemerWijzigenSchermController extends GridPane {
 	@FXML
@@ -88,7 +84,9 @@ public class WerknemerWijzigenSchermController extends GridPane {
 			txfEmail.setText(selectedUser.getEmailAdres());
 			txfGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
-			cboRol.setValue(TypeGebruiker.valueOf(selectedUser.getRol()));
+			
+			cboRol.setValue(((Medewerker) selectedUser).getRol()); //DIT MOET LATER WEG WANT HET GAAT EEN ANDER TYPE WORDEN
+			
 			cboStatus.setValue(selectedUser.getStatus());
 			txfStraat.setText(selectedUser.getAdres()[0]);
 			txfHuisnummer.setText(selectedUser.getAdres()[1]);
