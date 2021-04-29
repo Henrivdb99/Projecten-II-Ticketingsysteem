@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 import domein.models.Gebruiker;
+import domein.models.Werknemer;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -56,7 +57,9 @@ public class WerknemerDetailsSchermController extends GridPane {
 			lblVasteLijnWerk.setText(selectedUser.getTelefoonnummers()[1]);
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdInDienst.setText(selectedUser.getRegistratieDatum().toString());
-			lblRol.setText(selectedUser.getRol());
+			
+			lblRol.setText(((Werknemer) selectedUser).getRol().toString()); //CASTING MOET WEG
+			 
 			lblStatus.setText(selectedUser.getStatus().toString());
 					
 		} catch (IOException ex) {

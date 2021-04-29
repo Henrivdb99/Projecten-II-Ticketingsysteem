@@ -23,7 +23,7 @@ import javax.persistence.*;
 @NamedQueries({
 		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
 
-		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Medewerker"),
+		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Werknemer"),
 
 		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant")
 
@@ -45,6 +45,8 @@ public abstract class Gebruiker implements Serializable {
 	private String[] telefoonnummers;
 	@Transient
 	private static final int workload = 12;
+	
+	private TypeGebruiker rol;
 
 	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam,
 			String[] adres, String[] telefoonnummers) {
@@ -147,6 +149,14 @@ public abstract class Gebruiker implements Serializable {
 
 	public String getWachtwoord() {
 		return wachtwoord;
+	}
+	
+	public TypeGebruiker getRol() {
+		return rol;
+	}
+
+	public void setRol(TypeGebruiker rol) {
+		this.rol = rol;
 	}
 
 	public void setId(int id) {

@@ -8,7 +8,6 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Klant extends Gebruiker {
 
-
 	public Klant() {
 		super();
 	}

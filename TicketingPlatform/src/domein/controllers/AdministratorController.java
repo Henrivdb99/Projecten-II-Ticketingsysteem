@@ -5,7 +5,7 @@ import javax.persistence.EntityNotFoundException;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
 import domein.models.Klant;
-import domein.models.Medewerker;
+import domein.models.Werknemer;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,10 +50,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public void voegMedewerkerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
+	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers, 
 			TypeGebruiker rol, String wachtwoord, String[] adres) {
 
-		Gebruiker nieuweGebruiker = new Medewerker(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers, rol);
+		Gebruiker nieuweGebruiker = new Werknemer(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres, telefoonnummers, rol);
 		System.out.println(nieuweGebruiker);
 		werknemers.add(nieuweGebruiker);
 		GenericDaoJPA.startTransaction();
@@ -62,12 +62,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	}
 	@Override
-	public void wijzigMedewerker(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
 		String nieuweWachtwoord = wachtwoord;
 		if(wachtwoord == null || wachtwoord.isBlank())
 			nieuweWachtwoord = "niks";
 		
-		Gebruiker gewijzigdeGebruiker = new Medewerker(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
+		Gebruiker gewijzigdeGebruiker = new Werknemer(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
 
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
 		
@@ -88,7 +88,8 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		
 		GenericDaoJPA.commitTransaction();
 	}
-		
+	
+	@Override
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
 
 		Gebruiker nieuweGebruiker = new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,	telefoonnummers);

@@ -3,12 +3,12 @@ package domein.controllers;
 import javax.persistence.EntityNotFoundException;
 
 import domein.models.Gebruiker;
-import domein.models.TypeGebruiker;
+import domein.models.Werknemer;
 import persistentie.GebruikerDaoJPA;
 
 public class LoginController {
 
-	private Gebruiker aangemeldeGebruiker;	
+	private Werknemer aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
 
 	public LoginController() {
@@ -22,7 +22,7 @@ public class LoginController {
 
 
 
-	public Gebruiker getAangemeldeGebruiker() {
+	public Werknemer getAangemeldeGebruiker() {
 		return aangemeldeGebruiker;
 	}
 	
@@ -33,7 +33,7 @@ public class LoginController {
 	
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
-			Gebruiker gevondenGebruiker = gebruikerRepo.getGebruikerByEmail(email);
+			Werknemer gevondenGebruiker = (Werknemer) gebruikerRepo.getGebruikerByEmail(email);
 			if (gevondenGebruiker.checkPassword(wachtwoord))
 		    {
 		    	setAangemeldeGebruiker(gevondenGebruiker);
@@ -48,7 +48,7 @@ public class LoginController {
 	
 	
 	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException {
-		return switch(TypeGebruiker.valueOf(aangemeldeGebruiker.getClass().getSimpleName())) {
+		return switch(aangemeldeGebruiker.getRol()) {
 			case Technieker -> new TechniekerController();
 			case Administrator -> new AdministratorController();
 			case SupportManager -> new SupportManagerController();
@@ -77,7 +77,7 @@ public class LoginController {
 		return aangemeldeGebruiker.getVoornaam() + " " + aangemeldeGebruiker.getNaam();
 	} 
 
-	private void setAangemeldeGebruiker(Gebruiker gebruiker) {
+	private void setAangemeldeGebruiker(Werknemer gebruiker) {
 		this.aangemeldeGebruiker = gebruiker;
 	}
 	

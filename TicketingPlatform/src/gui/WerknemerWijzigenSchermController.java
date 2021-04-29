@@ -5,7 +5,7 @@ import java.io.IOException;
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.Gebruiker;
 import domein.models.GebruikerStatus;
-import domein.models.Medewerker;
+import domein.models.Werknemer;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -85,7 +85,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 			txfGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			
-			cboRol.setValue(((Medewerker) selectedUser).getRol()); //DIT MOET LATER WEG WANT HET GAAT EEN ANDER TYPE WORDEN
+			cboRol.setValue(((Werknemer) selectedUser).getRol()); //DIT MOET LATER WEG WANT HET GAAT EEN ANDER TYPE WORDEN
 			
 			cboStatus.setValue(selectedUser.getStatus());
 			txfStraat.setText(selectedUser.getAdres()[0]);
@@ -116,7 +116,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 					if (cboStatus.getValue() != null) {
 						if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 								|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-							ac.wijzigMedewerker(selectedUser.getId(), txfNaam.getText(), txfVoornaam.getText(),
+							ac.wijzigWerknemer(selectedUser.getId(), txfNaam.getText(), txfVoornaam.getText(),
 									txfEmail.getText(), new String[] { txfGsmNummer.getText(), txfVasteLijn.getText() },
 									cboRol.getValue(), cboStatus.getValue(), txfWachtwoord.getText(),
 									new String[] { txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(),

@@ -4,9 +4,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>domein.models.Gebruiker</class>
 		<class>domein.models.Klant</class>
-		<class>domein.models.Administrator</class>
-		<class>domein.models.Technieker</class>
-		<class>domein.models.SupportManager</class>
+		<class>domein.models.Werknemer</class>
 		<class>domein.models.Ticket</class>
 		<class>domein.models.Contract</class>
 		<class>domein.models.ContractType</class>

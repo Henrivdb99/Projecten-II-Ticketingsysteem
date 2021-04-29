@@ -2,8 +2,6 @@ package domein;
 
 import java.time.LocalDate;
 
-import domein.controllers.BCrypt;
-import domein.models.Administrator;
 import domein.models.Contract;
 import domein.models.ContractEnContractTypeStatus;
 import domein.models.ContractType;
@@ -11,11 +9,11 @@ import domein.models.GebruikerStatus;
 import domein.models.Klant;
 import domein.models.KnowledgeBase;
 import domein.models.ManierVanAanmakenTicket;
-import domein.models.SupportManager;
-import domein.models.Medewerker;
 import domein.models.Ticket;
 import domein.models.TicketStatus;
 import domein.models.TijdstipTicketAanmaken;
+import domein.models.TypeGebruiker;
+import domein.models.Werknemer;
 import persistentie.GebruikerDaoJPA;
 import persistentie.GenericDaoJPA;
 
@@ -29,13 +27,13 @@ public class PopuleerDB {
         
        
         Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"});
-        Medewerker supportManager1 = new SupportManager("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"});
-        Administrator administrator1 = new Administrator("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"});
-        Medewerker technieker1 = new Medewerker("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
-        Medewerker gebruiker1 = new Medewerker("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
-        SupportManager gebruiker2 = new SupportManager("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
-        SupportManager gebruiker3 = new SupportManager("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
-        Medewerker gebruiker4 = new Medewerker("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"});
+        Werknemer supportManager1 = new Werknemer("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"}, TypeGebruiker.SupportManager);
+        Werknemer administrator1 = new Werknemer("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Michaelsen", "Michael", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"}, TypeGebruiker.Administrator);
+        Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+        Werknemer gebruiker1 = new Werknemer("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+        Werknemer gebruiker2 = new Werknemer("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
+        Werknemer gebruiker3 = new Werknemer("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
+        Werknemer gebruiker4 = new Werknemer("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
 
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum", "1");

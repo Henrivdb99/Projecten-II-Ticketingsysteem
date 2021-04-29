@@ -101,7 +101,7 @@ public class WerknemerToevoegenSchermController extends GridPane {
 				if (cboRol.getValue() != null) {
 					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-						ac.voegMedewerkerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue(), txfWachtwoord.getText(),
+						ac.voegWerknemerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue(), txfWachtwoord.getText(),
 								new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
 					} else {
 						lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
