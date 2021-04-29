@@ -58,7 +58,7 @@ public class WerknemerDetailsSchermController extends GridPane {
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdInDienst.setText(selectedUser.getRegistratieDatum().toString());
 			
-			lblRol.setText(((Werknemer) selectedUser).getRol().toString()); //CASTING MOET WEG
+			lblRol.setText(selectedUser.getRol().toString());
 			 
 			lblStatus.setText(selectedUser.getStatus().toString());
 					

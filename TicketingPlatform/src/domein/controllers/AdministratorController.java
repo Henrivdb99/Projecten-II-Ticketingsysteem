@@ -63,18 +63,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 	@Override
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
-		String nieuweWachtwoord = wachtwoord;
-		if(wachtwoord == null || wachtwoord.isBlank())
-			nieuweWachtwoord = "niks";
-		
-		Gebruiker gewijzigdeGebruiker = new Werknemer(email, nieuweWachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
 
+		Gebruiker gewijzigdeGebruiker = new Werknemer(email, wachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
 		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
-		
-		
-		
-		if(wachtwoord == null || wachtwoord.isBlank())
-			gewijzigdeGebruiker.setGehashteWachtwoord(gebruiker.getWachtwoord()); //oude wachtwoord blijft
 		
 		gewijzigdeGebruiker.setId(id);
 		

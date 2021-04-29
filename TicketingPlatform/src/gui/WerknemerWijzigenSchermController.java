@@ -85,7 +85,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 			txfGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			
-			cboRol.setValue(((Werknemer) selectedUser).getRol()); //DIT MOET LATER WEG WANT HET GAAT EEN ANDER TYPE WORDEN
+			cboRol.setValue(selectedUser.getRol());
 			
 			cboStatus.setValue(selectedUser.getStatus());
 			txfStraat.setText(selectedUser.getAdres()[0]);
