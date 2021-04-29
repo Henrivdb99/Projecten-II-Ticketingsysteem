@@ -64,20 +64,28 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
 
-		Gebruiker gewijzigdeGebruiker = new Werknemer(email, wachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
-		Gebruiker gebruiker= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
+		//Gebruiker gewijzigdeGebruiker = new Werknemer(email, wachtwoord, status, naam, voornaam, adres, telefoonnummers, rol);
 		
-		gewijzigdeGebruiker.setId(id);
-		
-		werknemers.remove(gebruiker);
-		werknemers.add(gewijzigdeGebruiker);
-		
-		System.out.println(gewijzigdeGebruiker);
-		GenericDaoJPA.startTransaction();
 
-		gebruikerRepo.update(gewijzigdeGebruiker);
-		
-		GenericDaoJPA.commitTransaction();
+		try {
+			GenericDaoJPA.startTransaction();	
+			
+			Gebruiker werknemer= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
+			if(naam != null) werknemer.setNaam(naam);
+			if(voornaam != null) werknemer.setVoornaam(voornaam);
+			if(email != null) werknemer.setEmailAdres(email);
+			if(telefoonnummers != null) werknemer.setTelefoonnummers(telefoonnummers);
+			if(rol != null) werknemer.setRol(rol);
+			if(status != null) werknemer.setStatus(status);
+			if(wachtwoord != null) werknemer.setWachtwoord(wachtwoord);
+			if(adres != null) werknemer.setAdres(adres);
+			
+			GenericDaoJPA.commitTransaction();
+		} catch (Exception e) {
+			GenericDaoJPA.rollbackTransaction();
+			throw new IllegalArgumentException(e.getMessage(), e);
+		}
+
 	}
 	
 	@Override

@@ -94,7 +94,7 @@ public abstract class Gebruiker implements Serializable {
 		return status;
 	}
 
-	private void setStatus(GebruikerStatus status) {
+	public void setStatus(GebruikerStatus status) {
 		this.status = status;
 	}
 
@@ -102,7 +102,7 @@ public abstract class Gebruiker implements Serializable {
 		return naam;
 	}
 
-	private void setNaam(String naam) {
+	public void setNaam(String naam) {
 		if (!naam.isBlank()) {
 			this.naam = naam;
 		} else
