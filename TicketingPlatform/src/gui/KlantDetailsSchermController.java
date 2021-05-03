@@ -37,8 +37,8 @@ public class KlantDetailsSchermController extends GridPane {
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, Gebruiker selectedUser) {
 		this.parent = klantenBeherenSchermController;
 
-		System.out.println("Tickets: " + ((Klant) selectedUser).getTickets());
-		System.out.println("Contracts: " + ((Klant) selectedUser).getContracten());
+		System.out.println("Tickets: " + ((Klant) selectedUser).getTickets()); //werkt niet zolang fetch=FetchType.EAGER niet is ingesteld
+		System.out.println("Contracts: " + ((Klant) selectedUser).getContracten()); //werkt niet zolang fetch=FetchType.EAGER niet is ingesteld
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));

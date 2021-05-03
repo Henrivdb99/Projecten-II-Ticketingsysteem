@@ -9,7 +9,6 @@
 		<class>domein.models.Contract</class>
 		<class>domein.models.ContractType</class>
 		<class>domein.models.KnowledgeBase</class>
-
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TicketingPLatformJava?serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="root" />
