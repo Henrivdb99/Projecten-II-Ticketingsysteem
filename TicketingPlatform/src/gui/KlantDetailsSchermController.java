@@ -1,5 +1,7 @@
 package gui;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.IOException;
 
 import domein.models.Gebruiker;
@@ -36,9 +38,8 @@ public class KlantDetailsSchermController extends GridPane {
 
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, Gebruiker selectedUser) {
 		this.parent = klantenBeherenSchermController;
-
-		System.out.println("Tickets: " + ((Klant) selectedUser).getTickets()); //werkt niet zolang fetch=FetchType.EAGER niet is ingesteld
-		System.out.println("Contracts: " + ((Klant) selectedUser).getContracten()); //werkt niet zolang fetch=FetchType.EAGER niet is ingesteld
+		
+		((Klant) selectedUser).getTickets().stream().forEach(t -> System.out.println(t.getOmschrijving()));
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
