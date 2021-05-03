@@ -58,7 +58,7 @@ public class WerknemerDetailsSchermController extends GridPane {
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdInDienst.setText(selectedUser.getRegistratieDatum().toString());
 			
-			lblRol.setText(selectedUser.getRol().toString());
+			lblRol.setText(((Werknemer) selectedUser).getRol().toString()); //TIJDELIJKE OPLOSSING, TYPE MOET WERKNEMER ZIJN IPV GEBRUIKER
 			 
 			lblStatus.setText(selectedUser.getStatus().toString());
 					

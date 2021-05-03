@@ -1,14 +1,13 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-
 import java.io.IOException;
 
 import domein.models.Gebruiker;
+import domein.models.Klant;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -38,6 +37,9 @@ public class KlantDetailsSchermController extends GridPane {
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, Gebruiker selectedUser) {
 		this.parent = klantenBeherenSchermController;
 
+		System.out.println("Tickets: " + ((Klant) selectedUser).getTickets());
+		System.out.println("Contracts: " + ((Klant) selectedUser).getContracten());
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
 			loader.setRoot(this);

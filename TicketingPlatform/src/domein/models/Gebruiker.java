@@ -20,6 +20,7 @@ import java.time.*;
 import javax.persistence.*;
 
 @Entity
+
 @NamedQueries({
 		@NamedQuery(name = "Gebruiker.findByEmail", query = "select g from Gebruiker g where g.emailAdres = :email"),
 
@@ -46,8 +47,6 @@ public abstract class Gebruiker implements Serializable {
 	@Transient
 	private static final int workload = 12;
 	
-	private TypeGebruiker rol;
-
 	public Gebruiker(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam,
 			String[] adres, String[] telefoonnummers) {
 		setEmailAdres(emailAdres);
@@ -149,14 +148,6 @@ public abstract class Gebruiker implements Serializable {
 
 	public String getWachtwoord() {
 		return wachtwoord;
-	}
-	
-	public TypeGebruiker getRol() {
-		return rol;
-	}
-
-	public void setRol(TypeGebruiker rol) {
-		this.rol = rol;
 	}
 
 	public void setId(int id) {

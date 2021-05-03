@@ -1,6 +1,8 @@
 package domein;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import domein.models.Contract;
 import domein.models.ContractEnContractTypeStatus;
@@ -47,13 +49,21 @@ public class PopuleerDB {
         Contract contract1 = new Contract(LocalDate.now().plusMonths(-13), contract24_7, 1, klant1, ContractEnContractTypeStatus.Afgelopen); 
         Contract contract2 = new Contract(LocalDate.now().plusMonths(-8), contract24_7, 1, klant1, ContractEnContractTypeStatus.InBehandeling);
         Contract contract3 = new Contract(LocalDate.now().plusMonths(-23).plusDays(-11), contractWerkuren, 2, klant1, ContractEnContractTypeStatus.Actief);
-        		
+        
+        List<Contract> contracts = new ArrayList<>();
+        contracts.add(contract1); contracts.add(contract2); contracts.add(contract3); //bidirectioneel in domein, databank blijft gelijk
+        klant1.setContracten(contracts);
+        
         ticket1.setKlant(klant1);
         ticket2.setKlant(klant1);
         ticket3.setKlant(klant1);
         ticket1.setTechnieker(technieker1);
         ticket2.setTechnieker(technieker1);
         ticket3.setTechnieker(technieker1);
+        
+        List<Ticket> tickets = new ArrayList<>();
+        tickets.add(ticket1); tickets.add(ticket2); tickets.add(ticket3); //bidirectioneel in domein, databank blijft gelijk
+        klant1.setTickets(tickets);
         
         GenericDaoJPA<Ticket> ticketdao = new GenericDaoJPA<>(Ticket.class); 
         ticketdao.insert(ticket1);

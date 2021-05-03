@@ -1,5 +1,6 @@
 package domein.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -9,14 +10,24 @@ import javax.persistence.NamedQuery;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Werknemer extends Gebruiker {
+	
+	@Column(name = "WerknemerRol")
+	private TypeGebruiker rol;
 
 	public Werknemer() {
 	}
 
 	public Werknemer(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers, TypeGebruiker rol) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
-		super.setRol(rol);
+		setRol(rol);
 	}
 	
+	public TypeGebruiker getRol() {
+		return rol;
+	}
+
+	public void setRol(TypeGebruiker rol) {
+		this.rol = rol;
+	}
 
 }

@@ -75,7 +75,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			if(voornaam != null && !voornaam.isBlank()) werknemer.setVoornaam(voornaam);
 			if(email != null && !email.isBlank()) werknemer.setEmailAdres(email);
 			if(telefoonnummers != null) werknemer.setTelefoonnummers(telefoonnummers);
-			if(rol != null) werknemer.setRol(rol);
+			
+			if(rol != null) ((Werknemer) werknemer).setRol(rol); //TIJDELIJKE OPLOSSING, TYPE MOET WERKNEMER ZIJN IPV GEBRUIKER
+			
 			if(status != null) werknemer.setStatus(status);
 			if(wachtwoord != null && !wachtwoord.isBlank()) werknemer.setWachtwoord(wachtwoord);
 			if(adres != null) werknemer.setAdres(adres);
