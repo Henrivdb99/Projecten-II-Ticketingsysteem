@@ -1,13 +1,9 @@
 package domein.controllers;
 
-import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
-
 import domein.models.Gebruiker;
+import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.TypeGebruiker;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GebruikerDaoJPA;
 
@@ -37,11 +33,11 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public ObservableList<Gebruiker> geefWerknemers() {
+	public ObservableList<GebruikerGegevens> geefWerknemers() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	
-	public ObservableList<Gebruiker> geefKlanten() {
+	public ObservableList<GebruikerGegevens> geefKlanten() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 

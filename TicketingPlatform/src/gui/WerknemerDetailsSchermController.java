@@ -3,13 +3,10 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
 
-import domein.models.Gebruiker;
-import domein.models.Werknemer;
+import domein.models.GebruikerGegevens;
 import javafx.event.ActionEvent;
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -38,7 +35,7 @@ public class WerknemerDetailsSchermController extends GridPane {
 
 	private WerknemersBeherenSchermController parent;
 
-	public WerknemerDetailsSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController, Gebruiker selectedUser) {
+	public WerknemerDetailsSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController, GebruikerGegevens selectedUser) {
 		this.parent = werknemersBeherenSchermController;
 
 		try {
@@ -56,7 +53,7 @@ public class WerknemerDetailsSchermController extends GridPane {
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			lblTijdInDienst.setText(selectedUser.getRegistratieDatum().toString());
 			
-			lblRol.setText(((Werknemer) selectedUser).getRol().toString()); //TIJDELIJKE OPLOSSING, TYPE MOET WERKNEMER ZIJN IPV GEBRUIKER
+			lblRol.setText(selectedUser.getRol().toString()); 
 			 
 			lblStatus.setText(selectedUser.getStatus().toString());
 					

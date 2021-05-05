@@ -3,9 +3,8 @@ package gui;
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.models.Gebruiker;
+import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.Werknemer;
 import domein.models.TypeGebruiker;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -58,11 +57,11 @@ public class WerknemerWijzigenSchermController extends GridPane {
 
 	// Event Listener on Button[#btnTerug].onAction
 	private WerknemersBeherenSchermController parent;
-	private Gebruiker selectedUser;
+	private GebruikerGegevens selectedUser;
 	private AangemeldeGebruikerController ac;
 
 	public WerknemerWijzigenSchermController(WerknemersBeherenSchermController werknemersBeherenSchermController,
-			Gebruiker selectedUser, AangemeldeGebruikerController ac) {
+			GebruikerGegevens selectedUser, AangemeldeGebruikerController ac) {
 		this.parent = werknemersBeherenSchermController;
 		this.selectedUser = selectedUser;
 		this.ac = ac;
@@ -84,7 +83,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 			txfGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
 			txfVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			
-			cboRol.setValue(((Werknemer) selectedUser).getRol()); //TIJDELIJKE OPLOSSING, casten moet weg 
+			cboRol.setValue(selectedUser.getRol()); 
 			
 			cboStatus.setValue(selectedUser.getStatus());
 			txfStraat.setText(selectedUser.getAdres()[0]);

@@ -3,9 +3,8 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import domein.controllers.AangemeldeGebruikerController;
-import domein.models.Gebruiker;
+import domein.models.GebruikerGegevens;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,19 +29,19 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	private Button btnKlantDetails;
 	
 	@FXML
-	private TableView<Gebruiker> tblView;
+	private TableView<GebruikerGegevens> tblView;
 	@FXML
-	private TableColumn<Gebruiker, String> colGebruikersnaam;
+	private TableColumn<GebruikerGegevens, String> colGebruikersnaam;
 	@FXML
-	private TableColumn<Gebruiker, String> colNaam;
+	private TableColumn<GebruikerGegevens, String> colNaam;
 	@FXML
-	private TableColumn<Gebruiker, String> colVoornaam;
+	private TableColumn<GebruikerGegevens, String> colVoornaam;
 	@FXML
-	private TableColumn<Gebruiker, String> colStatus;
+	private TableColumn<GebruikerGegevens, String> colStatus;
 
 	private DashboardSchermController parent;
 	private AangemeldeGebruikerController ac;
-	private Gebruiker selectedUser;
+	private GebruikerGegevens selectedUser;
 
 	public KlantenBeherenSchermController(DashboardSchermController dashboardSchermController, AangemeldeGebruikerController ac) {
 		this.parent = dashboardSchermController;
@@ -103,10 +102,10 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		colGebruikersnaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("emailAdres"));
-		colNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
-		colVoornaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("voornaam"));
-		colStatus.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("status"));
+		colGebruikersnaam.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("emailAdres"));
+		colNaam.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("naam"));
+		colVoornaam.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("voornaam"));
+		colStatus.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("status"));
         tblView.setItems(ac.geefKlanten());
         
 	}

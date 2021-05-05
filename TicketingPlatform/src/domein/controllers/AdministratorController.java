@@ -1,20 +1,24 @@
 package domein.controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityNotFoundException;
 
 import domein.models.Gebruiker;
+import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.Klant;
-import domein.models.Werknemer;
 import domein.models.TypeGebruiker;
+import domein.models.Werknemer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistentie.GenericDaoJPA;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
-	private ObservableList<Gebruiker> werknemers;
-	private ObservableList<Gebruiker> klanten;
+	private ObservableList<GebruikerGegevens> werknemers;
+	private ObservableList<GebruikerGegevens> klanten;
 
 	public AdministratorController() {
 		super();
@@ -28,9 +32,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public ObservableList<Gebruiker> geefWerknemers() {
+	public ObservableList<GebruikerGegevens> geefWerknemers() {
 		try {
-			this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
+			List<Gebruiker> werknemers = gebruikerRepo.geefWerknemers();
+			List<GebruikerGegevens> werknemersGegevens = werknemers.stream().map(gebruiker -> ((GebruikerGegevens) gebruiker)).collect(Collectors.toList());
+			
+			this.werknemers =  FXCollections.observableList(werknemersGegevens);
 
 			return this.werknemers;
 
@@ -40,9 +47,13 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public ObservableList<Gebruiker> geefKlanten() {
+	public ObservableList<GebruikerGegevens> geefKlanten() {
 		try {
-			this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());			
+			List<Gebruiker> klanten = gebruikerRepo.geefKlanten();
+			List<GebruikerGegevens> klantenGegevens = klanten.stream().map(gebruiker -> ((GebruikerGegevens) gebruiker)).collect(Collectors.toList());
+			
+			this.klanten =  FXCollections.observableList(klantenGegevens);
+			
 			return this.klanten;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -70,13 +81,13 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		try {
 			GenericDaoJPA.startTransaction();	
 			
-			Gebruiker werknemer= werknemers.stream().filter(g -> g.getId() == id).findAny().orElse(null);
+			Gebruiker werknemer = gebruikerRepo.get(id);
 			if(naam != null && !naam.isBlank()) werknemer.setNaam(naam);
 			if(voornaam != null && !voornaam.isBlank()) werknemer.setVoornaam(voornaam);
 			if(email != null && !email.isBlank()) werknemer.setEmailAdres(email);
 			if(telefoonnummers != null) werknemer.setTelefoonnummers(telefoonnummers);
 			
-			if(rol != null) ((Werknemer) werknemer).setRol(rol); //TIJDELIJKE OPLOSSING, TYPE MOET WERKNEMER ZIJN IPV GEBRUIKER
+			if(rol != null) werknemer.setRol(rol);
 			
 			if(status != null) werknemer.setStatus(status);
 			if(wachtwoord != null && !wachtwoord.isBlank()) werknemer.setWachtwoord(wachtwoord);
