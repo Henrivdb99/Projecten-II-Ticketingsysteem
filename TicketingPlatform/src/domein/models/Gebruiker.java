@@ -4,15 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
 import domein.controllers.BCrypt;
 
 import java.io.*;
@@ -29,7 +20,7 @@ import javax.persistence.*;
 		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant")
 
 })
-public abstract class Gebruiker implements Serializable {
+public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +35,8 @@ public abstract class Gebruiker implements Serializable {
 	private String voornaam;
 	private String[] adres;
 	private String[] telefoonnummers;
+	@Column(name = "Rol")
+	private TypeGebruiker rol;
 	@Transient
 	private static final int workload = 12;
 	
@@ -160,6 +153,15 @@ public abstract class Gebruiker implements Serializable {
 		} else
 			throw new IllegalArgumentException("E-mailadres is verplicht");
 	}
+	
+	public TypeGebruiker getRol() {
+		return rol;
+	}
+
+	public void setRol(TypeGebruiker rol) {
+		this.rol = rol;
+	}
+	
 
 	public void setWachtwoord(String wachtwoord) {
 		if (!wachtwoord.isBlank()) {
@@ -167,6 +169,8 @@ public abstract class Gebruiker implements Serializable {
 		} else
 			throw new IllegalArgumentException("Wachtwoord is verplicht");
 	}
+	
+	
 
 	@Override
 	public String toString() {
