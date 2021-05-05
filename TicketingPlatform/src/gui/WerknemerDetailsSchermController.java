@@ -35,8 +35,6 @@ public class WerknemerDetailsSchermController extends GridPane {
 	private Label lblRol;
 	@FXML
 	private Label lblStatus;
-	@FXML
-	private Button btnTerug;
 
 	private WerknemersBeherenSchermController parent;
 
@@ -65,12 +63,5 @@ public class WerknemerDetailsSchermController extends GridPane {
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
-	}
-
-	// Event Listener on Button[#btnTerug].onAction
-	@FXML
-	public void btnTerugOnAction(ActionEvent event) {
-		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.parent.getScene());
 	}
 }

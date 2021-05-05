@@ -68,11 +68,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	@FXML
 	public void btnWerknemerToevoegenOnAction(ActionEvent event) {
 		WerknemerToevoegenSchermController wtsc = new WerknemerToevoegenSchermController(this, ac);
-
-		Scene scene = new Scene(wtsc);
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
+		this.setRight(wtsc);
 	}
 
 	// Event Listener on Button[#btnWerknemerWijzigen].onAction
@@ -80,11 +76,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	public void btnWerknemerWijzigenOnAction(ActionEvent event) {
 		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
 		WerknemerWijzigenSchermController wwsc = new WerknemerWijzigenSchermController(this, this.selectedUser, this.ac);
-
-		Scene scene = new Scene(wwsc);
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
+		this.setRight(wwsc);
 	}
 
 	// Event Listener on Button[#btnTerug].onAction
@@ -101,10 +93,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		WerknemerDetailsSchermController werknemerDetailsSchermController = new WerknemerDetailsSchermController(this,
 				this.selectedUser);
 
-		Scene scene = new Scene(werknemerDetailsSchermController);
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
+		this.setRight(werknemerDetailsSchermController);
 	}
 
 	// Event Listener on TableView[#tblView].onMouseClicked

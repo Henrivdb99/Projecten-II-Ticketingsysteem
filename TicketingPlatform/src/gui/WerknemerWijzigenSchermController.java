@@ -20,8 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class WerknemerWijzigenSchermController extends GridPane {
-	@FXML
-	private Button btnTerug;
+	
 	@FXML
 	private Button btnWerknemerAanmaken;
 	@FXML
@@ -96,13 +95,6 @@ public class WerknemerWijzigenSchermController extends GridPane {
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
-	}
-
-	// Event Listener on Button[#btnTerug].onAction
-	@FXML
-	public void btnTerugOnAction(ActionEvent event) {
-		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.parent.getScene());
 	}
 
 	// Event Listener on Button[#btnWerknemerAanmaken].onAction
