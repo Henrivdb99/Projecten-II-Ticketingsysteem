@@ -35,8 +35,12 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	private String voornaam;
 	private String[] adres;
 	private String[] telefoonnummers;
+	
+	//enkel in werknemer:
 	@Column(name = "Rol")
 	private TypeGebruiker rol;
+	//enkel in klant:
+	private String bedrijfsnaam;
 	@Transient
 	private static final int workload = 12;
 	
@@ -160,6 +164,17 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 
 	public void setRol(TypeGebruiker rol) {
 		this.rol = rol;
+	}
+	
+	public void setBedrijfsnaam(String bedrijfsnaam) {
+		if (!bedrijfsnaam.isBlank()) {
+			this.bedrijfsnaam = bedrijfsnaam;
+		} else
+			throw new IllegalArgumentException("Bedrijfsnaam is verplicht");
+	}
+	
+	public String getBedrijfsnaam() {
+		return bedrijfsnaam;
 	}
 	
 

@@ -17,8 +17,8 @@ import persistentie.GenericDaoJPA;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
-	private ObservableList<GebruikerGegevens> werknemers;
-	private ObservableList<GebruikerGegevens> klanten;
+	private ObservableList<Gebruiker> werknemers;
+	private ObservableList<Gebruiker> klanten;
 
 	public AdministratorController() {
 		super();
@@ -34,12 +34,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public ObservableList<GebruikerGegevens> geefWerknemers() {
 		try {
-			List<Gebruiker> werknemers = gebruikerRepo.geefWerknemers();
-			List<GebruikerGegevens> werknemersGegevens = werknemers.stream().map(gebruiker -> ((GebruikerGegevens) gebruiker)).collect(Collectors.toList());
+			if(this.werknemers == null)
+				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
 			
-			this.werknemers =  FXCollections.observableList(werknemersGegevens);
-
-			return this.werknemers;
+			return (ObservableList<GebruikerGegevens>) (Object) this.werknemers;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -49,12 +47,11 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	@Override
 	public ObservableList<GebruikerGegevens> geefKlanten() {
 		try {
-			List<Gebruiker> klanten = gebruikerRepo.geefKlanten();
-			List<GebruikerGegevens> klantenGegevens = klanten.stream().map(gebruiker -> ((GebruikerGegevens) gebruiker)).collect(Collectors.toList());
+			if(this.klanten == null)
+				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
 			
-			this.klanten =  FXCollections.observableList(klantenGegevens);
+			return (ObservableList<GebruikerGegevens>) (Object) this.klanten;
 			
-			return this.klanten;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -79,9 +76,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		
 
 		try {
+			Gebruiker werknemer = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
+
 			GenericDaoJPA.startTransaction();	
-			
-			Gebruiker werknemer = gebruikerRepo.get(id);
+								
 			if(naam != null && !naam.isBlank()) werknemer.setNaam(naam);
 			if(voornaam != null && !voornaam.isBlank()) werknemer.setVoornaam(voornaam);
 			if(email != null && !email.isBlank()) werknemer.setEmailAdres(email);
@@ -94,9 +92,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			if(adres != null) werknemer.setAdres(adres);
 			
 			GenericDaoJPA.commitTransaction();
-			
+					
 			werknemers.remove(werknemer);
 			werknemers.add(werknemer);
+			
 		} catch (Exception e) {
 			GenericDaoJPA.rollbackTransaction();
 			throw new IllegalArgumentException(e.getMessage(), e);
@@ -121,9 +120,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers, GebruikerStatus status ,String wachtwoord, String[] adres, String bedrijfsnaam) {
 
 		try {
-			GenericDaoJPA.startTransaction();	
+			Gebruiker klant = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
 			
-			Gebruiker klant = gebruikerRepo.get(id);
+			GenericDaoJPA.startTransaction();	
+						
 			if(naam != null && !naam.isBlank()) klant.setNaam(naam);
 			if(voornaam != null && !voornaam.isBlank()) klant.setVoornaam(voornaam);
 			if(email != null && !email.isBlank()) klant.setEmailAdres(email);
@@ -134,7 +134,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			if(adres != null) klant.setAdres(adres);
 			if(bedrijfsnaam != null) klant.setBedrijfsnaam(bedrijfsnaam);
 			
-			GenericDaoJPA.commitTransaction();
+			GenericDaoJPA.commitTransaction();	
 			
 			werknemers.remove(klant);
 			werknemers.add(klant);

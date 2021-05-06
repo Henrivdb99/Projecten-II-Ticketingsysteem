@@ -16,7 +16,6 @@ public class Klant extends Gebruiker {
 	@OneToMany(mappedBy="klant")
 	private List<Contract> contracten;
 
-	private String bedrijfsnaam; 
 	public Klant() {
 		super();
 	}
@@ -43,18 +42,6 @@ public class Klant extends Gebruiker {
 	}
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
-	}
-	
-	public void setBedrijfsnaam(String bedrijfsnaam) {
-		if (!bedrijfsnaam.isBlank()) {
-			this.bedrijfsnaam = bedrijfsnaam;
-		} else
-			throw new IllegalArgumentException("Bedrijfsnaam is verplicht");
-	}
-	
-	
-	public String getBedrijfsnaam() {
-		return bedrijfsnaam;
 	}
 	
 	
