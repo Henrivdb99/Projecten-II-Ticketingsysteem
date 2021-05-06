@@ -61,7 +61,7 @@ public class KlantDetailsSchermController extends GridPane {
 			lblVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
-			lblBedrijfsnaam.setText(selectedUser.getBedrijfsnaam().toString());
+			lblBedrijfsnaam.setText(selectedUser.getBedrijfsnaam());
 					
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);

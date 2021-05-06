@@ -19,10 +19,10 @@ public class Klant extends Gebruiker {
 	public Klant() {
 		super();
 	}
-
 	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers, String bedrijfsnaam) {
-		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
-	}	
+        super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
+        super.setBedrijfsnaam(bedrijfsnaam);
+    }    
 	
 	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam,
 			String[] adres, String[] telefoonnummers, List<Ticket> tickets, List<Contract> contracten) {
