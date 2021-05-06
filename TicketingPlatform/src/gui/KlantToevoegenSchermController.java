@@ -48,6 +48,8 @@ public class KlantToevoegenSchermController extends GridPane {
 	@FXML
 	private TextField txfStad;
 	@FXML
+	private TextField txfBedrijfsnaam;
+	@FXML
 	private PasswordField txfWachtwoord;
 	@FXML
 	private PasswordField txfWachtwoordBevestigen;
@@ -90,8 +92,8 @@ public class KlantToevoegenSchermController extends GridPane {
 			if (txfWachtwoord.getText().equals(txfWachtwoordBevestigen.getText())) {
 				if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 						|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
-					ac.voegKlantToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), ""}, txfWachtwoord.getText(),
-							new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
+					ac.voegKlantToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, txfWachtwoord.getText(),
+							new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()}, txfBedrijfsnaam.getText());
 				} else {
 					lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
 				}

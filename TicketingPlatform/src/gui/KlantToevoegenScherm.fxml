@@ -36,24 +36,24 @@
    <children>
       <Label text="Wachtwoord bevestigen" GridPane.rowIndex="7" />
       <Label text="Naam" GridPane.rowIndex="2" />
-      <Label text="Adresgegevens" GridPane.rowIndex="9">
+      <Label text="Bedrijfsgegevens" GridPane.rowIndex="8">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <Label text="E-mailadres" GridPane.rowIndex="4" />
       <Label text="Gsm-nummer" GridPane.rowIndex="5" />
       <Label text="Wachtwoord" GridPane.rowIndex="6" />
-      <Label text="persoonlijke gegevens" GridPane.rowIndex="1">
+      <Label text="Gegevens contactpersoon" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <Label text="Voornaam" GridPane.rowIndex="3" />
-      <Label text="Stad" GridPane.rowIndex="13" />
-      <Label text="Straat" GridPane.rowIndex="10" />
-      <Label text="Huisnummer" GridPane.rowIndex="11" />
-      <Label text="Postcode" GridPane.rowIndex="12" />
+      <Label text="Stad" GridPane.rowIndex="14" />
+      <Label text="Straat" GridPane.rowIndex="11" />
+      <Label text="Huisnummer" GridPane.rowIndex="12" />
+      <Label text="Postcode" GridPane.rowIndex="13" />
       <Label prefHeight="20.0" prefWidth="482.0" text="Nieuwe klant toevoegen" GridPane.columnSpan="2">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -61,17 +61,21 @@
       </Label>
       <Button fx:id="btnTerug" mnemonicParsing="false" onAction="#btnTerugOnAction" prefHeight="25.0" prefWidth="144.0" text="Terug" GridPane.rowIndex="15" />
       <Button fx:id="btnKlantAanmaken" mnemonicParsing="false" onAction="#btnKlantAanmakenOnAction" prefHeight="25.0" prefWidth="144.0" text="Klant aanmaken" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-      <Label fx:id="lblFout" prefHeight="17.0" prefWidth="687.0" textFill="RED" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+      <Label fx:id="lblFout" prefHeight="17.0" prefWidth="687.0" textFill="RED" GridPane.columnSpan="2" GridPane.rowIndex="10" />
       <TextField fx:id="txfNaam" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="txfVoornaam" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="txfEmail" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField fx:id="txfGsmNummer" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="txfStraat" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <TextField fx:id="txfHuisnummer" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <TextField fx:id="txfPostcode" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <TextField fx:id="txfStad" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <TextField fx:id="txfStraat" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <TextField fx:id="txfHuisnummer" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <TextField fx:id="txfPostcode" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <TextField fx:id="txfStad" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
       <PasswordField fx:id="txfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <PasswordField fx:id="txfWachtwoordBevestigen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="Naam" GridPane.rowIndex="9" />
+      <TextField fx:id="txfBedrijfsnaam" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="Telefoon" GridPane.rowIndex="10" />
+      <TextField fx:id="txfVasteLijn" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

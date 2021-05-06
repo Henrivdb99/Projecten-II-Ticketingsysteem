@@ -16,11 +16,12 @@ public class Klant extends Gebruiker {
 	@OneToMany(mappedBy="klant")
 	private List<Contract> contracten;
 
+	private String bedrijfsnaam; 
 	public Klant() {
 		super();
 	}
-	//Moet nog worden uitgebreid met attributen, zie UC3 beheren gebruiker KLANT
-	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers) {
+
+	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers, String bedrijfsnaam) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 	}	
 	
@@ -44,7 +45,17 @@ public class Klant extends Gebruiker {
 		this.tickets = tickets;
 	}
 	
+	public void setBedrijfsnaam(String bedrijfsnaam) {
+		if (!bedrijfsnaam.isBlank()) {
+			this.bedrijfsnaam = bedrijfsnaam;
+		} else
+			throw new IllegalArgumentException("Bedrijfsnaam is verplicht");
+	}
 	
+	
+	public String getBedrijfsnaam() {
+		return bedrijfsnaam;
+	}
 	
 	
 }

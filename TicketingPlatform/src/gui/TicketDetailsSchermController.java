@@ -1,10 +1,15 @@
 package gui;
 
+import domein.models.Ticket;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 
 public class TicketDetailsSchermController {
+	public TicketDetailsSchermController(TicketsBeherenSchermController ticketsBeherenSchermController,
+			Ticket selectedTicket) {
+		// TODO Auto-generated constructor stub
+	}
 	@FXML
 	private Label lblDatumAangemaakt;
 	@FXML

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.DynamicTest.stream;
 import java.io.IOException;
 
 import domein.models.Gebruiker;
+import domein.models.GebruikerGegevens;
 import domein.models.Klant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,15 +29,19 @@ public class KlantDetailsSchermController extends GridPane {
 	@FXML
 	private Label lblGsmNummer;
 	@FXML
+	private Label lblVasteLijn;
+	@FXML
 	private Label lblTijdKlant;
 	@FXML
 	private Label lblStatus;
+	@FXML
+	private Label lblBedrijfsnaam;
 	@FXML
 	private Button btnTerug;
 
 	private KlantenBeherenSchermController parent;
 
-	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, Gebruiker selectedUser) {
+	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser) {
 		this.parent = klantenBeherenSchermController;
 		
 		((Klant) selectedUser).getTickets().stream().forEach(t -> System.out.println(t.getOmschrijving()));
@@ -53,8 +58,10 @@ public class KlantDetailsSchermController extends GridPane {
 			lblEmailGebruikersnaam.setText(selectedUser.getEmailAdres());
 			lblAdres.setText(selectedUser.getAdres()[0] + " " + selectedUser.getAdres()[1] + ", " + selectedUser.getAdres()[2] + " " + selectedUser.getAdres()[3]);
 			lblGsmNummer.setText(selectedUser.getTelefoonnummers()[0]);
+			lblVasteLijn.setText(selectedUser.getTelefoonnummers()[1]);
 			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
+			lblBedrijfsnaam.setText(selectedUser.getBedrijfsnaam().toString());
 					
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);

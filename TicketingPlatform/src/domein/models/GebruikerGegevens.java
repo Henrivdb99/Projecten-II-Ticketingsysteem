@@ -14,5 +14,6 @@ public interface GebruikerGegevens {
 	public String[] getAdres();
 	public String[] getTelefoonnummers();
 	public TypeGebruiker getRol();
+	public String getBedrijfsnaam();
 	
 }

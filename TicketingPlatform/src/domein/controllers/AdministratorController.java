@@ -105,15 +105,43 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 	
 	@Override
-	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres) {
+	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres, String bedrijfsnaam) {
 
-		Gebruiker nieuweGebruiker = new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,	telefoonnummers);
+		Gebruiker nieuweGebruiker = new Klant(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,	telefoonnummers, bedrijfsnaam);
 
 		System.out.println(nieuweGebruiker);
 		klanten.add(nieuweGebruiker);
 		GenericDaoJPA.startTransaction();
 		gebruikerRepo.insert(nieuweGebruiker);
 		GenericDaoJPA.commitTransaction();
+
+	}
+	
+	@Override
+	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers, GebruikerStatus status ,String wachtwoord, String[] adres, String bedrijfsnaam) {
+
+		try {
+			GenericDaoJPA.startTransaction();	
+			
+			Gebruiker klant = gebruikerRepo.get(id);
+			if(naam != null && !naam.isBlank()) klant.setNaam(naam);
+			if(voornaam != null && !voornaam.isBlank()) klant.setVoornaam(voornaam);
+			if(email != null && !email.isBlank()) klant.setEmailAdres(email);
+			if(telefoonnummers != null) klant.setTelefoonnummers(telefoonnummers);
+						
+			if(status != null) klant.setStatus(status);
+			if(wachtwoord != null && !wachtwoord.isBlank()) klant.setWachtwoord(wachtwoord);
+			if(adres != null) klant.setAdres(adres);
+			if(bedrijfsnaam != null) klant.setBedrijfsnaam(bedrijfsnaam);
+			
+			GenericDaoJPA.commitTransaction();
+			
+			werknemers.remove(klant);
+			werknemers.add(klant);
+		} catch (Exception e) {
+			GenericDaoJPA.rollbackTransaction();
+			throw new IllegalArgumentException(e.getMessage(), e);
+		}
 
 	}
 }
