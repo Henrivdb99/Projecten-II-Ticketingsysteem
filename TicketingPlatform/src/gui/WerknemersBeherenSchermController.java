@@ -89,6 +89,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	// Event Listener on Button[#btnWerknemerDetails].onAction
 	@FXML
 	public void btnWerknemerDetailsOnAction(ActionEvent event) {
+		//Observerrelatie tussen overzicht en detail, breng domein op de hoogte voor wat je hebt geselecteerd. (domein huidige werknemer bijhouden)
 		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
 		WerknemerDetailsSchermController werknemerDetailsSchermController = new WerknemerDetailsSchermController(this,
 				this.selectedUser);
@@ -99,6 +100,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	// Event Listener on TableView[#tblView].onMouseClicked
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
+		//try catch evt informatie uit event
 		btnWerknemerDetails.setDisable(false);
 		btnWerknemerWijzigen.setDisable(false);
 	}
