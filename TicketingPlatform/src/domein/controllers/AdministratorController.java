@@ -120,10 +120,11 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers, GebruikerStatus status ,String wachtwoord, String[] adres, String bedrijfsnaam) {
 
 		try {
-			Gebruiker klant = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-			
+
+			Gebruiker klant = klanten.stream().filter(w -> w.getId() == id).findAny().orElse(null);
+
 			GenericDaoJPA.startTransaction();	
-						
+
 			if(naam != null && !naam.isBlank()) klant.setNaam(naam);
 			if(voornaam != null && !voornaam.isBlank()) klant.setVoornaam(voornaam);
 			if(email != null && !email.isBlank()) klant.setEmailAdres(email);
@@ -136,8 +137,8 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			
 			GenericDaoJPA.commitTransaction();	
 			
-			werknemers.remove(klant);
-			werknemers.add(klant);
+			klanten.remove(klant);
+			klanten.add(klant);
 		} catch (Exception e) {
 			GenericDaoJPA.rollbackTransaction();
 			throw new IllegalArgumentException(e.getMessage(), e);
