@@ -147,8 +147,13 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	}
 
 	@FXML
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 	public void userClickedOnTable(MouseEvent event) {
 		// try catch evt informatie uit event
+=======
+	public void userClickedOnTable(MouseEvent event) { //hoe doen we dit ongedaan?
+		//try catch evt informatie uit event
+>>>>>>> f884df1 actemium klasse toegevoegd
 		btnWerknemerDetails.setDisable(false);
 		btnWerknemerWijzigen.setDisable(false);
 	}

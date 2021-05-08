@@ -18,10 +18,13 @@ import persistentie.GenericDaoJPA;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 	private ObservableList<Gebruiker> werknemers;
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private ObservableList<Gebruiker> klanten;
 
+=======
+>>>>>>> f884df1 actemium klasse toegevoegd
 	public AdministratorController() {
 		super();
 	}
@@ -65,6 +68,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	@Override
 	public ObservableList<GebruikerGegevens> geefWerknemers() {
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
@@ -76,10 +80,14 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
+=======
+		return actemium.geefWerknemers();
+>>>>>>> f884df1 actemium klasse toegevoegd
 	}
 
 	@Override
 	public ObservableList<GebruikerGegevens> geefKlanten() {
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
@@ -89,12 +97,16 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
+=======
+		return actemium.geefKlanten();
+>>>>>>> f884df1 actemium klasse toegevoegd
 	}
 
 	@Override
 	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers,
 			TypeGebruiker rol, String wachtwoord, String[] adres) {
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 		Gebruiker nieuweGebruiker = new Werknemer(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				telefoonnummers, rol);
 		System.out.println(nieuweGebruiker);
@@ -102,9 +114,13 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		GenericDaoJPA.startTransaction();
 		gebruikerRepo.insert(nieuweGebruiker);
 		GenericDaoJPA.commitTransaction();
+=======
+		actemium.voegWerknemerToe(naam, voornaam, email, telefoonnummers, rol, wachtwoord, adres);
+>>>>>>> f884df1 actemium klasse toegevoegd
 
 	}
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 	@Override
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			TypeGebruiker rol, GebruikerStatus status, String wachtwoord, String[] adres) {
@@ -146,8 +162,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			throw new IllegalArgumentException(e.getMessage(), e);
 		}
 
+=======
+		actemium.wijzigWerknemer(id, naam, voornaam, email, telefoonnummers, rol, status, wachtwoord, adres);
+>>>>>>> f884df1 actemium klasse toegevoegd
 	}
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 	@Override
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord,
 			String[] adres, String bedrijfsnaam) {
@@ -160,6 +180,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		GenericDaoJPA.startTransaction();
 		gebruikerRepo.insert(nieuweGebruiker);
 		GenericDaoJPA.commitTransaction();
+=======
+		actemium.voegKlantToe(naam, voornaam, email, telefoonnummers, wachtwoord, adres, bedrijfsnaam);
+>>>>>>> f884df1 actemium klasse toegevoegd
 
 	}
 
@@ -167,6 +190,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
 		try {
 
 			Gebruiker klant = klanten.stream().filter(w -> w.getId() == id).findAny().orElse(null);
@@ -199,6 +223,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			GenericDaoJPA.rollbackTransaction();
 			throw new IllegalArgumentException(e.getMessage(), e);
 		}
+=======
+		actemium.wijzigKlant(id, naam, voornaam, email, telefoonnummers, status, wachtwoord, adres, bedrijfsnaam);
+>>>>>>> f884df1 actemium klasse toegevoegd
 
 	}
 

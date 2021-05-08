@@ -3,12 +3,11 @@ package domein.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
-
-import domein.controllers.BCrypt;
-
 import java.io.*;
 import java.time.*;
 import javax.persistence.*;
+
+import domein.BCrypt;
 
 @Entity
 

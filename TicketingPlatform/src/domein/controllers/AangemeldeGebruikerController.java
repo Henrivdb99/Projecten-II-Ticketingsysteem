@@ -1,5 +1,6 @@
 package domein.controllers;
 
+import domein.models.Actemium;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
@@ -9,23 +10,25 @@ import persistentie.GebruikerDaoJPA;
 
 public abstract class AangemeldeGebruikerController {
 	
-	protected GebruikerDaoJPA gebruikerRepo;
+	protected Actemium actemium;
 	
 	public AangemeldeGebruikerController() {
-		this(new GebruikerDaoJPA());
-	}
-	
-	public AangemeldeGebruikerController(GebruikerDaoJPA gebruikerRepo) {
-		this.gebruikerRepo = gebruikerRepo;
+		this(new Actemium());
 	}
 
-	public GebruikerDaoJPA getGebruikerRepo() {
-		return gebruikerRepo;
+	public AangemeldeGebruikerController(Actemium actemium) {
+		this.actemium = actemium;
 	}
 
-	public void setGebruikerRepo(GebruikerDaoJPA gebruikerRepo) {
-		this.gebruikerRepo = gebruikerRepo;
+	public Actemium getActemium() {
+		return actemium;
 	}
+
+	public void setActemium(Actemium actemium) {
+		this.actemium = actemium;
+	}
+
+
 
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 
