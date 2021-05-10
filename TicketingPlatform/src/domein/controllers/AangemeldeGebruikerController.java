@@ -61,7 +61,11 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 		
 	}
-	
+
+	public void changeFilter(String newValue, String veld)
+	{
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
 	
 	
 }
