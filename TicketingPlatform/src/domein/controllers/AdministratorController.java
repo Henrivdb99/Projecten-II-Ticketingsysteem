@@ -34,7 +34,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		filteredWerknemers.setPredicate(gebruiker -> {
 			
 			if (filterValue == null || filterValue.isBlank()) {
-				return true;
+				return gebruiker.getStatus().toString().toLowerCase().equals("actief");
 			}
 			String lowerCaseValue = filterValue.toLowerCase();
 

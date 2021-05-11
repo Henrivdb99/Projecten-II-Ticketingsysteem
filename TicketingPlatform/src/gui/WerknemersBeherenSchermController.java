@@ -76,7 +76,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 			btnWerknemerDetails.setDisable(true);
 			btnWerknemerWijzigen.setDisable(true);
 			txfStatus.setPromptText("Schrijf volledig uit");
-
+			ac.changeFilter(null, null);
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
