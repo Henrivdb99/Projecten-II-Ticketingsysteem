@@ -1,8 +1,7 @@
 package domein.controllers;
 
-import domein.models.Gebruiker;
-import domein.models.TypeGebruiker;
 import domein.models.*;
+import javafx.collections.ObservableList;
 
 public class SupportManagerController extends AangemeldeGebruikerController{
 
@@ -15,6 +14,10 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	public TypeGebruiker geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
 		return TypeGebruiker.SupportManager;
+	}
+	@Override
+	public ObservableList<TicketGegevens> geefTickets() {
+		return actemium.geefTickets();
 	}
 
 }
