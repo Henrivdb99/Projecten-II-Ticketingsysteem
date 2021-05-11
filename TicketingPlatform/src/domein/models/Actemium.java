@@ -4,6 +4,7 @@ import javax.persistence.EntityNotFoundException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import persistentie.GebruikerDaoJPA;
 import persistentie.GenericDaoJPA;
 
@@ -11,6 +12,8 @@ public class Actemium {
 	
 	private ObservableList<Gebruiker> werknemers;
 	private ObservableList<Gebruiker> klanten;
+	private FilteredList<Gebruiker> filteredWerknemers;
+
 	
 	private GebruikerDaoJPA gebruikerRepo;
 
@@ -22,14 +25,47 @@ public class Actemium {
 		this.gebruikerRepo = gebruikerRepo;
 	}
 	
+	public ObservableList<Gebruiker> getPersonList() {
+		return filteredWerknemers;
+	}
+	
+	public void changeFilter(String filterValue, String veld) {
+		filteredWerknemers.setPredicate(gebruiker -> {
+			
+			if (filterValue == null || filterValue.isBlank()) {
+				return gebruiker.getStatus().toString().toLowerCase().equals("actief");
+			}
+			String lowerCaseValue = filterValue.toLowerCase();
+
+			switch (veld) {
+			case "Gebruikersnaam": {
+				return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
+			}
+			case "NaamEnVoornaam": {
+				return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);		
+			}
+			case "Rol": {
+				return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
+			}
+			case "Status": {
+				return gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + veld);
+			}
+		});
+	}
+	
 	// ===Beheer werknemers===
 	
 	public ObservableList<GebruikerGegevens> geefWerknemers() {
 		try {
-			if(this.werknemers == null)
-				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers()); //lazy loading
-			
-			return (ObservableList<GebruikerGegevens>) (Object) this.werknemers;
+			if (this.werknemers == null) {
+				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
+				filteredWerknemers = new FilteredList<>(werknemers, w -> true);
+			}
+
+			return (ObservableList<GebruikerGegevens>) (Object) filteredWerknemers;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -86,11 +122,11 @@ public class Actemium {
 	
 	public ObservableList<GebruikerGegevens> geefKlanten() {
 		try {
-			if(this.klanten == null)
+			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
-			
+
 			return (ObservableList<GebruikerGegevens>) (Object) this.klanten;
-			
+
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}

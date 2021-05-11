@@ -90,10 +90,15 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 
 	@FXML
 	public void btnWerknemerWijzigenOnAction(ActionEvent event) {
-		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-		WerknemerWijzigenSchermController wwsc = new WerknemerWijzigenSchermController(this, this.selectedUser,
-				this.ac);
-		this.setRight(wwsc);
+		try {
+			this.selectedUser = tblView.getSelectionModel().getSelectedItem();
+			WerknemerWijzigenSchermController wwsc = new WerknemerWijzigenSchermController(this, this.selectedUser,
+					this.ac);
+			this.setRight(wwsc);
+		} catch (NullPointerException np) {
+			//message?
+			System.out.println(np.getMessage());
+		}
 	}
 
 	@FXML
@@ -107,11 +112,16 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	public void btnWerknemerDetailsOnAction(ActionEvent event) {
 		// Observerrelatie tussen overzicht en detail, breng domein op de hoogte voor
 		// wat je hebt geselecteerd. (domein huidige werknemer bijhouden)
-		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-		WerknemerDetailsSchermController werknemerDetailsSchermController = new WerknemerDetailsSchermController(this,
-				this.selectedUser);
+		try {
+			this.selectedUser = tblView.getSelectionModel().getSelectedItem();
+			WerknemerDetailsSchermController werknemerDetailsSchermController = new WerknemerDetailsSchermController(this,
+					this.selectedUser);
 
-		this.setRight(werknemerDetailsSchermController);
+			this.setRight(werknemerDetailsSchermController);
+		} catch(NullPointerException np) {
+			System.out.println(np.getMessage());
+			//message?
+		}
 	}
 
 	// Event Listener on Button[#btnResetFilters].onAction
@@ -147,15 +157,12 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	}
 
 	@FXML
-<<<<<<< Upstream, based on branch 'main' of git@github.com:HoGentProjectenII/2021-java-g-23.git
-	public void userClickedOnTable(MouseEvent event) {
-		// try catch evt informatie uit event
-=======
 	public void userClickedOnTable(MouseEvent event) { //hoe doen we dit ongedaan?
 		//try catch evt informatie uit event
->>>>>>> f884df1 actemium klasse toegevoegd
-		btnWerknemerDetails.setDisable(false);
-		btnWerknemerWijzigen.setDisable(false);
+		if(tblView.getSelectionModel().getSelectedItem() != null) {
+			btnWerknemerDetails.setDisable(false);
+			btnWerknemerWijzigen.setDisable(false);
+		}
 	}
 
 

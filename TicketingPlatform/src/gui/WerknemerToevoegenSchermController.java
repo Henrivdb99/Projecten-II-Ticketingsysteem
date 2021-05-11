@@ -93,8 +93,14 @@ public class WerknemerToevoegenSchermController extends GridPane {
 				if (cboRol.getValue() != null) {
 					if (!txfStraat.getText().isBlank() || !txfHuisnummer.getText().isBlank()
 							|| !txfPostcode.getText().isBlank() || !txfStad.getText().isBlank()) {
+						
 						ac.voegWerknemerToe(txfNaam.getText(), txfVoornaam.getText(), txfEmail.getText(), new String[] {txfGsmNummer.getText(), txfVasteLijn.getText()}, cboRol.getValue(), txfWachtwoord.getText(),
 								new String[] {txfStraat.getText(), txfHuisnummer.getText(), txfPostcode.getText(), txfStad.getText()});
+						
+						lblFout.setText("Aanmaken gebruiker gelukt!");
+						
+						resetVelden();
+						
 					} else {
 						lblFout.setText("Gelieve alle adresgegevens correct in te vullen.");
 					}
@@ -109,6 +115,25 @@ public class WerknemerToevoegenSchermController extends GridPane {
 			lblFout.setText(e.getMessage());
 		}
 
+	}
+
+	private void resetVelden() {		
+
+		txfNaam.clear();
+		txfVoornaam.clear();
+		txfEmail.clear();
+		txfGsmNummer.clear();
+		txfVasteLijn.clear();
+		
+		cboRol.setValue(null);
+		
+		txfWachtwoord.clear();
+		txfWachtwoordBevestigen.clear();
+		
+		txfStraat.clear();
+		txfHuisnummer.clear();
+		txfPostcode.clear();
+		txfStad.clear();
 	}
 }
 
