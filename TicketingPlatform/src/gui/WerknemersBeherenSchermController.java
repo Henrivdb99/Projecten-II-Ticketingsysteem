@@ -157,8 +157,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	}
 
 	@FXML
-	public void userClickedOnTable(MouseEvent event) { //hoe doen we dit ongedaan?
-		//try catch evt informatie uit event
+	public void userClickedOnTable(MouseEvent event) {
 		if(tblView.getSelectionModel().getSelectedItem() != null) {
 			btnWerknemerDetails.setDisable(false);
 			btnWerknemerWijzigen.setDisable(false);
