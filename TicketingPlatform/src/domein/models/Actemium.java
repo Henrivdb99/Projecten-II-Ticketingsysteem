@@ -163,7 +163,7 @@ public class Actemium {
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
 		
-		Gebruiker klant = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
+		Gebruiker klant = klanten.stream().filter(w -> w.getId() == id).findAny().orElse(null);
 		//wat doen we als klant null is?
 		try {
 			GenericDaoJPA.startTransaction();
