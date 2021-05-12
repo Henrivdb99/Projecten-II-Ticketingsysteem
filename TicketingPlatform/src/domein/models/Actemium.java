@@ -95,12 +95,10 @@ public class Actemium {
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			TypeGebruiker rol, GebruikerStatus status, String wachtwoord, String[] adres) {
 
-		// Gebruiker gewijzigdeGebruiker = new Werknemer(email, wachtwoord, status,
-		// naam, voornaam, adres, telefoonnummers, rol);
+		Gebruiker werknemer = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
+		//wat doen we als werknemer null is????
 
 		try {
-			Gebruiker werknemer = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-
 			GenericDaoJPA.startTransaction();
 
 			if (naam != null && !naam.isBlank())
@@ -164,9 +162,10 @@ public class Actemium {
 
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
+		
+		Gebruiker klant = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
+		//wat doen we als klant null is?
 		try {
-			Gebruiker klant = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-
 			GenericDaoJPA.startTransaction();
 
 			if (naam != null && !naam.isBlank())
