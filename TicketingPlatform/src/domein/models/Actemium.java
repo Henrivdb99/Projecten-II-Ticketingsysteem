@@ -189,8 +189,8 @@ public class Actemium {
 
 			GenericDaoJPA.commitTransaction();
 
-			werknemers.remove(klant);
-			werknemers.add(klant);
+			klanten.remove(klant);
+			klanten.add(klant);
 		} catch (Exception e) {
 			GenericDaoJPA.rollbackTransaction();
 			throw new IllegalArgumentException(e.getMessage(), e);

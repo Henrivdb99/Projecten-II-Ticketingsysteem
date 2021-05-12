@@ -120,7 +120,7 @@ public class KlantWijzigenSchermController extends GridPane {
 					lblFout.setText("Gelieve een status te selecteren.");
 				}
 			} else {
-			lblFout.setText("Wachtwoorden zijn niet identiek.");
+				lblFout.setText("Wachtwoorden zijn niet identiek.");
 			}
 		} catch (IllegalArgumentException e) {
 			lblFout.setText(e.getMessage());
