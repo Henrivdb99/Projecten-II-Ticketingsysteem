@@ -2,6 +2,8 @@ package domein.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class Ticket implements Serializable, TicketGegevens {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="Ticketid")
 	private int id;
 	private String titel;
 	private TicketStatus status;
@@ -24,6 +27,10 @@ public class Ticket implements Serializable, TicketGegevens {
 	private String opmerkingen;
 
 	private String typeTicket;
+	
+	private String kwaliteit;
+	private boolean supportNodig;
+	private boolean oplossing;
 
 	@ManyToOne
 	private Klant klant;
@@ -115,4 +122,33 @@ public class Ticket implements Serializable, TicketGegevens {
 		return opmerkingen;
 	}
 
+	public String getKwaliteit() {
+		return kwaliteit;
+	}
+
+	public void setKwaliteit(String kwaliteit) {
+		this.kwaliteit = kwaliteit;
+	}
+
+	public boolean isSupportNodig() {
+		return supportNodig;
+	}
+
+	public void setSupportNodig(boolean supportNodig) {
+		this.supportNodig = supportNodig;
+	}
+
+	public boolean isOplossing() {
+		return oplossing;
+	}
+
+	public void setOplossing(boolean oplossing) {
+		this.oplossing = oplossing;
+	}
+
+	public void setOpmerkingen(String opmerkingen) {
+		this.opmerkingen = opmerkingen;
+	}
+
+	
 }
