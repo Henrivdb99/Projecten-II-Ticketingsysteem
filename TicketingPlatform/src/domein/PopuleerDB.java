@@ -32,15 +32,20 @@ public class PopuleerDB {
         Werknemer supportManager1 = new Werknemer("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"}, TypeGebruiker.SupportManager);
         Werknemer administrator1 = new Werknemer("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Odinson", "Thor", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"}, TypeGebruiker.Administrator);
         Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+
         Werknemer gebruiker1 = new Werknemer("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Morgan", "Arthur", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
         Werknemer gebruiker2 = new Werknemer("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
         Werknemer gebruiker3 = new Werknemer("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
         Werknemer gebruiker4 = new Werknemer("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.SupportManager);
 
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1,klant1, technieker1, "Geen bijlage" );
+        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.InBehandeling, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1,klant1, technieker1, "Geen bijlage" );
         Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        
+        Ticket ticket4 = new Ticket("2020-Error 1212", TicketStatus.InBehandeling, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker2, "Geen bijlage" );
+        Ticket ticket5 = new Ticket("2020-Error 1940", TicketStatus.Aangemaakt, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
+        Ticket ticket6 = new Ticket("2020-Error 1522", TicketStatus.Aangemaakt, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker2, "Geen bijlage" );
+
         ContractType contract24_7Email = new ContractType("Email Contract 24/7", ContractEnContractTypeStatus.Actief, ManierVanAanmakenTicket.Email, TijdstipTicketAanmaken.Altijd, 3, 10, 100);
         ContractType contract24_7Email2 = new ContractType("Email Contract 24/7 2 jaar", ContractEnContractTypeStatus.Actief, ManierVanAanmakenTicket.Email, TijdstipTicketAanmaken.Altijd, 2, 10, 100);
         ContractType contract24_7 = new ContractType("Applicatie Contract 24/7", ContractEnContractTypeStatus.Actief, ManierVanAanmakenTicket.EmailEnTelefonischEnApplicatie, TijdstipTicketAanmaken.Altijd, 1, 10, 100);
@@ -57,13 +62,17 @@ public class PopuleerDB {
        
         
         List<Ticket> tickets = new ArrayList<>();
-        tickets.add(ticket1); tickets.add(ticket2); tickets.add(ticket3); //bidirectioneel in domein, databank blijft gelijk
+        tickets.add(ticket1); tickets.add(ticket2); tickets.add(ticket3); tickets.add(ticket4); tickets.add(ticket5); tickets.add(ticket6);//bidirectioneel in domein, databank blijft gelijk
         klant1.setTickets(tickets);
         
         GenericDaoJPA<Ticket> ticketdao = new GenericDaoJPA<>(Ticket.class); 
         ticketdao.insert(ticket1);
         ticketdao.insert(ticket2);
         ticketdao.insert(ticket3);
+        ticketdao.insert(ticket4);
+        ticketdao.insert(ticket5);
+        ticketdao.insert(ticket6);
+
         
         GenericDaoJPA<ContractType> contractTypedao = new GenericDaoJPA<>(ContractType.class);
         contractTypedao.insert(contract24_7);
@@ -90,6 +99,8 @@ public class PopuleerDB {
 		gebruikerdao.insert(supportManager1);
 		gebruikerdao.insert(administrator1);
 		gebruikerdao.insert(technieker1);
+		gebruikerdao.insert(technieker2);
+
 		gebruikerdao.insert(gebruiker1);
 		gebruikerdao.insert(gebruiker2);
 		gebruikerdao.insert(gebruiker3);
