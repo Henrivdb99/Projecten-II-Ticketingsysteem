@@ -9,20 +9,25 @@ import domein.models.GebruikerStatus;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
+import domein.models.Werknemer;
 import javafx.collections.ObservableList;
-import persistentie.GebruikerDaoJPA;
 
 public abstract class AangemeldeGebruikerController {
 	
 	protected Actemium actemium;
 	
-	public AangemeldeGebruikerController() {
-		this(new Actemium());
+	private Werknemer aangemeldeGebruiker;
+
+	public AangemeldeGebruikerController(Werknemer aangemeldeGebruiker) {
+		this(new Actemium(), aangemeldeGebruiker);
 	}
 
-	public AangemeldeGebruikerController(Actemium actemium) {
+	public AangemeldeGebruikerController(Actemium actemium, Werknemer aangemeldeGebruiker) {
 		this.actemium = actemium;
+		this.aangemeldeGebruiker = aangemeldeGebruiker;
 	}
+	
+	// === getters en setters ===
 
 	public Actemium getActemium() {
 		return actemium;
@@ -32,9 +37,19 @@ public abstract class AangemeldeGebruikerController {
 		this.actemium = actemium;
 	}
 
-
+	public Werknemer getAangemeldeGebruiker() {
+		return this.aangemeldeGebruiker;
+	}
+	
+	public void setAangemeldeGebruiker(Werknemer aangemeldeGebruiker) {
+		this.aangemeldeGebruiker = aangemeldeGebruiker;
+	}
+	
+	// === Algemene methodes ===
 
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
+	
+	// === Gedragspecifieke methodes ===
 
 	public Gebruiker geefGebruiker(int id) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");

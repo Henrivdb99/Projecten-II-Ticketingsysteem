@@ -3,12 +3,13 @@ package domein.controllers;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.TypeGebruiker;
+import domein.models.Werknemer;
 import javafx.collections.ObservableList;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
-	public AdministratorController() {
-		super();
+	public AdministratorController(Werknemer aangemeldeGebruiker) {
+		super(aangemeldeGebruiker);
 	}
 
 	@Override

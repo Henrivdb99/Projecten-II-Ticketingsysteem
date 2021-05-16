@@ -47,11 +47,11 @@ public class LoginController {
 	}
 	
 	
-	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException {
+	public AangemeldeGebruikerController geefJuisteController() throws IllegalArgumentException { //factory pattern
 		return switch(aangemeldeGebruiker.getRol()) {
-			case Technieker -> new TechniekerController();
-			case Administrator -> new AdministratorController();
-			case SupportManager -> new SupportManagerController();
+			case Technieker -> new TechniekerController(aangemeldeGebruiker);
+			case Administrator -> new AdministratorController(aangemeldeGebruiker);
+			case SupportManager -> new SupportManagerController(aangemeldeGebruiker);
 			default -> throw new IllegalArgumentException("Unexpected value: " + aangemeldeGebruiker.getClass());
 		};
 	}

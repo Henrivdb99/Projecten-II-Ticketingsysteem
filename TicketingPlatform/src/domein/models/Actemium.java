@@ -226,8 +226,8 @@ public class Actemium {
 		}
 	}
 	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
-		//Werknemer technieker= gebruikerRepo.getGebruikerById(techniekerId);
-		//Klant klant= gebruikerRepo.getGebruikerById(klantId);
+		Werknemer technieker= new Werknemer(); //gebruikerRepo.getGebruikerById(techniekerId);
+		Klant klant= new Klant(); //gebruikerRepo.getGebruikerById(klantId);
 		Ticket nieuwTicket = new Ticket(titel, ticketStatus, date, omschrijving,opmerkingen ,typeTicket, klant, technieker, bijlage);
 		System.out.println(nieuwTicket);
 		tickets.add(nieuwTicket);

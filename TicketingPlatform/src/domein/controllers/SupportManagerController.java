@@ -7,8 +7,8 @@ import javafx.collections.ObservableList;
 
 public class SupportManagerController extends AangemeldeGebruikerController{
 
-	public SupportManagerController() {
-		super();
+	public SupportManagerController(Werknemer aangemeldeGebruiker) {
+		super(aangemeldeGebruiker);
 		// TODO Auto-generated constructor stub
 	}
 
