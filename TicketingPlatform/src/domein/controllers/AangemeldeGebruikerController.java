@@ -46,7 +46,12 @@ public abstract class AangemeldeGebruikerController {
 	}
 	
 	// === Algemene methodes ===
-
+	
+	public void changeFilter(String filterValue, String veld) {
+		actemium.changeFilter(filterValue, veld);
+	}
+	
+	// === Abstracte methodes ===
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 	
 	// === Gedragspecifieke methodes ===
@@ -93,10 +98,6 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
 	}
 	public ObservableList<TicketGegevens> geefTickets() {
-		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
-	}
-	public void changeFilter(String newValue, String veld)
-	{
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 

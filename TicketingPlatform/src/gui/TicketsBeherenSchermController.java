@@ -1,44 +1,30 @@
 package gui;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import domein.controllers.AangemeldeGebruikerController;
+import domein.models.TicketGegevens;
+import domein.models.TicketStatus;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import domein.controllers.AangemeldeGebruikerController;
-import domein.models.Gebruiker;
-import domein.models.Ticket;
-import domein.models.TicketGegevens;
-import domein.models.TicketStatus;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableColumn;
-
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-
-import javafx.event.ActionEvent;
-
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.input.KeyEvent;
-
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.TableColumn;
 
 public class TicketsBeherenSchermController extends BorderPane implements Initializable{
 	@FXML
@@ -72,7 +58,7 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 	@FXML
 	private TableColumn<TicketGegevens, String> colStatus;
 	@FXML
-	private ChoiceBox<TicketStatus> cboStatus;
+	private ChoiceBox<String> cboStatus;
 	
 	private DashboardSchermController parent;
 	private AangemeldeGebruikerController ac;
@@ -91,19 +77,11 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 			if (ac.getClass().getSimpleName().equals("TechniekerController")) {
 				btnTicketToevoegen.setVisible(false);
 			}
-			cboStatus.setItems(FXCollections.observableArrayList(TicketStatus.values()));
-			
-			cboStatus.setValue(TicketStatus.Standaard);
-			ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
-			
-
-			cboStatus.setOnAction(event -> {
-				ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
-				tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
-			});
 			
 			btnTicketDetails.setDisable(true);
 			btnTicketWijzigen.setDisable(true);
+			
+			initializeFilter();
 
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
@@ -154,4 +132,21 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 		colStatus.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("status"));
 		tblView.setItems(ac.geefTickets()); //Geeft voor technieker enkel de tickets die voor hem zijn bedoeld, Supportmanager krijgt alles
 	}
+	
+	private void initializeFilter() {
+		String standaardStatus = "Standaard";
+		
+        List<String> ticketStatusList = Arrays.stream(TicketStatus.values()).map(Enum::name).collect(Collectors.toList());
+        ticketStatusList.add(standaardStatus);
+        ticketStatusList.add("Alle");
+        cboStatus.setItems(FXCollections.observableArrayList(ticketStatusList));
+		cboStatus.setValue(standaardStatus);
+        
+        cboStatus.setOnAction(event -> {
+            ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
+            tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
+
+        });
+        ac.changeFilter(standaardStatus, "ticketStatus");
+    }
 }

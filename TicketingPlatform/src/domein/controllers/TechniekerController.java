@@ -24,8 +24,4 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	public ObservableList<TicketGegevens> geefTickets() {
 		return actemium.geefTickets(getAangemeldeGebruiker().getId());
 	}
-	@Override
-	public void changeFilter(String filterValue, String veld) {
-		actemium.changeFilter(filterValue, veld);
-	}
 }
