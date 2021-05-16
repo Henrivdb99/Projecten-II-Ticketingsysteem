@@ -21,13 +21,15 @@ public class Actemium {
 	private FilteredList<Ticket> filteredTickets;
 
 	private GebruikerDaoJPA gebruikerRepo;
+	private GenericDaoJPA<Ticket> ticketRepo;
 
 	public Actemium() {
-		this(new GebruikerDaoJPA());
+		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
 	}
 
-	public Actemium(GebruikerDaoJPA gebruikerRepo) {
+	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA ticketRepo) {
 		this.gebruikerRepo = gebruikerRepo;
+		this.ticketRepo = ticketRepo;
 	}
 
 	public ObservableList<Gebruiker> getPersonList() {
@@ -215,8 +217,9 @@ public class Actemium {
 	public ObservableList<TicketGegevens> geefTickets() {
 		try {
 			if (this.tickets == null) {
-				this.tickets = FXCollections.observableList(data());
-				filteredTickets = new FilteredList<>(tickets, w -> true);
+				List<Ticket> tickets = ticketRepo.findAll();
+				this.tickets = FXCollections.observableList(tickets);
+				filteredTickets = new FilteredList<>(this.tickets, w -> true);
 			}
 
 			return (ObservableList<TicketGegevens>) (Object) filteredTickets;
@@ -226,13 +229,17 @@ public class Actemium {
 		}
 	}
 	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
-		Werknemer technieker= new Werknemer(); //gebruikerRepo.getGebruikerById(techniekerId);
-		Klant klant= new Klant(); //gebruikerRepo.getGebruikerById(klantId);
+		Werknemer technieker= (Werknemer) gebruikerRepo.get(techniekerId);
+		Klant klant = (Klant) gebruikerRepo.get(klantId);
+		
 		Ticket nieuwTicket = new Ticket(titel, ticketStatus, date, omschrijving,opmerkingen ,typeTicket, klant, technieker, bijlage);
 		System.out.println(nieuwTicket);
 		tickets.add(nieuwTicket);
+		
 		GenericDaoJPA.startTransaction();
-		//gebruikerRepo.insert(nieuwTicket);
+		
+		ticketRepo.insert(nieuwTicket);
+		
 		GenericDaoJPA.commitTransaction();
 
 	}
