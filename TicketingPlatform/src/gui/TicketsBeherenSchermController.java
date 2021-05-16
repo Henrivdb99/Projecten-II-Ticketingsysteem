@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.net.URL;
@@ -92,9 +93,15 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 			}
 			cboStatus.setItems(FXCollections.observableArrayList(TicketStatus.values()));
 			
+			cboStatus.setValue(TicketStatus.Standaard);
+			ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
+			
+
 			cboStatus.setOnAction(event -> {
 				ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
+				tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
 			});
+			
 			btnTicketDetails.setDisable(true);
 			btnTicketWijzigen.setDisable(true);
 
