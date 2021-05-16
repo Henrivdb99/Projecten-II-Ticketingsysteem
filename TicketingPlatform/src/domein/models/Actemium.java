@@ -209,6 +209,9 @@ public class Actemium {
 
 	}
 	// === Beheer Tickets ===
+	public ObservableList<TicketGegevens> geefTickets() { 
+		return geefTickets(0);
+	}
 
 	public ObservableList<TicketGegevens> geefTickets(int techniekerId) {
 		try {
