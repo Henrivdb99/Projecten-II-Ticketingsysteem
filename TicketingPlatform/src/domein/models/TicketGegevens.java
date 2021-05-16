@@ -13,7 +13,7 @@ public interface TicketGegevens {
 
 	public String getOmschrijving();
 
-	public String getTypeTicket();
+	public int getTypeTicket();
 
 	public Klant getKlant();
 

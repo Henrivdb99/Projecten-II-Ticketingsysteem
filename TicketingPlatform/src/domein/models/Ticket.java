@@ -18,16 +18,16 @@ public class Ticket implements Serializable, TicketGegevens {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Ticketid")
+	@Column(name = "Ticketid")
 	private int id;
 	private String titel;
 	private TicketStatus status;
 	private LocalDate datumAanmaken;
 	private String omschrijving;
 	private String opmerkingen;
+	private String bijlage;
+	private int typeTicket;
 
-	private String typeTicket;
-	
 	private String kwaliteit;
 	private boolean supportNodig;
 	private boolean oplossing;
@@ -41,17 +41,25 @@ public class Ticket implements Serializable, TicketGegevens {
 
 	}
 
-	public Ticket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, String typeTicket) {
-		this.titel = titel;
-		this.status = ticketStatus;
-		this.datumAanmaken = date;
-		this.omschrijving = omschrijving;
-		this.typeTicket = typeTicket;
-		this.opmerkingen= opmerkingen;
+	public Ticket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, String opmerkingen,
+			int typeTicket, Klant klant, Werknemer technieker, String bijlage) {
+		setTitel(titel);
+		setStatus(ticketStatus);
+		setDatumAanmaken(date);
+		setOmschrijving(omschrijving);
+		setOpmerkingen(opmerkingen);
+		setTypeTicket(typeTicket);
+		setKlant(klant);
+		setTechnieker(technieker);
+		setBijlage(bijlage);
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public String getBijlage() {
+		return bijlage;
 	}
 
 	public void setId(int id) {
@@ -62,64 +70,91 @@ public class Ticket implements Serializable, TicketGegevens {
 		return titel;
 	}
 
-	public void setTitel(String titel) {
-		this.titel = titel;
-	}
-
 	public TicketStatus getStatus() {
 		return status;
-	}
-
-	public void setStatus(TicketStatus status) {
-		this.status = status;
 	}
 
 	public LocalDate getDatumAanmaken() {
 		return datumAanmaken;
 	}
 
-	public void setDatumAanmaken(LocalDate datumAanmaken) {
-		this.datumAanmaken = datumAanmaken;
-	}
-
 	public String getOmschrijving() {
 		return omschrijving;
 	}
 
-	public void setOmschrijving(String omschrijving) {
-		this.omschrijving = omschrijving;
-	}
-
-	public String getTypeTicket() {
+	public int getTypeTicket() {
 		return typeTicket;
-	}
-
-	public void setTypeTicket(String typeTicket) {
-		this.typeTicket = typeTicket;
 	}
 
 	public Klant getKlant() {
 		return klant;
 	}
 
-	public void setKlant(Klant klant) {
-		this.klant = klant;
-	}
-
 	public Werknemer getTechnieker() {
 		return technieker;
 	}
 
-	public void setTechnieker(Werknemer technieker) {
-		this.technieker = technieker;
+	public String getOpmerkingen() {
+		return opmerkingen;
 	}
 
 	public String getNaamVoornaam() {
 		return klant.getVoornaam() + " " + klant.getNaam();
 	}
 
-	public String getOpmerkingen() {
-		return opmerkingen;
+	
+	public void setBijlage(String bijlage) {
+		this.bijlage = bijlage;
+	}
+
+	public void setTitel(String titel) {
+		if(!titel.isBlank())
+		{
+			this.titel = titel;
+		}else throw new IllegalArgumentException("Titel is verplicht");
+	}
+
+	public void setStatus(TicketStatus status) {
+		if(status != null)
+		{
+			this.status = status;
+		}else throw new IllegalArgumentException("Status is verplicht");	}
+
+	public void setDatumAanmaken(LocalDate datumAanmaken) {
+		if(datumAanmaken != null)
+		{
+			this.datumAanmaken = datumAanmaken;
+		}else throw new IllegalArgumentException("DatumAanmaken is verplicht");		
+		}
+
+	public void setOmschrijving(String omschrijving) {
+		if(!omschrijving.isBlank())
+		{
+			this.omschrijving = omschrijving;
+		}else throw new IllegalArgumentException("Omschrijving is verplicht");	}
+
+	public void setTypeTicket(int typeTicket) {
+		if(typeTicket != 0)
+		{
+			this.typeTicket = typeTicket;
+		}else throw new IllegalArgumentException("TypeTicket is verplicht");	}
+
+	public void setKlant(Klant klant) {
+		if(klant != null)
+		{
+			this.klant = klant;
+		}else throw new IllegalArgumentException("Klant is verplicht");	
+	}
+
+	public void setTechnieker(Werknemer technieker) {
+		if(technieker != null)
+		{
+			this.technieker = technieker;
+		}else throw new IllegalArgumentException("Technieker is verplicht");	
+		}
+
+	public void setOpmerkingen(String opmerkingen) {
+		this.opmerkingen = opmerkingen;
 	}
 
 	public String getKwaliteit() {
@@ -146,9 +181,4 @@ public class Ticket implements Serializable, TicketGegevens {
 		this.oplossing = oplossing;
 	}
 
-	public void setOpmerkingen(String opmerkingen) {
-		this.opmerkingen = opmerkingen;
-	}
-
-	
 }

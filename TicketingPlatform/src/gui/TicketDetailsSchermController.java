@@ -49,7 +49,7 @@ public class TicketDetailsSchermController extends GridPane{
 			
 			lblDatumAangemaakt.setText(selectedTicket.getDatumAanmaken().toString());
 			lblTitel.setText(selectedTicket.getTitel());
-			lblType.setText(selectedTicket.getTypeTicket());
+			lblType.setText(String.valueOf(selectedTicket.getTypeTicket()));
 			lblEmailAdres.setText(selectedTicket.getKlant().getEmailAdres());
 			lblGsmnummer.setText(selectedTicket.getKlant().getTelefoonnummers()[0]);
 			lblVastelijn.setText(selectedTicket.getKlant().getTelefoonnummers()[1]);

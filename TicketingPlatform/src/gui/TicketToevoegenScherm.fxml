@@ -59,7 +59,7 @@
       <Label fx:id="lblFout" alignment="TOP_LEFT" prefHeight="114.0" prefWidth="329.0" textFill="RED" GridPane.columnSpan="2" GridPane.rowIndex="15" />
       <TextField fx:id="txfTitel" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="txfKlantId" prefHeight="25.0" prefWidth="259.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <Label fx:id="lblStatus" prefHeight="17.0" prefWidth="153.0" text="Bijlage" GridPane.rowIndex="11" />
+      <Label prefHeight="17.0" prefWidth="153.0" text="Bijlage" GridPane.rowIndex="11" />
       <ChoiceBox fx:id="cboType" prefHeight="25.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Button fx:id="btnBestandenToevoegen" mnemonicParsing="false" onAction="#btnBestandenToevoegen" prefHeight="25.0" prefWidth="363.0" text="Bestanden toevoegen" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <Label fx:id="lblBijlage" alignment="TOP_LEFT" prefHeight="101.0" prefWidth="440.0" GridPane.columnSpan="2" GridPane.rowIndex="12" />
@@ -68,6 +68,8 @@
       <TextArea fx:id="txaOpmerkingen" prefHeight="38.0" prefWidth="255.0" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2" />
       <Label text="Toegewezen Technieker" GridPane.rowIndex="10" />
       <ChoiceBox fx:id="cboTechnieker" prefHeight="25.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Label fx:id="lblStatus" prefHeight="17.0" prefWidth="153.0" text="Status" GridPane.rowIndex="12" />
+      <ChoiceBox fx:id="cboStatus" prefHeight="25.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

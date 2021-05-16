@@ -162,6 +162,5 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 		colKlant.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("naamVoornaam"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("status"));
 		tblView.setItems(ac.geefTickets());
-		System.out.println("Dik lol");
 	}
 }

@@ -14,5 +14,5 @@ public class TechniekerController extends AangemeldeGebruikerController {
 		// TODO Auto-generated method stub
 		return TypeGebruiker.Technieker;
 	}
-
+	
 }
