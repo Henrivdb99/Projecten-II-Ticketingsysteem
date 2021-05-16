@@ -196,19 +196,15 @@ public class Actemium {
 		}
 
 	}
+	// === Beheer Tickets ===
 	private List<Ticket> data(){
-
-        Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", "1");
-        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", "1");
-        Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum","Geen opmerkingen" ,"1");
         Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
         Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
-        ticket1.setTechnieker(technieker1);
-        ticket2.setTechnieker(technieker1);
-        ticket3.setTechnieker(technieker1);
-        ticket1.setKlant(klant1);
-        ticket2.setKlant(klant1);
-        ticket3.setKlant(klant1);
+
+        Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
+        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1,"Geen bijlage" );
+        Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum","Geen opmerkingen" ,1, klant1, technieker1 ,"Geen bijlage");
+   
         List<Ticket> lijstTicket = new ArrayList<Ticket>();
         lijstTicket.add(ticket3);
         lijstTicket.add(ticket2);
@@ -228,6 +224,17 @@ public class Actemium {
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		//Werknemer technieker= gebruikerRepo.getGebruikerById(techniekerId);
+		//Klant klant= gebruikerRepo.getGebruikerById(klantId);
+		Ticket nieuwTicket = new Ticket(titel, ticketStatus, date, omschrijving,opmerkingen ,typeTicket, klant, technieker, bijlage);
+		System.out.println(nieuwTicket);
+		tickets.add(nieuwTicket);
+		GenericDaoJPA.startTransaction();
+		//gebruikerRepo.insert(nieuwTicket);
+		GenericDaoJPA.commitTransaction();
+
 	}
 	
 }

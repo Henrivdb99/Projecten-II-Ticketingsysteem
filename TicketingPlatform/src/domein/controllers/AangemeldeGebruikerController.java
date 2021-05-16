@@ -1,10 +1,13 @@
 package domein.controllers;
 
+import java.time.LocalDate;
+
 import domein.models.Actemium;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.TicketGegevens;
+import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
 import javafx.collections.ObservableList;
 import persistentie.GebruikerDaoJPA;
@@ -40,6 +43,9 @@ public abstract class AangemeldeGebruikerController {
 	public ObservableList<GebruikerGegevens> geefWerknemers() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
+	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
 	
 	public ObservableList<GebruikerGegevens> geefKlanten() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
@@ -64,6 +70,13 @@ public abstract class AangemeldeGebruikerController {
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord, String[] adres, String bedrijfsnaam) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
 	}
+
+	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
+	}
+	public void wijzigTicket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
+	}
 	public ObservableList<TicketGegevens> geefTickets() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
@@ -71,6 +84,11 @@ public abstract class AangemeldeGebruikerController {
 	{
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
+
+	
+
+
+	
 	
 	
 }
