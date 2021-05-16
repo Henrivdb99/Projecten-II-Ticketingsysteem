@@ -37,10 +37,13 @@ public class Actemium {
 	public void changeFilter(String filterValue, String veld) {
 		if (veld.equals("ticketStatus")) {
 			filteredTickets.setPredicate(ticket -> {
-				if (filterValue == null || filterValue.isBlank()) {
-					return ticket.getStatus().toString().toLowerCase().equals("aangemaakt") || ticket.getStatus().toString().toLowerCase().equals("inbehandeling") ;
-				} else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
-				
+				if (filterValue.equalsIgnoreCase("Standaard")) {
+
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if(filterValue.equalsIgnoreCase("Alle")) {
+					return true;
+				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+			
 			});
 		} else {
 
@@ -212,7 +215,8 @@ public class Actemium {
 			if (this.tickets == null) {
 				if(techniekerId != 0)
 				{
-					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
+					System.out.println("Test");
+					this.tickets = FXCollections.observableList(ticketRepo.findAll());//.stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
 				}else
 					this.tickets = FXCollections.observableList(ticketRepo.findAll());
 				filteredTickets = new FilteredList<>(tickets, w -> true);
