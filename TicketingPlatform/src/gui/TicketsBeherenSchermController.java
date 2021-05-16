@@ -161,6 +161,6 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 		colTicketTitel.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("titel"));
 		colKlant.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("naamVoornaam"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("status"));
-		tblView.setItems(ac.geefTickets());
+		tblView.setItems(ac.geefTickets()); //Geeft voor technieker enkel de tickets die voor hem zijn bedoeld, Supportmanager krijgt alles
 	}
 }

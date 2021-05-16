@@ -202,7 +202,7 @@ public class Actemium {
 	private List<Ticket> data(){
         Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
         Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
-
+        technieker1.setId(2);
         Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
         Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1,"Geen bijlage" );
         Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum","Geen opmerkingen" ,1, klant1, technieker1 ,"Geen bijlage");
