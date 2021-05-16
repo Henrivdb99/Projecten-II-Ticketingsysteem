@@ -3,6 +3,7 @@ package domein.models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -22,6 +23,7 @@ public class Actemium {
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
+	
 
 	public Actemium() {
 		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
@@ -32,37 +34,42 @@ public class Actemium {
 		this.ticketRepo = ticketRepo;
 	}
 
-	public ObservableList<Gebruiker> getPersonList() {
-		return filteredWerknemers;
-	}
-
 	public void changeFilter(String filterValue, String veld) {
-		
-		filteredWerknemers.setPredicate(gebruiker -> {
+		if (veld.equals("ticketStatus")) {
+			filteredTickets.setPredicate(ticket -> {
+				if (filterValue == null || filterValue.isBlank()) {
+					return ticket.getStatus().toString().toLowerCase().equals("aangemaakt") || ticket.getStatus().toString().toLowerCase().equals("inbehandeling") ;
+				} else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+				
+			});
+		} else {
 
-			if (filterValue == null || filterValue.isBlank()) {
-				return gebruiker.getStatus().toString().toLowerCase().equals("actief");
-			}
-			String lowerCaseValue = filterValue.toLowerCase();
+			filteredWerknemers.setPredicate(gebruiker -> {
 
-			switch (veld) {
-			case "Gebruikersnaam": {
-				return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
-			}
-			case "NaamEnVoornaam": {
-				return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
-						|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
-			}
-			case "Rol": {
-				return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
-			}
-			case "Status": {
-				return gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + veld);
-			}
-		});
+				if (filterValue == null || filterValue.isBlank()) {
+					return gebruiker.getStatus().toString().toLowerCase().equals("actief");
+				}
+				String lowerCaseValue = filterValue.toLowerCase();
+
+				switch (veld) {
+				case "Gebruikersnaam": {
+					return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
+				}
+				case "NaamEnVoornaam": {
+					return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
+							|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
+				}
+				case "Rol": {
+					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
+				}
+				case "Status": {
+					return gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + veld);
+				}
+			});
+		}
 	}
 
 	// ===Beheer werknemers===
@@ -98,7 +105,7 @@ public class Actemium {
 			TypeGebruiker rol, GebruikerStatus status, String wachtwoord, String[] adres) {
 
 		Gebruiker werknemer = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-		//wat doen we als werknemer null is????
+		// wat doen we als werknemer null is????
 
 		try {
 			GenericDaoJPA.startTransaction();
@@ -164,9 +171,9 @@ public class Actemium {
 
 	public void wijzigKlant(int id, String naam, String voornaam, String email, String[] telefoonnummers,
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
-		
+
 		Gebruiker klant = klanten.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-		//wat doen we als klant null is?
+		// wat doen we als klant null is?
 		try {
 			GenericDaoJPA.startTransaction();
 
@@ -199,27 +206,16 @@ public class Actemium {
 
 	}
 	// === Beheer Tickets ===
-	private List<Ticket> data(){
-        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
-        Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
-        technieker1.setId(2);
-        Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.Afgehandeld, LocalDate.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1,"Geen bijlage" );
-        Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDate.now(), "loremIpsum","Geen opmerkingen" ,1, klant1, technieker1 ,"Geen bijlage");
-   
-        List<Ticket> lijstTicket = new ArrayList<Ticket>();
-        lijstTicket.add(ticket3);
-        lijstTicket.add(ticket2);
-        lijstTicket.add(ticket1);
-        return lijstTicket;
-	}
 
-	public ObservableList<TicketGegevens> geefTickets() {
+	public ObservableList<TicketGegevens> geefTickets(int techniekerId) {
 		try {
 			if (this.tickets == null) {
-				List<Ticket> tickets = ticketRepo.findAll();
-				this.tickets = FXCollections.observableList(tickets);
-				filteredTickets = new FilteredList<>(this.tickets, w -> true);
+				if(techniekerId != 0)
+				{
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
+				}else
+					this.tickets = FXCollections.observableList(ticketRepo.findAll());
+				filteredTickets = new FilteredList<>(tickets, w -> true);
 			}
 
 			return (ObservableList<TicketGegevens>) (Object) filteredTickets;
@@ -228,20 +224,23 @@ public class Actemium {
 			throw new IllegalArgumentException(e);
 		}
 	}
-	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
-		Werknemer technieker= (Werknemer) gebruikerRepo.get(techniekerId);
+
+	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,
+			String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		Werknemer technieker = (Werknemer) gebruikerRepo.get(techniekerId);
 		Klant klant = (Klant) gebruikerRepo.get(klantId);
-		
-		Ticket nieuwTicket = new Ticket(titel, ticketStatus, date, omschrijving,opmerkingen ,typeTicket, klant, technieker, bijlage);
+
+		Ticket nieuwTicket = new Ticket(titel, ticketStatus, date, omschrijving, opmerkingen, typeTicket, klant,
+				technieker, bijlage);
 		System.out.println(nieuwTicket);
 		tickets.add(nieuwTicket);
-		
+
 		GenericDaoJPA.startTransaction();
-		
+
 		ticketRepo.insert(nieuwTicket);
-		
+
 		GenericDaoJPA.commitTransaction();
 
 	}
-	
+
 }

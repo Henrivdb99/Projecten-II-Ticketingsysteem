@@ -19,7 +19,7 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	}
 	@Override
 	public ObservableList<TicketGegevens> geefTickets() {
-		return actemium.geefTickets();
+		return actemium.geefTickets(0);
 	}
 	@Override
 	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {

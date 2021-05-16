@@ -12,7 +12,6 @@ public class TechniekerController extends AangemeldeGebruikerController {
 
 	public TechniekerController(Werknemer aangemeldeGebruiker) {
 		super(aangemeldeGebruiker);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -23,6 +22,10 @@ public class TechniekerController extends AangemeldeGebruikerController {
 
 	@Override
 	public ObservableList<TicketGegevens> geefTickets() {
-		return FXCollections.observableArrayList(actemium.geefTickets().stream().filter(t -> t.getTechnieker().getId() == getAangemeldeGebruiker().getId()).collect(Collectors.toList()));
+		return actemium.geefTickets(getAangemeldeGebruiker().getId());
+	}
+	@Override
+	public void changeFilter(String filterValue, String veld) {
+		actemium.changeFilter(filterValue, veld);
 	}
 }
