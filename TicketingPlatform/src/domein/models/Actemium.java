@@ -24,11 +24,12 @@ public class Actemium {
 	private FilteredList<Ticket> filteredTickets;
 	private SortedList<TicketGegevens> sortableTickets;
 	private SortedList<GebruikerGegevens> sortableWerknemers;
-
+	private ObservableList<KnowledgebaseGegevens> knowledgebaseItems;
+	private FilteredList<KnowledgebaseGegevens> filteredItems;
+	private SortedList<KnowledgebaseGegevens> sortableItems;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
-	
 
 	public Actemium() {
 		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
@@ -38,17 +39,30 @@ public class Actemium {
 		this.gebruikerRepo = gebruikerRepo;
 		this.ticketRepo = ticketRepo;
 	}
+	public void changeFilterKnowledgebase(String filterValue, String veld) {
+		if (veld.equals("knowledgebaseTitel")) {
+			filteredItems.setPredicate(item -> {
+				if (filterValue == null || filterValue.isBlank()) {
+					return true;
+				}
+				String lowerCaseValue = filterValue.toLowerCase();
+				return item.getTitel().contains(lowerCaseValue);
+			});
+			}
+		}
 
 	public void changeFilter(String filterValue, String veld) {
 		if (veld.equals("ticketStatus")) {
 			filteredTickets.setPredicate(ticket -> {
 				if (filterValue.equalsIgnoreCase("Standaard")) {
 
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if(filterValue.equalsIgnoreCase("Alle")) {
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if (filterValue.equalsIgnoreCase("Alle")) {
 					return true;
-				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
-			
+				} else
+					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+
 			});
 		} else {
 
@@ -70,8 +84,9 @@ public class Actemium {
 				case "Rol": {
 					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
 				}
-				case "Status": { //miss moeten we "Alle" een prop maken
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				case "Status": { // miss moeten we "Alle" een prop maken
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + veld);
@@ -85,11 +100,13 @@ public class Actemium {
 			filteredTickets.setPredicate(ticket -> {
 				if (filterValue.equalsIgnoreCase("Standaard")) {
 
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if(filterValue.equalsIgnoreCase("Alle")) {
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if (filterValue.equalsIgnoreCase("Alle")) {
 					return true;
-				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
-			
+				} else
+					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+
 			});
 		} else {
 
@@ -111,8 +128,9 @@ public class Actemium {
 				case "Bedrijf": {
 					return gebruiker.getBedrijfsnaam().toString().toLowerCase().contains(lowerCaseValue);
 				}
-				case "Status": { 
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				case "Status": {
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + veld);
@@ -198,9 +216,9 @@ public class Actemium {
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
-				filteredKlanten = new FilteredList<>(klanten, k -> true);
-				
-				return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
+			filteredKlanten = new FilteredList<>(klanten, k -> true);
+
+			return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -257,18 +275,20 @@ public class Actemium {
 		}
 
 	}
+
 	// === Beheer Tickets ===
-	public SortedList<TicketGegevens> geefTickets() { 
+	public SortedList<TicketGegevens> geefTickets() {
 		return geefTickets(0);
 	}
 
 	public SortedList<TicketGegevens> geefTickets(int techniekerId) {
 		try {
 			if (this.tickets == null) {
-				if(techniekerId != 0)
-				{
-					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
-				}else
+				if (techniekerId != 0) {
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream()
+							.filter(ticket -> ticket.getTechnieker().getId() == techniekerId)
+							.collect(Collectors.toList()));
+				} else
 					this.tickets = FXCollections.observableList(ticketRepo.findAll());
 				filteredTickets = new FilteredList<>(tickets, w -> true);
 				sortableTickets = new SortedList<>(filteredTickets);
@@ -298,6 +318,40 @@ public class Actemium {
 
 		GenericDaoJPA.commitTransaction();
 
+	}
+	// === Beheer Knowledgebase ===
+
+	public List<KnowledgebaseGegevens> data(){
+		List<KnowledgebaseGegevens> lijst = new ArrayList<>();
+		lijst.add(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Hoe kan ik mijn wachtwoord aanpassen?","loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Wat doe ik bij Error 5038","loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Hoe annuleer ik een ticket?","Oplossing 4", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Mijn nieuwe contract staat niet op actief","Oplossing 5", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Ik kan mijn bijlage niet uploaden","Oplossing 6", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Waar vind ik  mijn oude contracten terug?","Oplossing 7", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
+		
+		return lijst;
+	}
+	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+		try {
+			if (this.knowledgebaseItems == null) {
+				this.knowledgebaseItems = FXCollections.observableList(data());
+				filteredItems = new FilteredList<>(knowledgebaseItems, w -> true);
+				sortableItems = new SortedList<>(filteredItems);
+			}
+
+			return sortableItems;
+
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

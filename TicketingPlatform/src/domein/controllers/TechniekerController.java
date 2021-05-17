@@ -2,6 +2,7 @@ package domein.controllers;
 
 import java.util.stream.Collectors;
 
+import domein.models.KnowledgebaseGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
 import domein.models.TypeGebruiker;
@@ -25,5 +26,9 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
 		return actemium.geefTickets(getAangemeldeGebruiker().getId());
+	}
+	@Override
+	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+		return actemium.geefKnowledgebaseItems();
 	}
 }

@@ -6,7 +6,7 @@ import domein.models.Actemium;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.Ticket;
+import domein.models.KnowledgebaseGegevens;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
@@ -55,7 +55,9 @@ public abstract class AangemeldeGebruikerController {
 	public void changeFilterKlant(String filterValue, String veld) {
 		actemium.changeFilterKlant(filterValue, veld);
 	}
-
+	public void changeFilterKnowledgebase(String filterValue, String veld) {
+		actemium.changeFilterKnowledgebase(filterValue, veld);
+	}
 	// === Abstracte methodes ===
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 	
@@ -104,6 +106,18 @@ public abstract class AangemeldeGebruikerController {
 	}
 	public SortedList<TicketGegevens> geefTickets() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+
+	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+
+	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
+	}
+
+	public void wijzigKnowledgebaseItem(String titel, String omschrijving) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
 	}
 
 	

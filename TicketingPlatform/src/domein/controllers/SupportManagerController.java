@@ -26,5 +26,13 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		actemium.voegTicketToe(titel, ticketStatus, date, omschrijving, opmerkingen, typeTicket, klantId, techniekerId, bijlage);
 	} 
+	@Override
+	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+		return actemium.geefKnowledgebaseItems();
+	}
+	@Override
+	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
+		actemium.voegKnowledgebaseItemToe(titel, omschrijving);
+	}
 
 }
