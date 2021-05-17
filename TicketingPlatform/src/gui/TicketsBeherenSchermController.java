@@ -144,7 +144,7 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 		cboStatus.setValue(standaardStatus);
         
         cboStatus.setOnAction(event -> {
-            ac.changeFilter(cboStatus.getValue().toString(), "ticketStatus");
+            ac.changeFilter(cboStatus.getValue(), "ticketStatus");
             tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
 
         });

@@ -50,7 +50,7 @@ public class Actemium {
 			filteredWerknemers.setPredicate(gebruiker -> {
 
 				if (filterValue == null || filterValue.isBlank()) {
-					return gebruiker.getStatus().toString().toLowerCase().equals("actief");
+					return true;
 				}
 				String lowerCaseValue = filterValue.toLowerCase();
 
@@ -65,8 +65,8 @@ public class Actemium {
 				case "Rol": {
 					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
 				}
-				case "Status": {
-					return gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				case "Status": { //miss moeten we "Alle" een prop maken
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + veld);
