@@ -17,22 +17,26 @@ public class Actemium {
 
 	private ObservableList<Gebruiker> werknemers;
 	private ObservableList<Gebruiker> klanten;
-	private ObservableList<Ticket> tickets;
+	private ObservableList<Ticket> tickets;	
+	private ObservableList<Contract> contracten;
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
+	private FilteredList<Contract> filteredContracten;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
+	private GenericDaoJPA<Contract> contractRepo;
 	
 
 	public Actemium() {
-		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
+		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class), new GenericDaoJPA<>(Contract.class));
 	}
 
-	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo) {
+	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo, GenericDaoJPA<Contract> contractRepo) {
 		this.gebruikerRepo = gebruikerRepo;
 		this.ticketRepo = ticketRepo;
+		this.contractRepo = contractRepo;
 	}
 
 	public void changeFilter(String filterValue, String veld) {
@@ -77,17 +81,6 @@ public class Actemium {
 	}
 
 	public void changeFilterKlant(String filterValue, String veld) {
-		if (veld.equals("ticketStatus")) {
-			filteredTickets.setPredicate(ticket -> {
-				if (filterValue.equalsIgnoreCase("Standaard")) {
-
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if(filterValue.equalsIgnoreCase("Alle")) {
-					return true;
-				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
-			
-			});
-		} else {
 
 			filteredKlanten.setPredicate(gebruiker -> {
 
@@ -114,7 +107,6 @@ public class Actemium {
 					throw new IllegalArgumentException("Unexpected value: " + veld);
 				}
 			});
-		}
 	}
 
 	// ===Beheer werknemers===
@@ -219,7 +211,7 @@ public class Actemium {
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
 
 		Gebruiker klant = klanten.stream().filter(w -> w.getId() == id).findAny().orElse(null);
-		// wat doen we als klant null is?
+
 		try {
 			GenericDaoJPA.startTransaction();
 
@@ -251,6 +243,21 @@ public class Actemium {
 		}
 
 	}
+	
+	public ObservableList<ContractGegevens> geefContracten() {
+		try {
+			if (this.contracten == null) {
+				this.contracten = FXCollections.observableList(contractRepo.findAll());
+				filteredContracten = new FilteredList<>(contracten, w -> true);
+			}
+
+			return (ObservableList<ContractGegevens>) (Object) filteredContracten;
+
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
 	// === Beheer Tickets ===
 	public ObservableList<TicketGegevens> geefTickets() { 
 		return geefTickets(0);

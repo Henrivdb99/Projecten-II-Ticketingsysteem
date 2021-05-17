@@ -1,5 +1,6 @@
 package domein.controllers;
 
+import domein.models.ContractGegevens;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.TypeGebruiker;
@@ -27,7 +28,12 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public ObservableList<GebruikerGegevens> geefKlanten() {
 		return actemium.geefKlanten();
 	}
-
+	
+	@Override
+	public ObservableList<ContractGegevens> geefContracten() {
+		return actemium.geefContracten();
+	}
+	
 	@Override
 	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers,
 			TypeGebruiker rol, String wachtwoord, String[] adres) {

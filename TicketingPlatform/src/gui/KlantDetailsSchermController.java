@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.DynamicTest.stream;
 
 import java.io.IOException;
 
+import domein.controllers.AangemeldeGebruikerController;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.Klant;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -36,10 +38,26 @@ public class KlantDetailsSchermController extends GridPane {
 	private Label lblStatus;
 	@FXML
 	private Label lblBedrijfsnaam;
+//	@FXML
+//	private Label lblContractNummer;
+//	@FXML
+//	private Label lblContractType;
+//	@FXML
+//	private Label lblContractStatus;
+//	@FXML
+//	private Label lblContractStart;
+//	@FXML
+//	private Label lblContractEind;
+	@FXML
+	private TableView<GebruikerGegevens> tblView;
 	@FXML
 	private Button btnTerug;
-
+	@FXML
+	private Button btnKlantContracten;
+	
 	private KlantenBeherenSchermController parent;
+	private GebruikerGegevens selectedUser;
+	private AangemeldeGebruikerController ac;
 
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser) {
 		this.parent = klantenBeherenSchermController;
@@ -62,10 +80,28 @@ public class KlantDetailsSchermController extends GridPane {
 			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
 			lblBedrijfsnaam.setText(selectedUser.getBedrijfsnaam());
+//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractNummer.setText(Integer.toString(t.getContractId())));
+//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractType.setText(t.getContractType().getNaam()));
+//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractStatus.setText(t.getContractStatus().toString()));
+//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractStart.setText(t.getStartDatum().toString()));
+//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractEind.setText(t.getEindDatum().toString()));
 					
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
 	}
+		// Event Listener on Button[#btnKlantContracten].onAction
+		@FXML
+		public void btnKlantContractenOnAction(ActionEvent event) {
+			try {
+				this.selectedUser = tblView.getSelectionModel().getSelectedItem();
+				KlantenContractenSchermController klantContractenSchermController = new KlantenContractenSchermController(this, ac);
+
+				this.parent.setRight(klantContractenSchermController);
+			} catch(NullPointerException np) {
+				System.out.println(np.getMessage());
+			}
+		
+		}
 
 }

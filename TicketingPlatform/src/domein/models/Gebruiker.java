@@ -184,8 +184,6 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 		} else
 			throw new IllegalArgumentException("Wachtwoord is verplicht");
 	}
-	
-	
 
 	@Override
 	public String toString() {
