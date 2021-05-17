@@ -7,11 +7,13 @@ import domein.models.ContractGegevens;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
+import domein.models.KnowledgeBaseGegevens;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
 import domein.models.Werknemer;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public abstract class AangemeldeGebruikerController {
 	
@@ -54,7 +56,9 @@ public abstract class AangemeldeGebruikerController {
 	public void changeFilterKlant(String filterValue, String veld) {
 		actemium.changeFilterKlant(filterValue, veld);
 	}
-
+	public void changeFilterKnowledgebase(String filterValue, String veld) {
+		actemium.changeFilterKnowledgebase(filterValue, veld);
+	}
 	// === Abstracte methodes ===
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 	
@@ -64,7 +68,7 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public ObservableList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	public ObservableList<GebruikerGegevens> geefTechniekers() {
@@ -101,11 +105,23 @@ public abstract class AangemeldeGebruikerController {
 	public void wijzigTicket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
 	}
-	public ObservableList<TicketGegevens> geefTickets() {
+	public SortedList<TicketGegevens> geefTickets() {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+
+	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	public ObservableList<ContractGegevens> geefContracten() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
+	}
+
+	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
+	}
+
+	public void wijzigKnowledgebaseItem(String titel, String omschrijving) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
 	}
 
 	

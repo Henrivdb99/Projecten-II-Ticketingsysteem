@@ -191,7 +191,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		colRol.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("rol"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("status"));
 		tblView.setItems(ac.geefWerknemers());
-
+		ac.geefWerknemers().comparatorProperty().bind(tblView.comparatorProperty());
 		btnWerknemerDetails.setDisable(true);
 		btnWerknemerWijzigen.setDisable(true);
 	}

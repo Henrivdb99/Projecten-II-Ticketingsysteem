@@ -10,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import persistentie.GebruikerDaoJPA;
 import persistentie.GenericDaoJPA;
 
@@ -17,38 +18,57 @@ public class Actemium {
 
 	private ObservableList<Gebruiker> werknemers;
 	private ObservableList<Gebruiker> klanten;
-	private ObservableList<Ticket> tickets;	
 	private ObservableList<Contract> contracten;
+	private ObservableList<Ticket> tickets;	
+	private ObservableList<KnowledgeBase> knowledgebaseItems;
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private FilteredList<Contract> filteredContracten;
+	private FilteredList<KnowledgeBase> filteredItems;
+	private SortedList<TicketGegevens> sortableTickets;
+	private SortedList<GebruikerGegevens> sortableWerknemers;
+	private SortedList<KnowledgeBaseGegevens> sortableItems;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
 	private GenericDaoJPA<Contract> contractRepo;
-	
+	private GenericDaoJPA<KnowledgeBase> knowledgebaseRepo;
 
 	public Actemium() {
-		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class), new GenericDaoJPA<>(Contract.class));
+		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class), new GenericDaoJPA<>(Contract.class), new GenericDaoJPA<>(KnowledgeBase.class));
 	}
 
-	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo, GenericDaoJPA<Contract> contractRepo) {
+	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo, GenericDaoJPA<Contract> contractRepo, GenericDaoJPA<KnowledgeBase> genericDaoJPA) {
 		this.gebruikerRepo = gebruikerRepo;
 		this.ticketRepo = ticketRepo;
 		this.contractRepo = contractRepo;
+		this.knowledgebaseRepo = genericDaoJPA;
 	}
+	public void changeFilterKnowledgebase(String filterValue, String veld) {
+		if (veld.equals("knowledgebaseTitel")) {
+			filteredItems.setPredicate(item -> {
+				if (filterValue == null || filterValue.isBlank()) {
+					return true;
+				}
+				String lowerCaseValue = filterValue.toLowerCase();
+				return item.getTitel().toLowerCase().contains(lowerCaseValue);
+			});
+			}
+		}
 
 	public void changeFilter(String filterValue, String veld) {
 		if (veld.equals("ticketStatus")) {
 			filteredTickets.setPredicate(ticket -> {
 				if (filterValue.equalsIgnoreCase("Standaard")) {
 
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if(filterValue.equalsIgnoreCase("Alle")) {
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if (filterValue.equalsIgnoreCase("Alle")) {
 					return true;
-				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
-			
+				} else
+					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+
 			});
 		} else {
 
@@ -70,8 +90,9 @@ public class Actemium {
 				case "Rol": {
 					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
 				}
-				case "Status": { //miss moeten we "Alle" een prop maken
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				case "Status": { // miss moeten we "Alle" een prop maken
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + veld);
@@ -81,6 +102,20 @@ public class Actemium {
 	}
 
 	public void changeFilterKlant(String filterValue, String veld) {
+
+				if (veld.equals("ticketStatus")) {
+			filteredTickets.setPredicate(ticket -> {
+				if (filterValue.equalsIgnoreCase("Standaard")) {
+
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if (filterValue.equalsIgnoreCase("Alle")) {
+					return true;
+				} else
+					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+
+			});
+		} else {
 
 			filteredKlanten.setPredicate(gebruiker -> {
 
@@ -100,8 +135,9 @@ public class Actemium {
 				case "Bedrijf": {
 					return gebruiker.getBedrijfsnaam().toString().toLowerCase().contains(lowerCaseValue);
 				}
-				case "Status": { 
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				case "Status": {
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + veld);
@@ -111,14 +147,16 @@ public class Actemium {
 
 	// ===Beheer werknemers===
 
-	public ObservableList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
 				filteredWerknemers = new FilteredList<>(werknemers, w -> true);
+				sortableWerknemers = new SortedList<>(filteredWerknemers);
+
 			}
 
-			return (ObservableList<GebruikerGegevens>) (Object) filteredWerknemers;
+			return sortableWerknemers;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -184,9 +222,9 @@ public class Actemium {
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
-				filteredKlanten = new FilteredList<>(klanten, k -> true);
+			filteredKlanten = new FilteredList<>(klanten, k -> true);
 
-				return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
+			return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -259,23 +297,25 @@ public class Actemium {
 	}
 
 	// === Beheer Tickets ===
-	public ObservableList<TicketGegevens> geefTickets() { 
+	public SortedList<TicketGegevens> geefTickets() {
 		return geefTickets(0);
 	}
 
-	public ObservableList<TicketGegevens> geefTickets(int techniekerId) {
+	public SortedList<TicketGegevens> geefTickets(int techniekerId) {
 		try {
 			if (this.tickets == null) {
-				if(techniekerId != 0)
-				{
-					System.out.println("Test");
-					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
-				}else
+				if (techniekerId != 0) {
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream()
+							.filter(ticket -> ticket.getTechnieker().getId() == techniekerId)
+							.collect(Collectors.toList()));
+				} else
 					this.tickets = FXCollections.observableList(ticketRepo.findAll());
 				filteredTickets = new FilteredList<>(tickets, w -> true);
+				sortableTickets = new SortedList<>(filteredTickets);
+
 			}
 
-			return (ObservableList<TicketGegevens>) (Object) filteredTickets;
+			return sortableTickets;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -298,6 +338,46 @@ public class Actemium {
 
 		GenericDaoJPA.commitTransaction();
 
+	}
+	// === Beheer Knowledgebase ===
+
+	public List<KnowledgeBase> data(){
+		List<KnowledgeBase> lijst = new ArrayList<>();
+		lijst.add(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Hoe kan ik mijn wachtwoord aanpassen?","loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Wat doe ik bij Error 5038","loremIpsum", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Hoe annuleer ik een ticket?","Oplossing 4", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Mijn nieuwe contract staat niet op actief","Oplossing 5", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Ik kan mijn bijlage niet uploaden","Oplossing 6", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Waar vind ik  mijn oude contracten terug?","Oplossing 7", LocalDate.now()));
+		lijst.add(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
+		
+		return lijst;
+	}
+	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
+		try {
+			if (this.knowledgebaseItems == null) {
+				this.knowledgebaseItems = FXCollections.observableList(knowledgebaseRepo.findAll());
+				filteredItems = new FilteredList<>(knowledgebaseItems, w -> true);
+				sortableItems = new SortedList<>(filteredItems);
+			}
+
+			return sortableItems;
+
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
+		KnowledgeBase newKnowledgeBase = new KnowledgeBase(titel, omschrijving, LocalDate.now());
+
+		knowledgebaseItems.add(newKnowledgeBase);
+		
+		GenericDaoJPA.startTransaction();
+		knowledgebaseRepo.insert(newKnowledgeBase);
+		GenericDaoJPA.commitTransaction();
+		
 	}
 
 }

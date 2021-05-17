@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class KnowledgeBase {
+public class KnowledgeBase implements KnowledgeBaseGegevens{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,9 @@ public class KnowledgeBase {
 	}
 
 	public KnowledgeBase(String titel, String omschrijving, LocalDate datumToevoegen) {
-		this.titel = titel;
-		this.datumToevoegen = datumToevoegen;
-		this.omschrijving = omschrijving;
+		setTitel(titel);
+		setDatumToevoegen(datumToevoegen);
+		setOmschrijving(omschrijving);
 	}
 
 	public int getKnowledgeBaseId() {

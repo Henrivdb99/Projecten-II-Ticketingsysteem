@@ -54,12 +54,11 @@ public class TicketWijzigenSchermController extends GridPane {
 	private ChoiceBox<TicketStatus> cboStatus;
 	
 	private AangemeldeGebruikerController ac;
-	private TicketGegevens selectedTicket;
+	
 	public TicketWijzigenSchermController(TicketsBeherenSchermController ticketsBeherenSchermController,
 			TicketGegevens selectedTicket, AangemeldeGebruikerController ac) {
 		try {
 			this.ac=ac;
-			this.selectedTicket=selectedTicket;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketToevoegenScherm.fxml"));
 			loader.setRoot(this);
