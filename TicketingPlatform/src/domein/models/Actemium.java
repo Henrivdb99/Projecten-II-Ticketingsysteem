@@ -144,7 +144,7 @@ public class Actemium {
 				}
 			});
 	}
-
+	}
 	// ===Beheer werknemers===
 
 	public SortedList<GebruikerGegevens> geefWerknemers() {
