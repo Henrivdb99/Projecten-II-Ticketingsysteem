@@ -50,7 +50,10 @@ public abstract class AangemeldeGebruikerController {
 	public void changeFilter(String filterValue, String veld) {
 		actemium.changeFilter(filterValue, veld);
 	}
-	
+	public void changeFilterKlant(String filterValue, String veld) {
+		actemium.changeFilterKlant(filterValue, veld);
+	}
+
 	// === Abstracte methodes ===
 	public abstract TypeGebruiker geefAangemeldeGebruikerType();
 	

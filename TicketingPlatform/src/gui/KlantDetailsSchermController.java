@@ -44,7 +44,7 @@ public class KlantDetailsSchermController extends GridPane {
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser) {
 		this.parent = klantenBeherenSchermController;
 		
-		((Klant) selectedUser).getTickets().stream().forEach(t -> System.out.println(t.getOmschrijving()));
+//		((Klant) selectedUser).getTickets().stream().forEach(t -> System.out.println(t.getOmschrijving()));
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
@@ -68,10 +68,4 @@ public class KlantDetailsSchermController extends GridPane {
 		}
 	}
 
-	// Event Listener on Button[#btnTerug].onAction
-	@FXML
-	public void btnTerugOnAction(ActionEvent event) {
-		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.parent.getScene());
-	}
 }

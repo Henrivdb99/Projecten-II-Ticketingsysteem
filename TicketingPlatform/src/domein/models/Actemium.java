@@ -19,6 +19,7 @@ public class Actemium {
 	private ObservableList<Gebruiker> klanten;
 	private ObservableList<Ticket> tickets;
 	private FilteredList<Gebruiker> filteredWerknemers;
+	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 
 	private GebruikerDaoJPA gebruikerRepo;
@@ -66,6 +67,47 @@ public class Actemium {
 					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
 				}
 				case "Status": { //miss moeten we "Alle" een prop maken
+					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + veld);
+				}
+			});
+		}
+	}
+
+	public void changeFilterKlant(String filterValue, String veld) {
+		if (veld.equals("ticketStatus")) {
+			filteredTickets.setPredicate(ticket -> {
+				if (filterValue.equalsIgnoreCase("Standaard")) {
+
+					return ticket.getStatus().equals(TicketStatus.Aangemaakt) || ticket.getStatus().equals(TicketStatus.InBehandeling);
+				} else if(filterValue.equalsIgnoreCase("Alle")) {
+					return true;
+				}else return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+			
+			});
+		} else {
+
+			filteredKlanten.setPredicate(gebruiker -> {
+
+				if (filterValue == null || filterValue.isBlank()) {
+					return true;
+				}
+				String lowerCaseValue = filterValue.toLowerCase();
+
+				switch (veld) {
+				case "Gebruikersnaam": {
+					return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
+				}
+				case "NaamEnVoornaam": {
+					return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
+							|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
+				}
+				case "Bedrijf": {
+					return gebruiker.getBedrijfsnaam().toString().toLowerCase().contains(lowerCaseValue);
+				}
+				case "Status": { 
 					return lowerCaseValue.equalsIgnoreCase("Alle") ? true : gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
 				}
 				default:
@@ -150,8 +192,9 @@ public class Actemium {
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
+				filteredKlanten = new FilteredList<>(klanten, k -> true);
 
-			return (ObservableList<GebruikerGegevens>) (Object) this.klanten;
+				return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);

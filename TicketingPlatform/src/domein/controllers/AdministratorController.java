@@ -60,5 +60,10 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public void changeFilter(String filterValue, String veld) {
 		actemium.changeFilter(filterValue, veld);
 	}
+	
+	@Override
+	public void changeFilterKlant(String filterValue, String veld) {
+		actemium.changeFilterKlant(filterValue, veld);
+	}
 
 }

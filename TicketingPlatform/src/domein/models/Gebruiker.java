@@ -39,6 +39,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	@Column(name = "Rol")
 	private TypeGebruiker rol;
 	//enkel in klant:
+	@Column(name = "Bedrijf")
 	private String bedrijfsnaam;
 	@Transient
 	private static final int workload = 12;
