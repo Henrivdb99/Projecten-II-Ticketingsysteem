@@ -77,15 +77,8 @@ public class KlantDetailsSchermController extends GridPane {
 		// Event Listener on Button[#btnKlantContracten].onAction
 		@FXML
 		public void btnKlantContractenOnAction(ActionEvent event) {
-			try {
-				this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-				KlantenContractenSchermController klantContractenSchermController = new KlantenContractenSchermController(this, ac);
-
-				this.parent.setRight(klantContractenSchermController);
-			} catch(NullPointerException np) {
-				System.out.println(np.getMessage());
-			}
-		
+			KlantenContractenSchermController klantContractenSchermController = new KlantenContractenSchermController(parent, ac);
+			this.parent.setRight(klantContractenSchermController); //volgens mij kan dit niet		
 		}
 
 }

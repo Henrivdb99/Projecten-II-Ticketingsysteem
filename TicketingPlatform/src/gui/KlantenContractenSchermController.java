@@ -29,7 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class KlantenContractenSchermController extends BorderPane implements Initializable{
+public class KlantenContractenSchermController extends BorderPane implements Initializable {
 	
 	@FXML
 	private Button btnTerug;
@@ -48,11 +48,11 @@ public class KlantenContractenSchermController extends BorderPane implements Ini
 	private TableColumn<ContractGegevens, String> colContractEind;
 
 
-	private KlantDetailsSchermController parent;
+	private KlantenBeherenSchermController parent;
 	private AangemeldeGebruikerController ac;
 	private ContractGegevens selectedContract;
 
-	public KlantenContractenSchermController(KlantDetailsSchermController klantDetailsSchermController, AangemeldeGebruikerController ac) {
+	public KlantenContractenSchermController(KlantenBeherenSchermController klantDetailsSchermController, AangemeldeGebruikerController ac) {
 		this.parent = klantDetailsSchermController;
 		this.ac= ac;
 		try {
@@ -60,6 +60,8 @@ public class KlantenContractenSchermController extends BorderPane implements Ini
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
+			
+
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -72,7 +74,6 @@ public class KlantenContractenSchermController extends BorderPane implements Ini
 		stage.setScene(this.parent.getScene());
 	}
 
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		colContractNummer.setCellValueFactory(new PropertyValueFactory<ContractGegevens, String>("nummer"));
@@ -81,7 +82,7 @@ public class KlantenContractenSchermController extends BorderPane implements Ini
 		colContractStart.setCellValueFactory(new PropertyValueFactory<ContractGegevens, String>("startdatum"));
 		colContractEind.setCellValueFactory(new PropertyValueFactory<ContractGegevens, String>("einddatum"));
 		tblView.setItems(ac.geefContracten());
-        
+		
 	}
 
 }
