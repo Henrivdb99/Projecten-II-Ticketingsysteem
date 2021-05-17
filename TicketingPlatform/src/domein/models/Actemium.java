@@ -23,6 +23,8 @@ public class Actemium {
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private SortedList<TicketGegevens> sortableTickets;
+	private SortedList<GebruikerGegevens> sortableWerknemers;
+
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
@@ -121,14 +123,16 @@ public class Actemium {
 
 	// ===Beheer werknemers===
 
-	public ObservableList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
 				filteredWerknemers = new FilteredList<>(werknemers, w -> true);
+				sortableWerknemers = new SortedList<>(filteredWerknemers);
+
 			}
 
-			return (ObservableList<GebruikerGegevens>) (Object) filteredWerknemers;
+			return sortableWerknemers;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -254,7 +258,7 @@ public class Actemium {
 
 	}
 	// === Beheer Tickets ===
-	public ObservableList<TicketGegevens> geefTickets() { 
+	public SortedList<TicketGegevens> geefTickets() { 
 		return geefTickets(0);
 	}
 

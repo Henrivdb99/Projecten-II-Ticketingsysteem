@@ -65,7 +65,7 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public ObservableList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	public ObservableList<GebruikerGegevens> geefTechniekers() {

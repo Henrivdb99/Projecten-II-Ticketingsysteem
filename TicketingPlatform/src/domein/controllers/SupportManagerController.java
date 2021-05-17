@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import domein.models.*;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public class SupportManagerController extends AangemeldeGebruikerController{
 
@@ -18,7 +19,7 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 		return TypeGebruiker.SupportManager;
 	}
 	@Override
-	public ObservableList<TicketGegevens> geefTickets() {
+	public SortedList<TicketGegevens> geefTickets() {
 		return actemium.geefTickets();
 	}
 	@Override

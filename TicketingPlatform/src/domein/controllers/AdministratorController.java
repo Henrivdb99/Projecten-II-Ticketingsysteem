@@ -5,6 +5,7 @@ import domein.models.GebruikerStatus;
 import domein.models.TypeGebruiker;
 import domein.models.Werknemer;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public class AdministratorController extends AangemeldeGebruikerController {
 
@@ -19,7 +20,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public ObservableList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		return actemium.geefWerknemers();
 	}
 
