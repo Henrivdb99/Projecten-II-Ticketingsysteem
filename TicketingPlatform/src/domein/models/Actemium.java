@@ -29,7 +29,7 @@ public class Actemium {
 		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
 	}
 
-	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA ticketRepo) {
+	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo) {
 		this.gebruikerRepo = gebruikerRepo;
 		this.ticketRepo = ticketRepo;
 	}
@@ -219,7 +219,7 @@ public class Actemium {
 				if(techniekerId != 0)
 				{
 					System.out.println("Test");
-					this.tickets = FXCollections.observableList(ticketRepo.findAll());//.stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
 				}else
 					this.tickets = FXCollections.observableList(ticketRepo.findAll());
 				filteredTickets = new FilteredList<>(tickets, w -> true);
