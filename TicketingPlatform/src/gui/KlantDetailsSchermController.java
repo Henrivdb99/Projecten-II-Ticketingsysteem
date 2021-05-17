@@ -50,9 +50,9 @@ public class KlantDetailsSchermController extends GridPane {
 	private GebruikerGegevens selectedUser;
 	private AangemeldeGebruikerController ac;
 
-	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser) {
+	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser, AangemeldeGebruikerController ac) {
 		this.parent = klantenBeherenSchermController;
-				
+		this.ac=ac;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
 			loader.setRoot(this);

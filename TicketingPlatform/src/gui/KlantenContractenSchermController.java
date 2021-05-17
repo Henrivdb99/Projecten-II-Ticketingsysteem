@@ -27,9 +27,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class KlantenContractenSchermController extends BorderPane implements Initializable {
+public class KlantenContractenSchermController extends GridPane implements Initializable {
 	
 	@FXML
 	private Button btnTerug;

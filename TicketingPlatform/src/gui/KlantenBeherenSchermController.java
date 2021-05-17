@@ -113,7 +113,7 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	public void btnKlantDetailsOnAction(ActionEvent event) {
 		try {
 			this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, this.selectedUser);
+			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, this.selectedUser, ac);
 			this.setRight(klantDetailsSchermController);
 			
 		} catch(NullPointerException np) {
