@@ -74,9 +74,10 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 			loader.setController(this);
 			loader.load();
 			
-			if (ac.getClass().getSimpleName().equals("TechniekerController")) {
+			if (ac.geefAangemeldeGebruikerType().toString() == "Technieker") {
 				btnTicketToevoegen.setVisible(false);
 			}
+			
 			
 			btnTicketDetails.setDisable(true);
 			btnTicketWijzigen.setDisable(true);
@@ -147,6 +148,6 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
             tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
 
         });
-        ac.changeFilter(standaardStatus, "ticketStatus");
+        ac.changeFilter(standaardStatus, "ticketStatus"); //default filter
     }
 }
