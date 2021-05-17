@@ -6,7 +6,7 @@ import domein.models.Actemium;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.KnowledgebaseGegevens;
+import domein.models.KnowledgeBaseGegevens;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
@@ -108,7 +108,7 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 

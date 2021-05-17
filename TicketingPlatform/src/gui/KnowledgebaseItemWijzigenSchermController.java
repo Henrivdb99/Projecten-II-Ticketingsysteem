@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.models.KnowledgebaseGegevens;
+import domein.models.KnowledgeBaseGegevens;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -33,7 +33,7 @@ public class KnowledgebaseItemWijzigenSchermController extends GridPane {
 
 	public KnowledgebaseItemWijzigenSchermController(
 			KnowledgebaseBeherenSchermController knowledgebaseBeherenSchermController,
-			KnowledgebaseGegevens selectedItem, AangemeldeGebruikerController ac) {
+			KnowledgeBaseGegevens selectedItem, AangemeldeGebruikerController ac) {
 		try {
 			this.ac = ac;
 

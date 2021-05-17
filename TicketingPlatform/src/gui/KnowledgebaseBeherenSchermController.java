@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import domein.controllers.AangemeldeGebruikerController;
-import domein.models.KnowledgebaseGegevens;
+import domein.models.KnowledgeBaseGegevens;
 import domein.models.TicketGegevens;
 import javafx.event.ActionEvent;
 
@@ -39,17 +39,17 @@ public class KnowledgebaseBeherenSchermController extends BorderPane implements 
 	@FXML
 	private TextField txfFilterTitel;
 	@FXML
-	private TableView<KnowledgebaseGegevens> tblView;
+	private TableView<KnowledgeBaseGegevens> tblView;
 	@FXML
-	private TableColumn<KnowledgebaseGegevens, Integer> colItemId;
+	private TableColumn<KnowledgeBaseGegevens, Integer> colItemId;
 	@FXML
-	private TableColumn<KnowledgebaseGegevens, String> colItemTitel;
+	private TableColumn<KnowledgeBaseGegevens, String> colItemTitel;
 	@FXML
-	private TableColumn<KnowledgebaseGegevens, LocalDate> colItemDatum;
+	private TableColumn<KnowledgeBaseGegevens, LocalDate> colItemDatum;
 
 	private DashboardSchermController parent;
 	private AangemeldeGebruikerController ac;
-	private KnowledgebaseGegevens selectedItem;
+	private KnowledgeBaseGegevens selectedItem;
 
 	public KnowledgebaseBeherenSchermController(DashboardSchermController dashboardSchermController,
 			AangemeldeGebruikerController ac) {
@@ -116,9 +116,9 @@ public class KnowledgebaseBeherenSchermController extends BorderPane implements 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		colItemId.setCellValueFactory(new PropertyValueFactory<KnowledgebaseGegevens, Integer>("knowledgeBaseId"));
-		colItemDatum.setCellValueFactory(new PropertyValueFactory<KnowledgebaseGegevens, LocalDate>("datumToevoegen"));
-		colItemTitel.setCellValueFactory(new PropertyValueFactory<KnowledgebaseGegevens, String>("titel"));
+		colItemId.setCellValueFactory(new PropertyValueFactory<KnowledgeBaseGegevens, Integer>("knowledgeBaseId"));
+		colItemDatum.setCellValueFactory(new PropertyValueFactory<KnowledgeBaseGegevens, LocalDate>("datumToevoegen"));
+		colItemTitel.setCellValueFactory(new PropertyValueFactory<KnowledgeBaseGegevens, String>("titel"));
 		tblView.setItems(ac.geefKnowledgebaseItems());
 		ac.geefKnowledgebaseItems().comparatorProperty().bind(tblView.comparatorProperty());
 	}

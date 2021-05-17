@@ -2,7 +2,7 @@ package domein.models;
 
 import java.time.LocalDate;
 
-public interface KnowledgebaseGegevens {
+public interface KnowledgeBaseGegevens {
 	
 	public int getKnowledgeBaseId();
 	public String getTitel();

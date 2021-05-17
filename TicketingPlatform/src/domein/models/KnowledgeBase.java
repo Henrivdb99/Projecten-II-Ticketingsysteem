@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class KnowledgeBase implements KnowledgebaseGegevens{
+public class KnowledgeBase implements KnowledgeBaseGegevens{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

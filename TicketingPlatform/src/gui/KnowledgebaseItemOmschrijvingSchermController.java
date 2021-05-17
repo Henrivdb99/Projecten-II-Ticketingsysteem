@@ -2,7 +2,7 @@ package gui;
 
 import java.io.IOException;
 
-import domein.models.KnowledgebaseGegevens;
+import domein.models.KnowledgeBaseGegevens;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -21,7 +21,7 @@ public class KnowledgebaseItemOmschrijvingSchermController extends GridPane{
 
 	public KnowledgebaseItemOmschrijvingSchermController(
 			KnowledgebaseBeherenSchermController knowledgebaseBeherenSchermController,
-			KnowledgebaseGegevens selectedItem) {
+			KnowledgeBaseGegevens selectedItem) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KnowledgebaseItemOmschrijvingScherm.fxml"));
 			loader.setRoot(this);

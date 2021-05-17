@@ -19,25 +19,29 @@ public class Actemium {
 	private ObservableList<Gebruiker> werknemers;
 	private ObservableList<Gebruiker> klanten;
 	private ObservableList<Ticket> tickets;
+	private ObservableList<KnowledgeBase> knowledgebaseItems;
+	
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
+	private FilteredList<KnowledgeBase> filteredItems;
+	
 	private SortedList<TicketGegevens> sortableTickets;
 	private SortedList<GebruikerGegevens> sortableWerknemers;
-	private ObservableList<KnowledgebaseGegevens> knowledgebaseItems;
-	private FilteredList<KnowledgebaseGegevens> filteredItems;
-	private SortedList<KnowledgebaseGegevens> sortableItems;
+	private SortedList<KnowledgeBaseGegevens> sortableItems;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
+	private GenericDaoJPA<KnowledgeBase> knowledgebaseRepo;
 
 	public Actemium() {
-		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class));
+		this(new GebruikerDaoJPA(), new GenericDaoJPA<>(Ticket.class), new GenericDaoJPA<>(KnowledgeBase.class));
 	}
 
-	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo) {
+	public Actemium(GebruikerDaoJPA gebruikerRepo, GenericDaoJPA<Ticket> ticketRepo, GenericDaoJPA<KnowledgeBase> genericDaoJPA) {
 		this.gebruikerRepo = gebruikerRepo;
 		this.ticketRepo = ticketRepo;
+		this.knowledgebaseRepo = genericDaoJPA;
 	}
 	public void changeFilterKnowledgebase(String filterValue, String veld) {
 		if (veld.equals("knowledgebaseTitel")) {
@@ -46,7 +50,7 @@ public class Actemium {
 					return true;
 				}
 				String lowerCaseValue = filterValue.toLowerCase();
-				return item.getTitel().contains(lowerCaseValue);
+				return item.getTitel().toLowerCase().contains(lowerCaseValue);
 			});
 			}
 		}
@@ -321,8 +325,8 @@ public class Actemium {
 	}
 	// === Beheer Knowledgebase ===
 
-	public List<KnowledgebaseGegevens> data(){
-		List<KnowledgebaseGegevens> lijst = new ArrayList<>();
+	public List<KnowledgeBase> data(){
+		List<KnowledgeBase> lijst = new ArrayList<>();
 		lijst.add(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
 		lijst.add(new KnowledgeBase("Hoe kan ik mijn wachtwoord aanpassen?","loremIpsum", LocalDate.now()));
 		lijst.add(new KnowledgeBase("Wat doe ik bij Error 5038","loremIpsum", LocalDate.now()));
@@ -334,10 +338,10 @@ public class Actemium {
 		
 		return lijst;
 	}
-	public SortedList<KnowledgebaseGegevens> geefKnowledgebaseItems() {
+	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		try {
 			if (this.knowledgebaseItems == null) {
-				this.knowledgebaseItems = FXCollections.observableList(data());
+				this.knowledgebaseItems = FXCollections.observableList(knowledgebaseRepo.findAll());
 				filteredItems = new FilteredList<>(knowledgebaseItems, w -> true);
 				sortableItems = new SortedList<>(filteredItems);
 			}
@@ -350,7 +354,13 @@ public class Actemium {
 	}
 
 	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
-		// TODO Auto-generated method stub
+		KnowledgeBase newKnowledgeBase = new KnowledgeBase(titel, omschrijving, LocalDate.now());
+
+		knowledgebaseItems.add(newKnowledgeBase);
+		
+		GenericDaoJPA.startTransaction();
+		knowledgebaseRepo.insert(newKnowledgeBase);
+		GenericDaoJPA.commitTransaction();
 		
 	}
 
