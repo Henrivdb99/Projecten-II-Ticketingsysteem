@@ -1,13 +1,5 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -15,17 +7,20 @@ import java.util.ResourceBundle;
 
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.KnowledgeBaseGegevens;
-import domein.models.TicketGegevens;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.input.KeyEvent;
-
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.TableColumn;
 
 public class KnowledgebaseBeherenSchermController extends BorderPane implements Initializable {
 	@FXML
@@ -106,6 +101,7 @@ public class KnowledgebaseBeherenSchermController extends BorderPane implements 
 	public void filterTitel(KeyEvent event) {
 		String newValue = txfFilterTitel.getText();
 		ac.changeFilterKnowledgebase(newValue, "knowledgebaseTitel");
+		tblView.setPlaceholder(new Label("Geen gegevens gevonden met zoekterm " + newValue));
 	}
 
 	@FXML
