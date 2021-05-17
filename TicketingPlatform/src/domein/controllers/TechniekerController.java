@@ -2,11 +2,13 @@ package domein.controllers;
 
 import java.util.stream.Collectors;
 
+import domein.models.Ticket;
 import domein.models.TicketGegevens;
 import domein.models.TypeGebruiker;
 import domein.models.Werknemer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public class TechniekerController extends AangemeldeGebruikerController {
 
@@ -21,7 +23,7 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public ObservableList<TicketGegevens> geefTickets() {
+	public SortedList<TicketGegevens> geefTickets() {
 		return actemium.geefTickets(getAangemeldeGebruiker().getId());
 	}
 }

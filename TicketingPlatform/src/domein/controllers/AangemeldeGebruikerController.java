@@ -6,11 +6,13 @@ import domein.models.Actemium;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
+import domein.models.Ticket;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
 import domein.models.TypeGebruiker;
 import domein.models.Werknemer;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 public abstract class AangemeldeGebruikerController {
 	
@@ -100,7 +102,7 @@ public abstract class AangemeldeGebruikerController {
 	public void wijzigTicket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");	
 	}
-	public ObservableList<TicketGegevens> geefTickets() {
+	public SortedList<TicketGegevens> geefTickets() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 

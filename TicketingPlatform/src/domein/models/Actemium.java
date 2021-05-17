@@ -10,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import persistentie.GebruikerDaoJPA;
 import persistentie.GenericDaoJPA;
 
@@ -21,6 +22,7 @@ public class Actemium {
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
+	private SortedList<TicketGegevens> sortableTickets;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
@@ -193,7 +195,7 @@ public class Actemium {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
 				filteredKlanten = new FilteredList<>(klanten, k -> true);
-
+				
 				return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
@@ -256,19 +258,20 @@ public class Actemium {
 		return geefTickets(0);
 	}
 
-	public ObservableList<TicketGegevens> geefTickets(int techniekerId) {
+	public SortedList<TicketGegevens> geefTickets(int techniekerId) {
 		try {
 			if (this.tickets == null) {
 				if(techniekerId != 0)
 				{
-					System.out.println("Test");
 					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().filter(ticket -> ticket.getTechnieker().getId() == techniekerId).collect(Collectors.toList()));
 				}else
 					this.tickets = FXCollections.observableList(ticketRepo.findAll());
 				filteredTickets = new FilteredList<>(tickets, w -> true);
+				sortableTickets = new SortedList<>(filteredTickets);
+
 			}
 
-			return (ObservableList<TicketGegevens>) (Object) filteredTickets;
+			return sortableTickets;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
