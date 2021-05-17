@@ -38,16 +38,7 @@ public class KlantDetailsSchermController extends GridPane {
 	private Label lblStatus;
 	@FXML
 	private Label lblBedrijfsnaam;
-//	@FXML
-//	private Label lblContractNummer;
-//	@FXML
-//	private Label lblContractType;
-//	@FXML
-//	private Label lblContractStatus;
-//	@FXML
-//	private Label lblContractStart;
-//	@FXML
-//	private Label lblContractEind;
+
 	@FXML
 	private TableView<GebruikerGegevens> tblView;
 	@FXML
@@ -61,9 +52,7 @@ public class KlantDetailsSchermController extends GridPane {
 
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser) {
 		this.parent = klantenBeherenSchermController;
-		
-//		((Klant) selectedUser).getTickets().stream().forEach(t -> System.out.println(t.getOmschrijving()));
-		
+				
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
 			loader.setRoot(this);
@@ -80,11 +69,6 @@ public class KlantDetailsSchermController extends GridPane {
 			lblTijdKlant.setText(selectedUser.getRegistratieDatum().toString());
 			lblStatus.setText(selectedUser.getStatus().toString());
 			lblBedrijfsnaam.setText(selectedUser.getBedrijfsnaam());
-//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractNummer.setText(Integer.toString(t.getContractId())));
-//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractType.setText(t.getContractType().getNaam()));
-//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractStatus.setText(t.getContractStatus().toString()));
-//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractStart.setText(t.getStartDatum().toString()));
-//			((Klant) selectedUser).getContracten().stream().forEach(t -> lblContractEind.setText(t.getEindDatum().toString()));
 					
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
