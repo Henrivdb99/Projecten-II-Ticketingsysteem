@@ -21,9 +21,9 @@ public class KnowledgeBase {
 	}
 
 	public KnowledgeBase(String titel, String omschrijving, LocalDate datumToevoegen) {
-		this.titel = titel;
-		this.datumToevoegen = datumToevoegen;
-		this.omschrijving = omschrijving;
+		setTitel(titel);
+		setDatumToevoegen(datumToevoegen);
+		setOmschrijving(omschrijving);
 	}
 
 	public int getKnowledgeBaseId() {
