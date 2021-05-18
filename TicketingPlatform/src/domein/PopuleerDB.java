@@ -59,11 +59,13 @@ public class PopuleerDB {
         Contract contract4 = new Contract(LocalDate.now().plusMonths(-22).plusDays(-10), contractWerkuren, 2, klant2, ContractEnContractTypeStatus.Actief);
 
         
-        List<Contract> contracts = new ArrayList<>();
-        contracts.add(contract1); contracts.add(contract2); contracts.add(contract3); //bidirectioneel in domein, databank blijft gelijk
-        klant1.setContracten(contracts);
+        List<Contract> contracts1 = new ArrayList<>();
+        contracts1.add(contract1); contracts1.add(contract2); contracts1.add(contract3); //bidirectioneel in domein, databank blijft gelijk
+        klant1.setContracten(contracts1);
         
-       
+        List<Contract> contracts2 = new ArrayList<>();
+        contracts2.add(contract4); //bidirectioneel in domein, databank blijft gelijk
+        klant2.setContracten(contracts2);
         
         List<Ticket> tickets = new ArrayList<>();
         tickets.add(ticket1); tickets.add(ticket2); tickets.add(ticket3); tickets.add(ticket4); tickets.add(ticket5); tickets.add(ticket6);//bidirectioneel in domein, databank blijft gelijk
