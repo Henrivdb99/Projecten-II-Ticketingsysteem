@@ -111,14 +111,8 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	// Event Listener on Button[#btnKlantDetails].onAction
 	@FXML
 	public void btnKlantDetailsOnAction(ActionEvent event) {
-		try {
-			this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, this.selectedUser, ac);
-			this.setRight(klantDetailsSchermController);
-			
-		} catch(NullPointerException np) {
-			System.out.println(np.getMessage());
-		}
+		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
+		showDetailsScherm(selectedUser);
 	}
 	// Event Listener on Button[#btnResetFilters].onAction
 	@FXML
@@ -203,6 +197,16 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
         });
         
 		ac.changeFilterKlant(cboStatus.getValue(), "Status");
+	}
+	
+	public void showDetailsScherm(GebruikerGegevens userParameter) {
+		try {
+			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, userParameter, ac);
+			this.setRight(klantDetailsSchermController);
+			
+		} catch(NullPointerException np) {
+			System.out.println(np.getMessage());
+		}
 	}
 	
 

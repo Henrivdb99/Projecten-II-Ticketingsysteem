@@ -74,8 +74,7 @@ public class KlantenContractenSchermController extends GridPane implements Initi
 	// Event Listener on Button[#btnTerug].onAction
 	@FXML
 	public void btnTerugOnAction(ActionEvent event) {
-		Stage stage = (Stage) (getScene().getWindow());
-		stage.setScene(this.parent.getScene());
+		parent.showDetailsScherm(selectedUser);
 	}
 
 	@Override
