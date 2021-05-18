@@ -11,7 +11,7 @@ import domein.controllers.AangemeldeGebruikerController;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
 import domein.models.TicketStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

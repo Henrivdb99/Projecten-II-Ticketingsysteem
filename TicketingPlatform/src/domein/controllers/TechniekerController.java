@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import domein.models.Werknemer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,9 +18,9 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public TypeGebruiker geefAangemeldeGebruikerType() {
+	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
-		return TypeGebruiker.Technieker;
+		return WerknemerRol.Technieker;
 	}
 
 	@Override

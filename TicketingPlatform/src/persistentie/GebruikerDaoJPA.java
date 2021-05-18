@@ -55,6 +55,16 @@ public class GebruikerDaoJPA extends GenericDaoJPA<Gebruiker> implements Gebruik
         } 
 	}
 
+	@Override
+	public List<Gebruiker> geefWerknemersByRol(WerknemerRol rol) throws EntityNotFoundException {
+		try {
+            return em.createNamedQuery("Gebruiker.geefWerknemersByRol", Gebruiker.class)
+            		.setParameter("rol", rol)
+            		.getResultList();
+        } catch (NoResultException ex) {
+            throw new EntityNotFoundException();
+        } 
+	}
 	
 	
 	

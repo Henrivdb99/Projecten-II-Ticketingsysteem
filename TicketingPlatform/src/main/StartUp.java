@@ -2,6 +2,8 @@ package main;
 
 import domein.PopuleerDB;
 import domein.controllers.LoginController;
+import domein.models.WerknemerRol;
+import persistentie.GebruikerDaoJPA;
 
 public class StartUp {
 
@@ -11,6 +13,8 @@ public class StartUp {
 		LoginController gc = new LoginController();
 		
 		PopuleerDB.run();
+		
+		new GebruikerDaoJPA().geefWerknemersByRol(WerknemerRol.Technieker).stream().forEach(e -> System.out.println(e));
 
 		System.out.println("Goodbye world");
 	}

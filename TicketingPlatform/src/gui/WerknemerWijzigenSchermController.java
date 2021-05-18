@@ -5,7 +5,7 @@ import java.io.IOException;
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 	@FXML
 	private TextField txfStad;
 	@FXML
-	private ChoiceBox<TypeGebruiker> cboRol;
+	private ChoiceBox<WerknemerRol> cboRol;
 	@FXML
 	private PasswordField txfWachtwoord;
 	@FXML
@@ -72,7 +72,7 @@ public class WerknemerWijzigenSchermController extends GridPane {
 			loader.setController(this);
 			loader.load();
 
-			cboRol.setItems(FXCollections.observableArrayList(TypeGebruiker.values()));
+			cboRol.setItems(FXCollections.observableArrayList(WerknemerRol.values()));
 			cboStatus.setItems(FXCollections.observableArrayList(GebruikerStatus.values()));
 			lblTitel.setText("Werknemer wijzigen");
 			btnWerknemerAanmaken.setText("Werknemer wijzigen");

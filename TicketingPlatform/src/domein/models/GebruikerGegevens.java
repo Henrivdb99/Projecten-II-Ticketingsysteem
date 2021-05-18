@@ -13,6 +13,6 @@ public interface GebruikerGegevens {
 	public String getVoornaam();
 	public String[] getAdres();
 	public String[] getTelefoonnummers();
-	public TypeGebruiker getRol();
+	public WerknemerRol getRol();
 	public String getBedrijfsnaam();
 }

@@ -20,7 +20,7 @@ public class Werknemer extends Gebruiker {
 	@OneToMany(mappedBy="technieker")
 	private List<Ticket> tickets;
 	
-	public Werknemer(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers, TypeGebruiker rol) {
+	public Werknemer(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam, String[] adres, String[] telefoonnummers, WerknemerRol rol) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 		super.setRol(rol);
 	}

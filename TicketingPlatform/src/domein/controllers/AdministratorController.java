@@ -3,7 +3,7 @@ package domein.controllers;
 import domein.models.ContractGegevens;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import domein.models.Werknemer;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -15,9 +15,9 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 
 	@Override
-	public TypeGebruiker geefAangemeldeGebruikerType() {
+	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
-		return TypeGebruiker.Administrator;
+		return WerknemerRol.Administrator;
 	}
 
 	@Override
@@ -37,13 +37,13 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	
 	@Override
 	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers,
-			TypeGebruiker rol, String wachtwoord, String[] adres) {
+			WerknemerRol rol, String wachtwoord, String[] adres) {
 		actemium.voegWerknemerToe(naam, voornaam, email, telefoonnummers, rol, wachtwoord, adres);
 	}
 
 	@Override
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers,
-			TypeGebruiker rol, GebruikerStatus status, String wachtwoord, String[] adres) {
+			WerknemerRol rol, GebruikerStatus status, String wachtwoord, String[] adres) {
 		
 		actemium.wijzigWerknemer(id, naam, voornaam, email, telefoonnummers, rol, status, wachtwoord, adres);
 		

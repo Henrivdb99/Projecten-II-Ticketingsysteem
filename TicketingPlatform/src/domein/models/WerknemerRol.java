@@ -1,6 +1,6 @@
 package domein.models;
 
-public enum TypeGebruiker {
+public enum WerknemerRol {
 	Administrator,
 	SupportManager,
 	Technieker

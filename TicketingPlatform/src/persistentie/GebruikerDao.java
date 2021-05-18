@@ -11,4 +11,5 @@ public interface GebruikerDao extends GenericDao<Gebruiker>  {
         Gebruiker getGebruikerByEmail(String email) throws EntityNotFoundException;
         List<Gebruiker> geefWerknemers() throws EntityNotFoundException;
         List<Gebruiker> geefKlanten() throws EntityNotFoundException;
+		List<Gebruiker> geefWerknemersByRol(WerknemerRol rol) throws EntityNotFoundException;
 }

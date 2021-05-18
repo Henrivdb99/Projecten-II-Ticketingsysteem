@@ -10,7 +10,7 @@ import domein.models.GebruikerStatus;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import domein.models.Werknemer;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -60,7 +60,7 @@ public abstract class AangemeldeGebruikerController {
 		actemium.changeFilterKnowledgebase(filterValue, veld);
 	}
 	// === Abstracte methodes ===
-	public abstract TypeGebruiker geefAangemeldeGebruikerType();
+	public abstract WerknemerRol geefAangemeldeGebruikerType();
 	
 	// === Gedragspecifieke methodes ===
 
@@ -83,11 +83,11 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
-	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
+	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers, WerknemerRol rol, GebruikerStatus status ,String wachtwoord, String[] adres) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	
-	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers, TypeGebruiker rol, String wachtwoord, String[] adres) {
+	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers, WerknemerRol rol, String wachtwoord, String[] adres) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	

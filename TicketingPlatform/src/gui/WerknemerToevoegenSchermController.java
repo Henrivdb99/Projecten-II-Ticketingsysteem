@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.GebruikerStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 
@@ -51,7 +51,7 @@ public class WerknemerToevoegenSchermController extends GridPane {
 	@FXML
 	private TextField txfStad;
 	@FXML
-	private ChoiceBox<TypeGebruiker> cboRol;
+	private ChoiceBox<WerknemerRol> cboRol;
 	@FXML
 	private ChoiceBox<GebruikerStatus> cboStatus;
 	@FXML
@@ -74,7 +74,7 @@ public class WerknemerToevoegenSchermController extends GridPane {
 			loader.setController(this);
 			loader.load();
 
-			cboRol.setItems(FXCollections.observableArrayList(TypeGebruiker.values()));
+			cboRol.setItems(FXCollections.observableArrayList(WerknemerRol.values()));
 			cboStatus.setVisible(false);
 			lblStatus.setVisible(false);
 

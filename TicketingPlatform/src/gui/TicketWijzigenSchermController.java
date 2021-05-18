@@ -15,7 +15,7 @@ import domein.models.GebruikerGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
 import domein.models.TicketStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 

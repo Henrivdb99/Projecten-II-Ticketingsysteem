@@ -16,7 +16,9 @@ import domein.BCrypt;
 
 		@NamedQuery(name = "Gebruiker.geefWerknemers", query = "select g from Gebruiker g where TYPE(g) = Werknemer"),
 
-		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant")
+		@NamedQuery(name = "Gebruiker.geefKlanten", query = "select g from Gebruiker g where TYPE(g) = Klant"),
+		
+		@NamedQuery(name = "Gebruiker.geefWerknemersByRol", query = "select g from Gebruiker g where g.rol = :rol")
 
 })
 public abstract class Gebruiker implements Serializable, GebruikerGegevens{
@@ -37,7 +39,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	
 	//enkel in werknemer:
 	@Column(name = "Rol")
-	private TypeGebruiker rol;
+	private WerknemerRol rol;
 	//enkel in klant:
 	@Column(name = "Bedrijf")
 	private String bedrijfsnaam;
@@ -158,11 +160,11 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 			throw new IllegalArgumentException("E-mailadres is verplicht");
 	}
 	
-	public TypeGebruiker getRol() {
+	public WerknemerRol getRol() {
 		return rol;
 	}
 
-	public void setRol(TypeGebruiker rol) {
+	public void setRol(WerknemerRol rol) {
 		this.rol = rol;
 	}
 	

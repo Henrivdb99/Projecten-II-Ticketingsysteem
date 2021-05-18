@@ -164,7 +164,7 @@ public class Actemium {
 	}
 
 	public void voegWerknemerToe(String naam, String voornaam, String email, String[] telefoonnummers,
-			TypeGebruiker rol, String wachtwoord, String[] adres) {
+			WerknemerRol rol, String wachtwoord, String[] adres) {
 
 		Gebruiker nieuweGebruiker = new Werknemer(email, wachtwoord, GebruikerStatus.ACTIEF, naam, voornaam, adres,
 				telefoonnummers, rol);
@@ -177,7 +177,7 @@ public class Actemium {
 	}
 
 	public void wijzigWerknemer(int id, String naam, String voornaam, String email, String[] telefoonnummers,
-			TypeGebruiker rol, GebruikerStatus status, String wachtwoord, String[] adres) {
+			WerknemerRol rol, GebruikerStatus status, String wachtwoord, String[] adres) {
 
 		Gebruiker werknemer = werknemers.stream().filter(w -> w.getId() == id).findAny().orElse(null);
 		// wat doen we als werknemer null is????
@@ -341,14 +341,15 @@ public class Actemium {
 	}
 	
 	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		List<Gebruiker> techniekers = gebruikerRepo.geefWerknemersByRol(WerknemerRol.Technieker);
 		return FXCollections.observableArrayList(data());
 	}
 	
-	public List<Werknemer> data(){
+	private List<Werknemer> data(){
 		List<Werknemer> lijst = new ArrayList<>();
-		Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
-        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
-        Werknemer technieker3 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Thomson", "Tom", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+		Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
+        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
+        Werknemer technieker3 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Thomson", "Tom", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
 
         lijst.add(technieker1);
         lijst.add(technieker2);

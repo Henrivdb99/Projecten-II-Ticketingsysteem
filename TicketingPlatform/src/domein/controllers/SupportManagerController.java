@@ -14,9 +14,9 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	}
 
 	@Override
-	public TypeGebruiker geefAangemeldeGebruikerType() {
+	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
-		return TypeGebruiker.SupportManager;
+		return WerknemerRol.SupportManager;
 	}
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {

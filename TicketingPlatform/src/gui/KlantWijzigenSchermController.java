@@ -5,7 +5,7 @@ import java.io.IOException;
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.TypeGebruiker;
+import domein.models.WerknemerRol;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
