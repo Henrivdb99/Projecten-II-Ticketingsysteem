@@ -62,15 +62,5 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 		actemium.wijzigKlant(id, naam, voornaam, email, telefoonnummers, status, wachtwoord, adres, bedrijfsnaam);
 	}
-	
-	@Override
-	public void changeFilter(String filterValue, String veld) {
-		actemium.changeFilter(filterValue, veld);
-	}
-	
-	@Override
-	public void changeFilterKlant(String filterValue, String veld) {
-		actemium.changeFilterKlant(filterValue, veld);
-	}
 
 }

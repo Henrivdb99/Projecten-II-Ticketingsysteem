@@ -48,16 +48,19 @@ public abstract class AangemeldeGebruikerController {
 		this.aangemeldeGebruiker = aangemeldeGebruiker;
 	}
 	
-	// === Algemene methodes ===
-	
-	public void changeFilter(String filterValue, String veld) {
-		actemium.changeFilter(filterValue, veld);
+	// === Filter methodes ===
+
+	public void changeFilterWerknemer(String filterValue, String veld) {
+		actemium.changeFilterWerknemer(filterValue, veld);				
 	}
 	public void changeFilterKlant(String filterValue, String veld) {
 		actemium.changeFilterKlant(filterValue, veld);
 	}
 	public void changeFilterKnowledgebase(String filterValue, String veld) {
 		actemium.changeFilterKnowledgebase(filterValue, veld);
+	}
+	public void changeFilterTicket(String value, String veld) {
+		actemium.changeFilterTicket(value, veld);
 	}
 	// === Abstracte methodes ===
 	public abstract WerknemerRol geefAangemeldeGebruikerType();
@@ -123,7 +126,6 @@ public abstract class AangemeldeGebruikerController {
 	public void wijzigKnowledgebaseItem(String titel, String omschrijving) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
 	}
-
 	
 	
 }

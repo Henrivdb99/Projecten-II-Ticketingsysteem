@@ -136,13 +136,13 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		txfRol.clear();
 		cboStatus.setValue(alleStatussen);
 		
-		ac.changeFilter(alleStatussen, "Status");
+		ac.changeFilterWerknemer(alleStatussen, "Status");
 	}
 
 	@FXML
 	public void filterGebruikersnaam(KeyEvent event) {
 		String newValue = txfGebruikersnaam.getText();
-		ac.changeFilter(newValue, "Gebruikersnaam");
+		ac.changeFilterWerknemer(newValue, "Gebruikersnaam");
 		
     	//andere filtervakken leegmaken
 		txfNaamVoornaam.clear();
@@ -154,7 +154,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	@FXML
 	public void filterNaamVoornaam(KeyEvent event) {
 		String newValue = txfNaamVoornaam.getText();
-		ac.changeFilter(newValue, "NaamEnVoornaam");
+		ac.changeFilterWerknemer(newValue, "NaamEnVoornaam");
 		
     	//andere filtervakken leegmaken
     	txfGebruikersnaam.clear();
@@ -166,7 +166,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 	@FXML
 	public void filterRol(KeyEvent event) {
 		String newValue = txfRol.getText();
-		ac.changeFilter(newValue, "Rol");
+		ac.changeFilterWerknemer(newValue, "Rol");
 		
     	//andere filtervakken leegmaken
     	txfGebruikersnaam.clear();
@@ -209,11 +209,11 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
     		txfNaamVoornaam.clear();
     		txfRol.clear();
         	
-            ac.changeFilter(cboStatus.getValue(), "Status");
+            ac.changeFilterWerknemer(cboStatus.getValue(), "Status");
 
         });
         
-		ac.changeFilter(cboStatus.getValue(), "Status"); //default filter
+		ac.changeFilterWerknemer(cboStatus.getValue(), "Status"); //default filter
 	}
 	
 }

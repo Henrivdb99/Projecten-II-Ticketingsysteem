@@ -62,48 +62,47 @@ public class Actemium {
 			}
 		}
 
-	public void changeFilter(String filterValue, String veld) {
-		if (veld.equals("ticketStatus")) {
-			filteredTickets.setPredicate(ticket -> {
-				if (filterValue.equalsIgnoreCase("Standaard")) {
+	public void changeFilterTicket(String filterValue, String veld) {
+		filteredTickets.setPredicate(ticket -> {
+			if (filterValue.equalsIgnoreCase("Standaard")) {
 
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
-							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if (filterValue.equalsIgnoreCase("Alle")) {
-					return true;
-				} else
-					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+				return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+						|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+			} else if (filterValue.equalsIgnoreCase("Alle")) {
+				return true;
+			} else
+				return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
 
-			});
-		} else {
+		});		
+	}
+	
+	public void changeFilterWerknemer(String filterValue, String veld) {
+		filteredWerknemers.setPredicate(gebruiker -> {
 
-			filteredWerknemers.setPredicate(gebruiker -> {
+			if (filterValue == null || filterValue.isBlank()) {
+				return true;
+			}
+			String lowerCaseValue = filterValue.toLowerCase();
 
-				if (filterValue == null || filterValue.isBlank()) {
-					return true;
-				}
-				String lowerCaseValue = filterValue.toLowerCase();
-
-				switch (veld) {
-				case "Gebruikersnaam": {
-					return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
-				}
-				case "NaamEnVoornaam": {
-					return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
-							|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
-				}
-				case "Rol": {
-					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
-				}
-				case "Status": { // miss moeten we "Alle" een prop maken
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
-							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected value: " + veld);
-				}
-			});
-		}
+			switch (veld) {
+			case "Gebruikersnaam": {
+				return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
+			}
+			case "NaamEnVoornaam": {
+				return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
+						|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
+			}
+			case "Rol": {
+				return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
+			}
+			case "Status": { // miss moeten we "Alle" een prop maken
+				return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+						: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + veld);
+			}
+		});
 	}
 
 	public void changeFilterKlant(String filterValue, String veld) {
