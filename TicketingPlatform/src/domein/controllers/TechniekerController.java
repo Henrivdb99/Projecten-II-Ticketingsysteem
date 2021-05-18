@@ -36,4 +36,11 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		return actemium.geefKnowledgebaseItems();
 	}
+	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		return actemium.geefTechniekers();
+	}
+	@Override
+	public void wijzigTicket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		actemium.w(titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
+	}
 }

@@ -76,6 +76,7 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 			
 			if (ac.geefAangemeldeGebruikerType().toString() == "Technieker") {
 				btnTicketToevoegen.setVisible(false);
+				btnTicketWijzigen.setText("Status wijzigen");
 			}
 			
 			

@@ -32,6 +32,10 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	// === Beheer knowledgebase ===
 	
 	@Override
+	public void wijzigTicket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		actemium.wijzigTicket(titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
+	}
+	@Override
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		return actemium.geefKnowledgebaseItems();
 	}

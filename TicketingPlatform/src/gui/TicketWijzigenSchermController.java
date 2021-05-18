@@ -70,6 +70,35 @@ public class TicketWijzigenSchermController extends GridPane implements Initiali
 			loader.setController(this);
 			loader.load();
 			
+<<<<<<< Upstream, based on branch 'main' of https://github.com/HoGentProjectenII/2021-java-g-23.git
+=======
+			cboTechnieker.setItems(ac.geefTechniekers());
+			cboStatus.setItems(FXCollections.observableArrayList(TicketStatus.values()));
+			cboType.setItems(FXCollections.observableArrayList(new Integer[] {1, 2, 3}));	
+			btnKlantAanmaken.setText("Ticket wijzigen");
+			lblTitel.setText("Ticket wijzigen");
+			
+			txfTitel.setText(selectedTicket.getTitel());
+			cboStatus.setValue(selectedTicket.getStatus());
+			txaOmschrijving.setText(selectedTicket.getOmschrijving());
+			txaOpmerkingen.setText(selectedTicket.getOpmerkingen());
+			cboType.setValue(selectedTicket.getTypeTicket());
+			txfKlantId.setText(Integer.toString(selectedTicket.getKlant().getId()));
+			cboTechnieker.setValue(selectedTicket.getTechnieker());
+			
+			if (ac.geefAangemeldeGebruikerType().toString() == "Technieker") {
+				cboTechnieker.setDisable(true);
+				cboType.setDisable(true);
+				lblTitel.setText("Status wijzigen");
+				btnKlantAanmaken.setText("Status wijzigen");
+				txfTitel.setDisable(true);
+				txaOmschrijving.setDisable(true);
+				txaOpmerkingen.setDisable(true);
+				txfKlantId.setDisable(true);
+				btnBestandenToevoegen.setDisable(true);
+			}
+			
+>>>>>>> e44afbb geefTechniekers, wijzig ticket
 			
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
@@ -90,8 +119,12 @@ public class TicketWijzigenSchermController extends GridPane implements Initiali
 									ac.wijzigTicket(selectedTicket.getId(), txfTitel.getText(), TicketStatus.valueOf(cboStatus.getValue().toString()), LocalDate.now(),
 											txaOmschrijving.getText(), txaOpmerkingen.getText(),
 											Integer.parseInt(cboType.getValue().toString()), Integer.parseInt(txfKlantId.getText()),
+<<<<<<< Upstream, based on branch 'main' of https://github.com/HoGentProjectenII/2021-java-g-23.git
 											Integer.parseInt(cboTechnieker.getValue().toString()), "Geen bijlage");
 									
+=======
+											cboTechnieker.getValue().getId(), "Geen bijlage");
+>>>>>>> e44afbb geefTechniekers, wijzig ticket
 									lblFout.setText("Ticket wijzigen gelukt!");
 									}else lblFout.setText("Gelieve een status te selecteren.");
 								} else
