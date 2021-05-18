@@ -30,17 +30,17 @@ public class TechniekerController extends AangemeldeGebruikerController {
 
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
-		return actemium.geefTickets(getAangemeldeGebruiker().getId());
+		return  (SortedList<TicketGegevens>) (Object) actemium.geefTicketsByTechnieker(getAangemeldeGebruiker().getId());
 	}
 	
 	// === Beheer knowledgebase ===
 
 	@Override
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
-		return actemium.geefKnowledgebaseItems();
+		return  (SortedList<KnowledgeBaseGegevens>) (Object) actemium.geefKnowledgebaseItems();
 	}
 	public ObservableList<GebruikerGegevens> geefTechniekers() {
-		return actemium.geefTechniekers();
+		return  (ObservableList<GebruikerGegevens>) (Object) actemium.geefTechniekers();
 	}
 	@Override
 	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {

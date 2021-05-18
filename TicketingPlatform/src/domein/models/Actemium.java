@@ -21,14 +21,16 @@ public class Actemium {
 	private ObservableList<Contract> contracten;
 	private ObservableList<Ticket> tickets;	
 	private ObservableList<KnowledgeBase> knowledgebaseItems;
+	
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private FilteredList<Contract> filteredContracten;
 	private FilteredList<KnowledgeBase> filteredItems;
-	private SortedList<TicketGegevens> sortableTickets;
-	private SortedList<GebruikerGegevens> sortableWerknemers;
-	private SortedList<KnowledgeBaseGegevens> sortableItems;
+	
+	private SortedList<Ticket> sortableTickets;
+	private SortedList<Gebruiker> sortableWerknemers;
+	private SortedList<KnowledgeBase> sortableItems;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
@@ -45,6 +47,9 @@ public class Actemium {
 		this.contractRepo = contractRepo;
 		this.knowledgebaseRepo = genericDaoJPA;
 	}
+	
+	// === Filters ===
+	
 	public void changeFilterKnowledgebase(String filterValue, String veld) {
 		if (veld.equals("knowledgebaseTitel")) {
 			filteredItems.setPredicate(item -> {
@@ -147,7 +152,7 @@ public class Actemium {
 	}
 	// ===Beheer werknemers===
 
-	public SortedList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<Gebruiker> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
@@ -218,13 +223,13 @@ public class Actemium {
 
 	// ===Beheer klanten===
 
-	public ObservableList<GebruikerGegevens> geefKlanten() {
+	public ObservableList<Gebruiker> geefKlanten() {
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
 			filteredKlanten = new FilteredList<>(klanten, k -> true);
 
-			return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
+			return filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -282,14 +287,14 @@ public class Actemium {
 
 	}
 	
-	public ObservableList<ContractGegevens> geefContracten(int klantId) {
+	public ObservableList<Contract> geefContracten(int klantId) {
 		try {
 			if (this.contracten == null) {
 				this.contracten = FXCollections.observableList(contractRepo.findAll().stream().filter(c -> c.getKlant().getId() == klantId).collect(Collectors.toList()));
 				filteredContracten = new FilteredList<>(contracten, w -> true);
 			}
 
-			return (ObservableList<ContractGegevens>) (Object) filteredContracten;
+			return filteredContracten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -297,11 +302,11 @@ public class Actemium {
 	}
 
 	// === Beheer Tickets ===
-	public SortedList<TicketGegevens> geefTickets() {
-		return geefTickets(0);
+	public SortedList<Ticket> geefTickets() {
+		return geefTicketsByTechnieker(0); //onbestaand id => geeft alle tickets
 	}
 
-	public SortedList<TicketGegevens> geefTickets(int techniekerId) {
+	public SortedList<Ticket> geefTicketsByTechnieker(int techniekerId) {
 		try {
 			if (this.tickets == null) {
 				if (techniekerId != 0) {
@@ -388,27 +393,15 @@ public class Actemium {
 	}
 
 	
-	public ObservableList<GebruikerGegevens> geefTechniekers() { //twee verschillende datatypes
+	public ObservableList<Gebruiker> geefTechniekers() { 
 		List<Gebruiker> techniekers = gebruikerRepo.geefWerknemersByRol(WerknemerRol.Technieker);
-		return FXCollections.observableArrayList(data());
+		return FXCollections.observableArrayList(techniekers);
 	}
-	
-	private List<Werknemer> data(){
-		List<Werknemer> lijst = new ArrayList<>();
-		Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer technieker3 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Thomson", "Tom", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
 
-        lijst.add(technieker1);
-        lijst.add(technieker2);
-        lijst.add(technieker3);
-
-		return lijst;
-	}
 	// === Beheer Knowledgebase ===
 
 
-	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
+	public SortedList<KnowledgeBase> geefKnowledgebaseItems() {
 		try {
 			if (this.knowledgebaseItems == null) {
 				this.knowledgebaseItems = FXCollections.observableList(knowledgebaseRepo.findAll());

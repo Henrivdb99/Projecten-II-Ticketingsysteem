@@ -22,17 +22,17 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	@Override
 	public SortedList<GebruikerGegevens> geefWerknemers() {
-		return actemium.geefWerknemers();
+		return (SortedList<GebruikerGegevens>) (Object) actemium.geefWerknemers();
 	}
 
 	@Override
 	public ObservableList<GebruikerGegevens> geefKlanten() {
-		return actemium.geefKlanten();
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
 	}
 	
 	@Override
 	public ObservableList<ContractGegevens> geefContracten(int klantId) {
-		return actemium.geefContracten(klantId);
+		return  (ObservableList<ContractGegevens>) (Object) actemium.geefContracten(klantId);
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	}
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
-		return actemium.geefTickets();
+		return  (SortedList<TicketGegevens>) (Object) actemium.geefTickets();
 	}
 	@Override
 	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
@@ -37,7 +37,7 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	}
 	@Override
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
-		return actemium.geefKnowledgebaseItems();
+		return  (SortedList<KnowledgeBaseGegevens>) (Object) actemium.geefKnowledgebaseItems();
 	}
 	@Override
 	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
@@ -45,7 +45,7 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	}
 	@Override
 	public ObservableList<GebruikerGegevens> geefTechniekers() {
-		return actemium.geefTechniekers();
+		return  (ObservableList<GebruikerGegevens>) (Object) actemium.geefTechniekers();
 	}
 
 }
