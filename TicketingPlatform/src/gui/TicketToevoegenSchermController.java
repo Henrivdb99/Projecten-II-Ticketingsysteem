@@ -48,7 +48,7 @@ public class TicketToevoegenSchermController extends GridPane {
 	@FXML
 	private TextArea txaOpmerkingen;
 	@FXML
-	private ChoiceBox<String> cboTechnieker;
+	private ChoiceBox<GebruikerGegevens> cboTechnieker;
 	@FXML
 	private ChoiceBox cboStatus;
 
@@ -68,7 +68,7 @@ public class TicketToevoegenSchermController extends GridPane {
 			lblStatus.setVisible(false);
 			
 			cboType.setItems(FXCollections.observableArrayList(new Integer[] {1, 2, 3}));		
-			cboTechnieker.setItems(FXCollections.observableArrayList(ac.geefTechniekers().stream().map(t -> t.getNaam() + " " + t.getVoornaam()).collect(Collectors.toList())));
+			cboTechnieker.setItems(ac.geefTechniekers());
 
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
@@ -89,7 +89,7 @@ public class TicketToevoegenSchermController extends GridPane {
 									ac.voegTicketToe(txfTitel.getText(), TicketStatus.Aangemaakt, LocalDate.now(),
 											txaOmschrijving.getText(), txaOpmerkingen.getText(),
 											Integer.parseInt(cboType.getValue().toString()), Integer.parseInt(txfKlantId.getText()),
-											Integer.parseInt(cboTechnieker.getValue().toString()), "Geen bijlage");
+											cboTechnieker.getValue().getId(), "Geen bijlage");
 									resetVelden();
 									lblFout.setText("Ticket aanmaken gelukt!");
 								} else

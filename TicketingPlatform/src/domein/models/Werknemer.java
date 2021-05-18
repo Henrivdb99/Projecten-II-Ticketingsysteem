@@ -24,6 +24,10 @@ public class Werknemer extends Gebruiker {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
 		super.setRol(rol);
 	}
+	@Override
+	public String toString() {
+		return String.format(getNaam() + " " +getVoornaam());
+	}
 
 
 }
