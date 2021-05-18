@@ -121,8 +121,12 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 	// Event Listener on TableView[#tblView].onMouseClicked
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
-		btnTicketDetails.setDisable(false);
-		btnTicketWijzigen.setDisable(false);
+		if(tblView.getSelectionModel().getSelectedItem() != null) {
+			btnTicketDetails.setDisable(false);
+			btnTicketWijzigen.setDisable(false);
+			setRight(null);
+		}
+
 	}
 
 	@Override

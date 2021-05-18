@@ -163,8 +163,11 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	// Event Listener on TableView[#tblView].onMouseClicked
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
-        btnKlantDetails.setDisable(false);
-        btnKlantWijzigen.setDisable(false);
+		if(tblView.getSelectionModel().getSelectedItem() != null) {
+			btnKlantDetails.setDisable(false);
+			btnKlantWijzigen.setDisable(false);
+			setRight(null);
+		}
     }
 
 	@Override
