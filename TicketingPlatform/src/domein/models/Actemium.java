@@ -282,10 +282,10 @@ public class Actemium {
 
 	}
 	
-	public ObservableList<ContractGegevens> geefContracten() {
+	public ObservableList<ContractGegevens> geefContracten(int klantId) {
 		try {
 			if (this.contracten == null) {
-				this.contracten = FXCollections.observableList(contractRepo.findAll());
+				this.contracten = FXCollections.observableList(contractRepo.findAll().stream().filter(c -> c.getKlant().getId() == klantId).collect(Collectors.toList()));
 				filteredContracten = new FilteredList<>(contracten, w -> true);
 			}
 

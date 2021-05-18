@@ -52,6 +52,7 @@ public class KlantDetailsSchermController extends GridPane {
 
 	public KlantDetailsSchermController(KlantenBeherenSchermController klantenBeherenSchermController, GebruikerGegevens selectedUser, AangemeldeGebruikerController ac) {
 		this.parent = klantenBeherenSchermController;
+		this.selectedUser = selectedUser;
 		this.ac=ac;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantDetailsScherm.fxml"));
@@ -77,8 +78,8 @@ public class KlantDetailsSchermController extends GridPane {
 		// Event Listener on Button[#btnKlantContracten].onAction
 		@FXML
 		public void btnKlantContractenOnAction(ActionEvent event) {
-			KlantenContractenSchermController klantContractenSchermController = new KlantenContractenSchermController(parent, ac);
-			this.parent.setRight(klantContractenSchermController); //volgens mij kan dit niet		
+			KlantenContractenSchermController klantContractenSchermController = new KlantenContractenSchermController(parent, this.selectedUser, ac);
+			this.parent.setRight(klantContractenSchermController);
 		}
 
 }

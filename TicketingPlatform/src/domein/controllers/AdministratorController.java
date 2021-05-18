@@ -31,8 +31,8 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	}
 	
 	@Override
-	public ObservableList<ContractGegevens> geefContracten() {
-		return actemium.geefContracten();
+	public ObservableList<ContractGegevens> geefContracten(int klantId) {
+		return actemium.geefContracten(klantId);
 	}
 	
 	@Override

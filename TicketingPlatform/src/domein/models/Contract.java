@@ -92,6 +92,9 @@ public class Contract implements Serializable {
 		this.eindDatum = eindDatum;
 	}
 
+	public String getContractTypeNaam() {
+		return contractType.getNaam();
+	}
 	public ContractEnContractTypeStatus getContractStatus() {
 		return contractStatus;
 	}
