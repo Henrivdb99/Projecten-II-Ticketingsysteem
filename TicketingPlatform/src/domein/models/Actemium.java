@@ -27,6 +27,7 @@ public class Actemium {
 	private FilteredList<Contract> filteredContracten;
 	private FilteredList<KnowledgeBase> filteredItems;
 	private SortedList<TicketGegevens> sortableTickets;
+	private SortedList<ContractGegevens> sortableContracten;
 	private SortedList<GebruikerGegevens> sortableWerknemers;
 	private SortedList<KnowledgeBaseGegevens> sortableItems;
 
@@ -295,7 +296,20 @@ public class Actemium {
 			throw new IllegalArgumentException(e);
 		}
 	}
+	public SortedList<ContractGegevens> geefContracten() {
+		try {
+			if (this.contracten == null) {
+				this.contracten = FXCollections.observableList(contractRepo.findAll());
+				filteredContracten = new FilteredList<>(contracten, w -> true);
+				sortableContracten = new SortedList<>(filteredContracten);
+			}
 
+			return sortableContracten;
+
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 	// === Beheer Tickets ===
 	public SortedList<TicketGegevens> geefTickets() {
 		return geefTickets(0);

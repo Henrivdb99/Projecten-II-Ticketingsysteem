@@ -2,6 +2,7 @@ package domein.controllers;
 
 import java.util.stream.Collectors;
 
+import domein.models.ContractGegevens;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
@@ -16,7 +17,7 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	public TechniekerController(Werknemer aangemeldeGebruiker) {
 		super(aangemeldeGebruiker);
 	}
-
+	
 	@Override
 	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
@@ -27,7 +28,7 @@ public class TechniekerController extends AangemeldeGebruikerController {
 
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
-		return actemium.geefTickets(getAangemeldeGebruiker().getId());
+		return actemium.geefTickets();
 	}
 	
 	// === Beheer knowledgebase ===
