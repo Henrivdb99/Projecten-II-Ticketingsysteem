@@ -3,6 +3,7 @@ package domein.controllers;
 import java.time.LocalDate;
 
 import domein.models.Actemium;
+import domein.models.Contract;
 import domein.models.ContractGegevens;
 import domein.models.Gebruiker;
 import domein.models.GebruikerGegevens;
@@ -116,7 +117,7 @@ public abstract class AangemeldeGebruikerController {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 	
-	public ObservableList<ContractGegevens> geefContracten() {
+	public ObservableList<Contract> geefContracten() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
 
