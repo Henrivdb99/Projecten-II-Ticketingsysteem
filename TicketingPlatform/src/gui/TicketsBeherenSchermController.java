@@ -76,6 +76,7 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 			
 			if (ac.geefAangemeldeGebruikerType().toString() == "Technieker") {
 				btnTicketToevoegen.setVisible(false);
+				btnTicketWijzigen.setText("Status wijzigen");
 			}
 			
 			
@@ -120,8 +121,12 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 	// Event Listener on TableView[#tblView].onMouseClicked
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
-		btnTicketDetails.setDisable(false);
-		btnTicketWijzigen.setDisable(false);
+		if(tblView.getSelectionModel().getSelectedItem() != null) {
+			btnTicketDetails.setDisable(false);
+			btnTicketWijzigen.setDisable(false);
+			setRight(null);
+		}
+
 	}
 
 	@Override
@@ -143,12 +148,13 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
         ticketStatusList.add("Alle");
         cboStatus.setItems(FXCollections.observableArrayList(ticketStatusList));
 		cboStatus.setValue(standaardStatus);
-        
+        tblView.setPlaceholder(new Label("Er zijn geen tickets beschikbaar voor de huidige status."));
+
         cboStatus.setOnAction(event -> {
-            ac.changeFilter(cboStatus.getValue(), "ticketStatus");
+            ac.changeFilterTicket(cboStatus.getValue(), "ticketStatus");
             tblView.setPlaceholder(new Label(String.format("Er zijn geen tickets beschikbaar voor de status %s.", cboStatus.getValue().toString())));
 
         });
-        ac.changeFilter(standaardStatus, "ticketStatus"); //default filter
+        ac.changeFilterTicket(standaardStatus, "ticketStatus"); //default filter
     }
 }

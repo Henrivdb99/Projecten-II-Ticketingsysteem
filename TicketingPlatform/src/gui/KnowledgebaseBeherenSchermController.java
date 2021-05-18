@@ -106,8 +106,12 @@ public class KnowledgebaseBeherenSchermController extends BorderPane implements 
 
 	@FXML
 	public void userClickedOnTable(MouseEvent event) {
-		btnItemWijzigen.setDisable(false);
-		btnToonOmschrijving.setDisable(false);
+		if(tblView.getSelectionModel().getSelectedItem() != null) 
+		{
+			btnItemWijzigen.setDisable(false);
+			btnToonOmschrijving.setDisable(false);
+			setRight(null);
+		}
 	}
 
 	@Override

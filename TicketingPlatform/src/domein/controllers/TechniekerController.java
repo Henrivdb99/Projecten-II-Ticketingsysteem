@@ -1,11 +1,14 @@
 package domein.controllers;
 
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
+import domein.models.GebruikerGegevens;
 import domein.models.ContractGegevens;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
+import domein.models.TicketStatus;
 import domein.models.WerknemerRol;
 import domein.models.Werknemer;
 import javafx.collections.FXCollections;
@@ -28,13 +31,20 @@ public class TechniekerController extends AangemeldeGebruikerController {
 
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
-		return actemium.geefTickets();
+		return  (SortedList<TicketGegevens>) (Object) actemium.geefTicketsByTechnieker(getAangemeldeGebruiker().getId());
 	}
 	
 	// === Beheer knowledgebase ===
 
 	@Override
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
-		return actemium.geefKnowledgebaseItems();
+		return  (SortedList<KnowledgeBaseGegevens>) (Object) actemium.geefKnowledgebaseItems();
+	}
+	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		return  (ObservableList<GebruikerGegevens>) (Object) actemium.geefTechniekers();
+	}
+	@Override
+	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		actemium.wijzigTicket(ticketId, titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
 	}
 }

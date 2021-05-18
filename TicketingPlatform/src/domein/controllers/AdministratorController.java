@@ -22,17 +22,17 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	@Override
 	public SortedList<GebruikerGegevens> geefWerknemers() {
-		return actemium.geefWerknemers();
+		return (SortedList<GebruikerGegevens>) (Object) actemium.geefWerknemers();
 	}
 
 	@Override
 	public ObservableList<GebruikerGegevens> geefKlanten() {
-		return actemium.geefKlanten();
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
 	}
 	
 	@Override
 	public ObservableList<ContractGegevens> geefContracten(int klantId) {
-		return actemium.geefContracten(klantId);
+		return  (ObservableList<ContractGegevens>) (Object) actemium.geefContracten(klantId);
 	}
 	
 	@Override
@@ -61,16 +61,6 @@ public class AdministratorController extends AangemeldeGebruikerController {
 			GebruikerStatus status, String wachtwoord, String[] adres, String bedrijfsnaam) {
 
 		actemium.wijzigKlant(id, naam, voornaam, email, telefoonnummers, status, wachtwoord, adres, bedrijfsnaam);
-	}
-	
-	@Override
-	public void changeFilter(String filterValue, String veld) {
-		actemium.changeFilter(filterValue, veld);
-	}
-	
-	@Override
-	public void changeFilterKlant(String filterValue, String veld) {
-		actemium.changeFilterKlant(filterValue, veld);
 	}
 
 }

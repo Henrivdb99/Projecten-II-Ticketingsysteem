@@ -21,12 +21,16 @@ public class Actemium {
 	private ObservableList<Contract> contracten;
 	private ObservableList<Ticket> tickets;	
 	private ObservableList<KnowledgeBase> knowledgebaseItems;
+	
 	private FilteredList<Gebruiker> filteredWerknemers;
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private FilteredList<Contract> filteredContracten;
 	private FilteredList<Contract> filteredContracten1;
 	private FilteredList<KnowledgeBase> filteredItems;
+	private SortedList<Ticket> sortableTickets;
+	private SortedList<Gebruiker> sortableWerknemers;
+	private SortedList<KnowledgeBase> sortableItems;
 	private SortedList<TicketGegevens> sortableTickets;
 	private SortedList<ContractGegevens> sortableContracten;
 	private SortedList<GebruikerGegevens> sortableWerknemers;
@@ -47,6 +51,9 @@ public class Actemium {
 		this.contractRepo = contractRepo;
 		this.knowledgebaseRepo = genericDaoJPA;
 	}
+	
+	// === Filters ===
+	
 	public void changeFilterKnowledgebase(String filterValue, String veld) {
 		if (veld.equals("knowledgebaseTitel")) {
 			filteredItems.setPredicate(item -> {
@@ -59,48 +66,47 @@ public class Actemium {
 			}
 		}
 
-	public void changeFilter(String filterValue, String veld) {
-		if (veld.equals("ticketStatus")) {
-			filteredTickets.setPredicate(ticket -> {
-				if (filterValue.equalsIgnoreCase("Standaard")) {
+	public void changeFilterTicket(String filterValue, String veld) {
+		filteredTickets.setPredicate(ticket -> {
+			if (filterValue.equalsIgnoreCase("Standaard")) {
 
-					return ticket.getStatus().equals(TicketStatus.Aangemaakt)
-							|| ticket.getStatus().equals(TicketStatus.InBehandeling);
-				} else if (filterValue.equalsIgnoreCase("Alle")) {
-					return true;
-				} else
-					return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
+				return ticket.getStatus().equals(TicketStatus.Aangemaakt)
+						|| ticket.getStatus().equals(TicketStatus.InBehandeling);
+			} else if (filterValue.equalsIgnoreCase("Alle")) {
+				return true;
+			} else
+				return ticket.getStatus().toString().equalsIgnoreCase(filterValue);
 
-			});
-		} else {
+		});		
+	}
+	
+	public void changeFilterWerknemer(String filterValue, String veld) {
+		filteredWerknemers.setPredicate(gebruiker -> {
 
-			filteredWerknemers.setPredicate(gebruiker -> {
+			if (filterValue == null || filterValue.isBlank()) {
+				return true;
+			}
+			String lowerCaseValue = filterValue.toLowerCase();
 
-				if (filterValue == null || filterValue.isBlank()) {
-					return true;
-				}
-				String lowerCaseValue = filterValue.toLowerCase();
-
-				switch (veld) {
-				case "Gebruikersnaam": {
-					return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
-				}
-				case "NaamEnVoornaam": {
-					return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
-							|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
-				}
-				case "Rol": {
-					return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
-				}
-				case "Status": { // miss moeten we "Alle" een prop maken
-					return lowerCaseValue.equalsIgnoreCase("Alle") ? true
-							: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected value: " + veld);
-				}
-			});
-		}
+			switch (veld) {
+			case "Gebruikersnaam": {
+				return gebruiker.getEmailAdres().toLowerCase().contains(lowerCaseValue);
+			}
+			case "NaamEnVoornaam": {
+				return gebruiker.getVoornaam().toLowerCase().contains(lowerCaseValue)
+						|| gebruiker.getNaam().toLowerCase().contains(lowerCaseValue);
+			}
+			case "Rol": {
+				return gebruiker.getRol().toString().toLowerCase().contains(lowerCaseValue);
+			}
+			case "Status": { // miss moeten we "Alle" een prop maken
+				return lowerCaseValue.equalsIgnoreCase("Alle") ? true
+						: gebruiker.getStatus().toString().toLowerCase().equals(lowerCaseValue);
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + veld);
+			}
+		});
 	}
 
 	public void changeFilterKlant(String filterValue, String veld) {
@@ -149,7 +155,7 @@ public class Actemium {
 	}
 	// ===Beheer werknemers===
 
-	public SortedList<GebruikerGegevens> geefWerknemers() {
+	public SortedList<Gebruiker> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
@@ -220,13 +226,13 @@ public class Actemium {
 
 	// ===Beheer klanten===
 
-	public ObservableList<GebruikerGegevens> geefKlanten() {
+	public ObservableList<Gebruiker> geefKlanten() {
 		try {
 			if (this.klanten == null)
 				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
 			filteredKlanten = new FilteredList<>(klanten, k -> true);
 
-			return (ObservableList<GebruikerGegevens>) (Object) filteredKlanten;
+			return filteredKlanten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -284,14 +290,14 @@ public class Actemium {
 
 	}
 	
-	public ObservableList<ContractGegevens> geefContracten(int klantId) {
+	public ObservableList<Contract> geefContracten(int klantId) {
 		try {
 			if (this.contracten == null) {
 				this.contracten = FXCollections.observableList(contractRepo.findAll().stream().filter(c -> c.getKlant().getId() == klantId).collect(Collectors.toList()));
 				filteredContracten = new FilteredList<>(contracten, w -> true);
 			}
 
-			return (ObservableList<ContractGegevens>) (Object) filteredContracten;
+			return filteredContracten;
 
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
@@ -313,11 +319,11 @@ public class Actemium {
 		}
 	}
 	// === Beheer Tickets ===
-	public SortedList<TicketGegevens> geefTickets() {
-		return geefTickets(0);
+	public SortedList<Ticket> geefTickets() {
+		return geefTicketsByTechnieker(0); //onbestaand id => geeft alle tickets
 	}
 
-	public SortedList<TicketGegevens> geefTickets(int techniekerId) {
+	public SortedList<Ticket> geefTicketsByTechnieker(int techniekerId) {
 		try {
 			if (this.tickets == null) {
 				if (techniekerId != 0) {
@@ -404,27 +410,15 @@ public class Actemium {
 	}
 
 	
-	public ObservableList<GebruikerGegevens> geefTechniekers() { //twee verschillende datatypes
+	public ObservableList<Gebruiker> geefTechniekers() { 
 		List<Gebruiker> techniekers = gebruikerRepo.geefWerknemersByRol(WerknemerRol.Technieker);
-		return FXCollections.observableArrayList(data());
+		return FXCollections.observableArrayList(techniekers);
 	}
-	
-	private List<Werknemer> data(){
-		List<Werknemer> lijst = new ArrayList<>();
-		Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer technieker3 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Thomson", "Tom", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
 
-        lijst.add(technieker1);
-        lijst.add(technieker2);
-        lijst.add(technieker3);
-
-		return lijst;
-	}
 	// === Beheer Knowledgebase ===
 
 
-	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
+	public SortedList<KnowledgeBase> geefKnowledgebaseItems() {
 		try {
 			if (this.knowledgebaseItems == null) {
 				this.knowledgebaseItems = FXCollections.observableList(knowledgebaseRepo.findAll());
