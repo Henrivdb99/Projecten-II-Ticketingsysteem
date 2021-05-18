@@ -28,7 +28,9 @@ public class PopuleerDB {
         GebruikerDaoJPA.startTransaction();
         
        
-        Klant klant1 = new Klant("klant@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
+        Klant klant1 = new Klant("klant@student.hogent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
+        Klant klant2 = new Klant("klant@ugent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Borissen", "Boris", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "UGent");
+        Klant klant3 = new Klant("klant@artevelde.be", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Morissen", "Moris", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "Artevelde");
         Werknemer supportManager1 = new Werknemer("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"}, WerknemerRol.SupportManager);
         Werknemer administrator1 = new Werknemer("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Odinson", "Thor", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"}, WerknemerRol.Administrator);
         Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
@@ -54,6 +56,8 @@ public class PopuleerDB {
         Contract contract1 = new Contract(LocalDate.now().plusMonths(-13), contract24_7, 1, klant1, ContractEnContractTypeStatus.Afgelopen); 
         Contract contract2 = new Contract(LocalDate.now().plusMonths(-8), contract24_7, 1, klant1, ContractEnContractTypeStatus.InBehandeling);
         Contract contract3 = new Contract(LocalDate.now().plusMonths(-23).plusDays(-11), contractWerkuren, 2, klant1, ContractEnContractTypeStatus.Actief);
+        Contract contract4 = new Contract(LocalDate.now().plusMonths(-22).plusDays(-10), contractWerkuren, 2, klant2, ContractEnContractTypeStatus.Actief);
+
         
         List<Contract> contracts = new ArrayList<>();
         contracts.add(contract1); contracts.add(contract2); contracts.add(contract3); //bidirectioneel in domein, databank blijft gelijk
@@ -84,6 +88,7 @@ public class PopuleerDB {
         contractdao.insert(contract1);
         contractdao.insert(contract2);
         contractdao.insert(contract3);
+        contractdao.insert(contract4);
         
         GenericDaoJPA<KnowledgeBase> knowledgebasedao = new GenericDaoJPA<>(KnowledgeBase.class);
         knowledgebasedao.insert(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
@@ -96,6 +101,8 @@ public class PopuleerDB {
         knowledgebasedao.insert(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
         
 		gebruikerdao.insert(klant1);
+		gebruikerdao.insert(klant2);
+		gebruikerdao.insert(klant3);
 		gebruikerdao.insert(supportManager1);
 		gebruikerdao.insert(administrator1);
 		gebruikerdao.insert(technieker1);
