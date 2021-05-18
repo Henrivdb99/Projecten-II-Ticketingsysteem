@@ -34,5 +34,9 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 	public void voegKnowledgebaseItemToe(String titel, String omschrijving) {
 		actemium.voegKnowledgebaseItemToe(titel, omschrijving);
 	}
+	@Override
+	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		return actemium.geefTechniekers();
+	}
 
 }

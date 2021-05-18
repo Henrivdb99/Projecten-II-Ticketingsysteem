@@ -339,21 +339,26 @@ public class Actemium {
 		GenericDaoJPA.commitTransaction();
 
 	}
-	// === Beheer Knowledgebase ===
+	
+	public ObservableList<GebruikerGegevens> geefTechniekers() {
+		return FXCollections.observableArrayList(data());
+	}
+	
+	public List<Werknemer> data(){
+		List<Werknemer> lijst = new ArrayList<>();
+		Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
+        Werknemer technieker3 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Thomson", "Tom", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, TypeGebruiker.Technieker);
 
-	public List<KnowledgeBase> data(){
-		List<KnowledgeBase> lijst = new ArrayList<>();
-		lijst.add(new KnowledgeBase("Hoe kan ik me aanmelden?", "loremIpsum", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Hoe kan ik mijn wachtwoord aanpassen?","loremIpsum", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Wat doe ik bij Error 5038","loremIpsum", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Hoe annuleer ik een ticket?","Oplossing 4", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Mijn nieuwe contract staat niet op actief","Oplossing 5", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Ik kan mijn bijlage niet uploaden","Oplossing 6", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Waar vind ik  mijn oude contracten terug?","Oplossing 7", LocalDate.now()));
-		lijst.add(new KnowledgeBase("Ik kan de naam van mijn ticket niet meer aanpassen","Oplossing 8", LocalDate.now()));
-		
+        lijst.add(technieker1);
+        lijst.add(technieker2);
+        lijst.add(technieker3);
+
 		return lijst;
 	}
+	// === Beheer Knowledgebase ===
+
+
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		try {
 			if (this.knowledgebaseItems == null) {
@@ -379,5 +384,7 @@ public class Actemium {
 		GenericDaoJPA.commitTransaction();
 		
 	}
+
+
 
 }

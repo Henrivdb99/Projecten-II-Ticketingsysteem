@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import domein.controllers.AangemeldeGebruikerController;
 import domein.models.GebruikerGegevens;
@@ -47,7 +48,7 @@ public class TicketToevoegenSchermController extends GridPane {
 	@FXML
 	private TextArea txaOpmerkingen;
 	@FXML
-	private ChoiceBox<GebruikerGegevens> cboTechnieker;
+	private ChoiceBox<String> cboTechnieker;
 	@FXML
 	private ChoiceBox cboStatus;
 
@@ -67,7 +68,7 @@ public class TicketToevoegenSchermController extends GridPane {
 			lblStatus.setVisible(false);
 			
 			cboType.setItems(FXCollections.observableArrayList(new Integer[] {1, 2, 3}));		
-			cboTechnieker.setItems(ac.geefTechniekers());
+			cboTechnieker.setItems(FXCollections.observableArrayList(ac.geefTechniekers().stream().map(t -> t.getNaam() + " " + t.getVoornaam()).collect(Collectors.toList())));
 
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
