@@ -3,6 +3,7 @@ package domein.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
@@ -13,7 +14,7 @@ public class Klant extends Gebruiker {
 	
 	@OneToMany(mappedBy="klant")
 	private List<Ticket> tickets;
-	@OneToMany(mappedBy="klant")
+	@OneToMany(mappedBy="klant")//, fetch = FetchType.EAGER)
 	private List<Contract> contracten;
 
 	public Klant() {

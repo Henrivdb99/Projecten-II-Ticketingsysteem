@@ -63,7 +63,7 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 
 	private DashboardSchermController parent;
 	private AangemeldeGebruikerController ac;
-	private GebruikerGegevens selectedUser;
+	private GebruikerGegevens selectedKlant;
 
 	private final String alleStatussen = "ALLE";
 
@@ -81,6 +81,11 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 			throw new RuntimeException(ex);
 		}
 	}
+	
+	private void setSelectedKlant(GebruikerGegevens selectedKlant) {
+		this.selectedKlant = selectedKlant;
+		ac.selecteerKlant(selectedKlant.getId()); //in domein ook updaten
+	}
 
 	// Event Listener on Button[#btnKlantToevoegen].onAction
 	@FXML
@@ -93,8 +98,8 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	@FXML
 	public void btnKlantWijzigenOnAction(ActionEvent event) {
 		try {
-			this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-			KlantWijzigenSchermController kwsc = new KlantWijzigenSchermController(this, this.selectedUser, this.ac);
+			setSelectedKlant(tblView.getSelectionModel().getSelectedItem());
+			KlantWijzigenSchermController kwsc = new KlantWijzigenSchermController(this, this.selectedKlant, this.ac);
 			this.setRight(kwsc);	
 		} catch (NullPointerException np) {
 			System.out.println(np.getMessage());
@@ -111,8 +116,18 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 	// Event Listener on Button[#btnKlantDetails].onAction
 	@FXML
 	public void btnKlantDetailsOnAction(ActionEvent event) {
-		this.selectedUser = tblView.getSelectionModel().getSelectedItem();
-		showDetailsScherm(selectedUser);
+		setSelectedKlant(tblView.getSelectionModel().getSelectedItem());
+		showDetailsScherm(selectedKlant);
+	}
+	
+	public void showDetailsScherm(GebruikerGegevens userParameter) {
+		try {
+			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, userParameter, ac);
+			this.setRight(klantDetailsSchermController);
+			
+		} catch(NullPointerException np) {
+			System.out.println(np.getMessage());
+		}
 	}
 	// Event Listener on Button[#btnResetFilters].onAction
 	@FXML
@@ -125,6 +140,7 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 		ac.changeFilterKlant(alleStatussen, "Status");
 	}
 
+	// Event Listener on TextField[#txfNaamVoornaam].onKeyReleased
 	@FXML
 	public void filterGebruikersnaam(KeyEvent event) {
 		String newValue = txfGebruikersnaam.getText();
@@ -198,16 +214,7 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
         
 		ac.changeFilterKlant(cboStatus.getValue(), "Status");
 	}
-	
-	public void showDetailsScherm(GebruikerGegevens userParameter) {
-		try {
-			KlantDetailsSchermController klantDetailsSchermController = new KlantDetailsSchermController(this, userParameter, ac);
-			this.setRight(klantDetailsSchermController);
-			
-		} catch(NullPointerException np) {
-			System.out.println(np.getMessage());
-		}
-	}
+
 	
 
 }

@@ -3,8 +3,10 @@ package domein.controllers;
 import domein.models.ContractGegevens;
 import domein.models.GebruikerGegevens;
 import domein.models.GebruikerStatus;
-import domein.models.WerknemerRol;
+import domein.models.Klant;
 import domein.models.Werknemer;
+import domein.models.WerknemerRol;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 
@@ -13,26 +15,20 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	public AdministratorController(Werknemer aangemeldeGebruiker) {
 		super(aangemeldeGebruiker);
 	}
-
+	
+	private Klant selectedKlant;
+	
 	@Override
 	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
 		return WerknemerRol.Administrator;
 	}
+	
+	// === Werknemers beheren ===
 
 	@Override
 	public SortedList<GebruikerGegevens> geefWerknemers() {
 		return (SortedList<GebruikerGegevens>) (Object) actemium.geefWerknemers();
-	}
-
-	@Override
-	public ObservableList<GebruikerGegevens> geefKlanten() {
-		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
-	}
-	
-	@Override
-	public ObservableList<ContractGegevens> geefContracten(int klantId) {
-		return  (ObservableList<ContractGegevens>) (Object) actemium.geefContracten(klantId);
 	}
 	
 	@Override
@@ -49,11 +45,24 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		
 	}
 
+	// === Klanten beheren ===
+	
+	@Override
+	public ObservableList<GebruikerGegevens> geefKlanten() {
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
+	}
+	
+
 	@Override
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord,
 			String[] adres, String bedrijfsnaam) {
 		
 		actemium.voegKlantToe(naam, voornaam, email, telefoonnummers, wachtwoord, adres, bedrijfsnaam);
+	}
+	
+	@Override
+	public void selecteerKlant(int id) {
+		this.selectedKlant = actemium.geefKlant(id);
 	}
 
 	@Override
@@ -62,5 +71,17 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 		actemium.wijzigKlant(id, naam, voornaam, email, telefoonnummers, status, wachtwoord, adres, bedrijfsnaam);
 	}
+	
+	@Override
+	public ObservableList<ContractGegevens> geefContracten(int klantId) {
+		//return  (ObservableList<ContractGegevens>) (Object) actemium.geefContracten(klantId);
+		try {
+			return (ObservableList<ContractGegevens>) (Object) FXCollections.observableList(selectedKlant.getContracten());
+		} catch(NullPointerException ne) {
+			return null;
+		}
+	}
+
+
 
 }

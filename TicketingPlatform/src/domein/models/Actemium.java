@@ -235,6 +235,10 @@ public class Actemium {
 		}
 	}
 
+	public Klant geefKlant(int id) {
+		return (Klant) gebruikerRepo.get(id);
+	}
+	
 	public void voegKlantToe(String naam, String voornaam, String email, String[] telefoonnummers, String wachtwoord,
 			String[] adres, String bedrijfsnaam) {
 
@@ -286,6 +290,7 @@ public class Actemium {
 
 	}
 	
+	/*
 	public ObservableList<Contract> geefContracten(int klantId) {
 		try {
 			if (this.contracten == null) {
@@ -298,7 +303,7 @@ public class Actemium {
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(e);
 		}
-	}
+	}*/
 
 	// === Beheer Tickets ===
 	public SortedList<Ticket> geefTickets() {

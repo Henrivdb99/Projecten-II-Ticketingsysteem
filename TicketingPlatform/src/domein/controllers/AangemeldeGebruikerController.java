@@ -81,6 +81,10 @@ public abstract class AangemeldeGebruikerController {
 	public ObservableList<GebruikerGegevens> geefKlanten() {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
 	}
+	
+	public void selecteerKlant(int id) {
+		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");		
+	}
 
 	public void verwijderGebruiker(int id) {
 		throw new UnsupportedOperationException("U heeft niet de nodige toestemming om deze opdracht uit te voeren");
