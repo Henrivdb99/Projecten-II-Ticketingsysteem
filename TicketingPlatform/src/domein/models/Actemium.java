@@ -25,6 +25,7 @@ public class Actemium {
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private FilteredList<Contract> filteredContracten;
+	private FilteredList<Contract> filteredContracten1;
 	private FilteredList<KnowledgeBase> filteredItems;
 	private SortedList<TicketGegevens> sortableTickets;
 	private SortedList<ContractGegevens> sortableContracten;
@@ -296,12 +297,13 @@ public class Actemium {
 			throw new IllegalArgumentException(e);
 		}
 	}
+
 	public SortedList<ContractGegevens> geefContracten() {
 		try {
 			if (this.contracten == null) {
 				this.contracten = FXCollections.observableList(contractRepo.findAll());
-				filteredContracten = new FilteredList<>(contracten, w -> true);
-				sortableContracten = new SortedList<>(filteredContracten);
+				filteredContracten1 = new FilteredList<>(contracten, w -> true);
+				sortableContracten = new SortedList<>(filteredContracten1);
 			}
 
 			return sortableContracten;

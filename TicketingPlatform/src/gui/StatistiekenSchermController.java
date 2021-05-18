@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -25,7 +27,9 @@ public class StatistiekenSchermController extends GridPane implements Initializa
 	@FXML
 	private PieChart chartGebruiker;
 	@FXML
-	private Label lblTotaalTickets;
+	private Label lblKb;
+	@FXML
+	private Button btnTerug;
 	
 	private DashboardSchermController parent;
 	private AangemeldeGebruikerController ac;
@@ -39,6 +43,8 @@ public class StatistiekenSchermController extends GridPane implements Initializa
 			loader.setController(this);
 			loader.load();
 			
+			lblKb.setText(Integer.toString(ac.geefKnowledgebaseItems().toArray().length));
+
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
