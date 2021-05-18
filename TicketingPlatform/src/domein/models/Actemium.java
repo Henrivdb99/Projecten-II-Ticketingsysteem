@@ -337,10 +337,58 @@ public class Actemium {
 		ticketRepo.insert(nieuwTicket);
 
 		GenericDaoJPA.commitTransaction();
-
 	}
 	
-	public ObservableList<GebruikerGegevens> geefTechniekers() {
+	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, 
+			String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+
+		Ticket ticket = tickets.stream().filter(t -> t.getId() == ticketId).findAny().orElse(null);
+		// wat doen we als ticket null is????
+
+		try {
+			Werknemer technieker = null;
+			Klant klant = null;
+			
+			if(techniekerId > 0) //onbestaand id indien niet willen veranderen
+				technieker = (Werknemer) gebruikerRepo.get(techniekerId); //null indien niet gevonden?
+			if(klantId > 0) //onbestaand id indien niet willen veranderen
+				klant = (Klant) gebruikerRepo.get(klantId); //null indien niet gevonden?
+			
+			GenericDaoJPA.startTransaction();
+
+			if (titel != null && !titel.isBlank())
+				ticket.setTitel(titel);
+			if (ticketStatus != null)
+				ticket.setStatus(ticketStatus);
+			if (date != null)
+				ticket.setDatumAanmaken(date);
+			if (omschrijving != null && !omschrijving.isBlank())
+				ticket.setOmschrijving(omschrijving);
+			if (opmerkingen != null  && !opmerkingen.isBlank())
+				ticket.setOpmerkingen(opmerkingen);
+			if (typeTicket > 0) /// kan typeticket alles zijn?
+				ticket.setTypeTicket(typeTicket);
+			if (bijlage != null && !bijlage.isBlank())
+				ticket.setBijlage(bijlage);			
+			if (technieker != null)
+				ticket.setTechnieker(technieker);
+			if (klant != null)
+				ticket.setKlant(klant);
+			
+			GenericDaoJPA.commitTransaction();
+
+			tickets.remove(ticket);
+			tickets.add(ticket);
+
+		} catch (Exception e) {
+			GenericDaoJPA.rollbackTransaction();
+			throw new IllegalArgumentException(e.getMessage(), e);
+		}
+
+	}
+
+	
+	public ObservableList<GebruikerGegevens> geefTechniekers() { //twee verschillende datatypes
 		List<Gebruiker> techniekers = gebruikerRepo.geefWerknemersByRol(WerknemerRol.Technieker);
 		return FXCollections.observableArrayList(data());
 	}

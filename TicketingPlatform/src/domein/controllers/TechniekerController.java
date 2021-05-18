@@ -22,11 +22,16 @@ public class TechniekerController extends AangemeldeGebruikerController {
 		// TODO Auto-generated method stub
 		return WerknemerRol.Technieker;
 	}
+	
+	// === Beheer tickets ===
 
 	@Override
 	public SortedList<TicketGegevens> geefTickets() {
 		return actemium.geefTickets(getAangemeldeGebruiker().getId());
 	}
+	
+	// === Beheer knowledgebase ===
+
 	@Override
 	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		return actemium.geefKnowledgebaseItems();
