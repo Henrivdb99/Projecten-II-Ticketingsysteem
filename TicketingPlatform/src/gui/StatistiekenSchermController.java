@@ -12,13 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class StatistiekenSchermController extends GridPane implements Initializable{
+public class StatistiekenSchermController extends BorderPane implements Initializable{
 	
 	@FXML
 	private PieChart chartTickets;
