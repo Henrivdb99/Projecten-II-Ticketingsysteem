@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 import domein.models.GebruikerGegevens;
+import domein.models.ContractGegevens;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.Ticket;
 import domein.models.TicketGegevens;
@@ -19,7 +20,7 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	public TechniekerController(Werknemer aangemeldeGebruiker) {
 		super(aangemeldeGebruiker);
 	}
-
+	
 	@Override
 	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub

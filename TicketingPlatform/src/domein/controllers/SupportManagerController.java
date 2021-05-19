@@ -12,8 +12,23 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 		super(aangemeldeGebruiker);
 		// TODO Auto-generated constructor stub
 	}
-
-	// === Beheer tickes ===
+	
+	// === Statistieken ===
+	
+	@Override
+	public ObservableList<Contract> geefContracten() {
+		return actemium.geefContracten();
+	}
+	@Override
+	public SortedList<GebruikerGegevens> geefWerknemers() {
+		return actemium.geefWerknemers();
+	}
+	@Override
+	public ObservableList<GebruikerGegevens> geefKlanten() {
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
+	}
+	
+	// === Beheer tickets ===
 	
 	@Override
 	public WerknemerRol geefAangemeldeGebruikerType() {

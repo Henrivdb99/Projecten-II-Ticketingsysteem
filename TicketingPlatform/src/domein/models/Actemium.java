@@ -26,11 +26,12 @@ public class Actemium {
 	private FilteredList<Gebruiker> filteredKlanten;
 	private FilteredList<Ticket> filteredTickets;
 	private FilteredList<Contract> filteredContracten;
+	private FilteredList<Contract> filteredContracten1;
 	private FilteredList<KnowledgeBase> filteredItems;
-	
-	private SortedList<Ticket> sortableTickets;
-	private SortedList<Gebruiker> sortableWerknemers;
-	private SortedList<KnowledgeBase> sortableItems;
+	private SortedList<TicketGegevens> sortableTickets;
+	private SortedList<GebruikerGegevens> sortableWerknemers;
+	private SortedList<ContractGegevens> sortableContracten;
+	private SortedList<KnowledgeBaseGegevens> sortableItems;
 
 	private GebruikerDaoJPA gebruikerRepo;
 	private GenericDaoJPA<Ticket> ticketRepo;
@@ -151,7 +152,7 @@ public class Actemium {
 	}
 	// ===Beheer werknemers===
 
-	public SortedList<Gebruiker> geefWerknemers() {
+	public SortedList<GebruikerGegevens> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
 				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
@@ -305,12 +306,24 @@ public class Actemium {
 		}
 	}*/
 
+	public ObservableList<Contract> geefContracten() {
+		try {
+			if (this.contracten == null) {
+				this.contracten = FXCollections.observableList(contractRepo.findAll());
+			}
+
+			return contracten;
+
+		} catch (EntityNotFoundException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 	// === Beheer Tickets ===
-	public SortedList<Ticket> geefTickets() {
+	public SortedList<TicketGegevens> geefTickets() {
 		return geefTicketsByTechnieker(0); //onbestaand id => geeft alle tickets
 	}
 
-	public SortedList<Ticket> geefTicketsByTechnieker(int techniekerId) {
+	public SortedList<TicketGegevens> geefTicketsByTechnieker(int techniekerId) {
 		try {
 			if (this.tickets == null) {
 				if (techniekerId != 0) {
@@ -405,7 +418,7 @@ public class Actemium {
 	// === Beheer Knowledgebase ===
 
 
-	public SortedList<KnowledgeBase> geefKnowledgebaseItems() {
+	public SortedList<KnowledgeBaseGegevens> geefKnowledgebaseItems() {
 		try {
 			if (this.knowledgebaseItems == null) {
 				this.knowledgebaseItems = FXCollections.observableList(knowledgebaseRepo.findAll());

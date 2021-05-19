@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="1080.0" prefWidth="1920.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane maxHeight="-Infinity" prefHeight="75.0" prefWidth="847.0" style="-fx-background-color: #e4eef9;" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="80.0" prefWidth="1920.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
+                     <image>
+                        <Image url="@../images/actemium%20logo.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Button fx:id="btnTerug" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#btnTerugOnAction" text="Terug" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children></Pane>
+   </top>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1920.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <PieChart fx:id="chartTickets" title="Tickets" />
+                  <PieChart fx:id="chartContracten" title="Contracten" GridPane.columnIndex="1" />
+                  <PieChart fx:id="chartGebruiker" title="Gebruikers" GridPane.rowIndex="1" />
+                  <Circle fill="#2977a7" radius="185.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Label text="Knowledgebase" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblKb" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Label text="oplossingen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets top="200.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+</fx:root>

@@ -179,6 +179,7 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		if(tblView.getSelectionModel().getSelectedItem() != null) {
 			btnWerknemerDetails.setDisable(false);
 			btnWerknemerWijzigen.setDisable(false);
+			setRight(null);
 		}
 	}
 
