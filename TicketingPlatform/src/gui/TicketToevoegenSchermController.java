@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -86,7 +87,7 @@ public class TicketToevoegenSchermController extends GridPane {
 						if (cboType.getValue() != null) {
 							if (!txfKlantId.getText().isBlank()) {
 								if (cboTechnieker.getValue() != null) {
-									ac.voegTicketToe(txfTitel.getText(), TicketStatus.Aangemaakt, LocalDate.now(),
+									ac.voegTicketToe(txfTitel.getText(), TicketStatus.Aangemaakt, LocalDateTime.now(),
 											txaOmschrijving.getText(), txaOpmerkingen.getText(),
 											Integer.parseInt(cboType.getValue().toString()), Integer.parseInt(txfKlantId.getText()),
 											cboTechnieker.getValue().getId(), "Geen bijlage");

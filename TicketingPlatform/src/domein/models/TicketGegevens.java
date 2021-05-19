@@ -1,6 +1,7 @@
 package domein.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface TicketGegevens {
 	public int getId();
@@ -9,7 +10,7 @@ public interface TicketGegevens {
 
 	public TicketStatus getStatus();
 
-	public LocalDate getDatumAanmaken();
+	public LocalDateTime getDatumAanmaken();
 
 	public String getOmschrijving();
 
@@ -22,4 +23,5 @@ public interface TicketGegevens {
 	public String getNaamVoornaam();
 
 	public String getOpmerkingen();
+	public String getDatumUur();
 }

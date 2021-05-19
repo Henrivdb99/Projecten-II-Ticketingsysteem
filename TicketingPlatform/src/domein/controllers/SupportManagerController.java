@@ -1,6 +1,7 @@
 package domein.controllers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import domein.models.*;
 import javafx.collections.ObservableList;
@@ -40,14 +41,14 @@ public class SupportManagerController extends AangemeldeGebruikerController{
 		return  (SortedList<TicketGegevens>) (Object) actemium.geefTickets();
 	}
 	@Override
-	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		actemium.voegTicketToe(titel, ticketStatus, date, omschrijving, opmerkingen, typeTicket, klantId, techniekerId, bijlage);
 	}
 	
 	// === Beheer knowledgebase ===
 	
 	@Override
-	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		actemium.wijzigTicket(ticketId, titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
 	}
 	@Override

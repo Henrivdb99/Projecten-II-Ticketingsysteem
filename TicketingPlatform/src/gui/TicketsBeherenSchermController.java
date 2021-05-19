@@ -48,11 +48,11 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 	@FXML
 	private TableView<TicketGegevens> tblView;
 	@FXML
-	private TableColumn<TicketGegevens, Integer> colTicketId;
+	private TableColumn<TicketGegevens, String> colTicketDatum;
 	@FXML
 	private TableColumn<TicketGegevens, String> colTicketTitel;
 	@FXML
-	private TableColumn<TicketGegevens, String> colTicketType;
+	private TableColumn<TicketGegevens, Integer> colTicketType;
 	@FXML
 	private TableColumn<TicketGegevens, String> colKlant;
 	@FXML
@@ -131,8 +131,8 @@ public class TicketsBeherenSchermController extends BorderPane implements Initia
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		colTicketId.setCellValueFactory(new PropertyValueFactory<TicketGegevens, Integer>("id"));
-		colTicketType.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("typeTicket"));
+		colTicketDatum.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("datumUur"));
+		colTicketType.setCellValueFactory(new PropertyValueFactory<TicketGegevens, Integer>("typeTicket"));
 		colTicketTitel.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("titel"));
 		colKlant.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("naamVoornaam"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<TicketGegevens, String>("status"));
