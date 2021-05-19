@@ -13,7 +13,7 @@ public class LoginController {
 
 	private Werknemer aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
-	private int aanmeldCounter = 0;
+	private static int maxAanmeldPogingen = 5;
 	public LoginController() {
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
@@ -37,18 +37,26 @@ public class LoginController {
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
 			Werknemer gevondenGebruiker = (Werknemer) gebruikerRepo.getGebruikerByEmail(email);
-			if (gevondenGebruiker.isLockedOut == false) {
+			int fouteLogins = gevondenGebruiker.getFouteLogins();
+			if (fouteLogins < maxAanmeldPogingen) {
 				if (gevondenGebruiker.checkPassword(wachtwoord))
 			    {
 			    	setAangemeldeGebruiker(gevondenGebruiker);
+			    	
+			    	GebruikerDaoJPA.startTransaction();
+			    	gevondenGebruiker.setFouteLogins(0);
+			    	GebruikerDaoJPA.commitTransaction();
 			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " GELUKT op " + LocalDateTime.now());
 			    } else {
-			    	aanmeldCounter++;
-			    	if(aanmeldCounter >= 5) {
-			    		gevondenGebruiker.isLockedOut = true;
-			    	}
-			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " MISLUKT op " + LocalDateTime.now());			    	
-			        throw new IllegalArgumentException("Foute wachtwoord");
+			    	GebruikerDaoJPA.startTransaction();
+			    	gevondenGebruiker.setFouteLogins(fouteLogins + 1);
+			    	GebruikerDaoJPA.commitTransaction();
+			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " MISLUKT op " + LocalDateTime.now());
+			        int resterend = maxAanmeldPogingen - fouteLogins;
+			        if (resterend > 0)
+			        	throw new IllegalArgumentException(String.format("Foute wachtwoord, u heeft nog %d pogingen", resterend));
+			        else
+			        	throw new IllegalArgumentException("Te veel aanmeldpogingen, neem contact op met een beheerder");
 			    }	
 			}else {
 		    	throw new IllegalArgumentException("Te veel aanmeldpogingen, neem contact op met een beheerder");

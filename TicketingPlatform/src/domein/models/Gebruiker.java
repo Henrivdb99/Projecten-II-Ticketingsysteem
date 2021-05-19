@@ -30,12 +30,13 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	private String wachtwoord;
 	@Column(name = "registratieDatum")
 	private LocalDate registratieDatum;
-	public boolean isLockedOut;
 	private GebruikerStatus status;
 	private String naam;
 	private String voornaam;
 	private String[] adres;
 	private String[] telefoonnummers;
+	
+	private int fouteLogins;
 	
 	//enkel in werknemer:
 	@Column(name = "Rol")
@@ -56,7 +57,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 		setAdres(adres);
 		setTelefoonnummers(telefoonnummers);
 		setRegistratieDatum(LocalDate.now());
-		setIsLockedOut(false);
+		setFouteLogins(0);
 	}
 
 	public Gebruiker() {
@@ -88,13 +89,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	public void setRegistratieDatum(LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
 	}
-	public boolean getIsLockedOut() {
-		return isLockedOut;
-	}
 
-	public void setIsLockedOut(boolean isLockedOut) {
-		this.isLockedOut = isLockedOut;
-	}
 	public GebruikerStatus getStatus() {
 		return status;
 	}
@@ -193,6 +188,15 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 		} else
 			throw new IllegalArgumentException("Wachtwoord is verplicht");
 	}
+	
+	public int getFouteLogins() {
+		return fouteLogins;
+	}
+
+	public void setFouteLogins(int fouteLogins) {
+		this.fouteLogins = fouteLogins;
+	}
+
 
 	@Override
 	public String toString() {
