@@ -49,7 +49,7 @@ public class Contract implements Serializable {
 		return contractId;
 	}
 
-	public void setContractId(int contractId) {
+	private void setContractId(int contractId) {
 		this.contractId = contractId;
 	}
 

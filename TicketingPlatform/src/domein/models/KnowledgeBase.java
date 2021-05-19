@@ -39,15 +39,20 @@ public class KnowledgeBase implements KnowledgeBaseGegevens{
 	}
 
 	public void setTitel(String titel) {
-		this.titel = titel;
+		if(titel == null || titel.isBlank())
+			throw new IllegalArgumentException("Titel is verplicht.");
+		this.titel=titel;
+		
 	}
-
 	public LocalDate getDatumToevoegen() {
 		return datumToevoegen;
 	}
 
 	public void setDatumToevoegen(LocalDate datumToevoegen) {
-		this.datumToevoegen = datumToevoegen;
+		if(datumToevoegen != null )
+		{
+			this.datumToevoegen = datumToevoegen;
+		} throw new IllegalArgumentException("Datum is verplicht.");
 	}
 
 	public String getOmschrijving() {
@@ -55,7 +60,9 @@ public class KnowledgeBase implements KnowledgeBaseGegevens{
 	}
 
 	public void setOmschrijving(String omschrijving) {
-		this.omschrijving = omschrijving;
+		if(omschrijving == null || omschrijving.isBlank())
+			throw new IllegalArgumentException("Omschrijving is verplicht.");
+		this.omschrijving=omschrijving;
 	}
     
 	

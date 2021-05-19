@@ -157,10 +157,9 @@ public class Actemium {
 	public SortedList<GebruikerGegevens> geefWerknemers() {
 		try {
 			if (this.werknemers == null) {
-				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers());
+				this.werknemers = FXCollections.observableList(gebruikerRepo.geefWerknemers().stream().sorted(Comparator.comparing(Gebruiker::getNaam)).collect(Collectors.toList()));
 				filteredWerknemers = new FilteredList<>(werknemers, w -> true);
 				sortableWerknemers = new SortedList<>(filteredWerknemers);
-
 			}
 
 			return sortableWerknemers;
@@ -228,7 +227,7 @@ public class Actemium {
 	public ObservableList<Gebruiker> geefKlanten() {
 		try {
 			if (this.klanten == null)
-				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten());
+				this.klanten = FXCollections.observableList(gebruikerRepo.geefKlanten().stream().sorted(Comparator.comparing(Gebruiker::getNaam)).collect(Collectors.toList()));
 			filteredKlanten = new FilteredList<>(klanten, k -> true);
 
 			return filteredKlanten;

@@ -28,8 +28,8 @@ public class Klant extends Gebruiker {
 	public Klant(String emailAdres, String wachtwoord, GebruikerStatus status, String naam, String voornaam,
 			String[] adres, String[] telefoonnummers, List<Ticket> tickets, List<Contract> contracten) {
 		super(emailAdres, wachtwoord, status, naam, voornaam, adres, telefoonnummers);
-		this.tickets = tickets;
-		this.contracten = contracten;
+		setTickets(tickets);
+		setContracten(contracten);
 	}
 	
 	public List<Ticket> getTickets() {
