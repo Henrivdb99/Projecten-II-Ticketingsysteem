@@ -85,17 +85,6 @@ public class TicketWijzigenSchermController extends GridPane implements Initiali
 			txfKlantId.setText(Integer.toString(selectedTicket.getKlant().getId()));
 			cboTechnieker.setValue(selectedTicket.getTechnieker());
 
-			if (ac.geefAangemeldeGebruikerType().toString() == "Technieker") {
-				cboTechnieker.setDisable(true);
-				cboType.setDisable(true);
-				lblTitel.setText("Status wijzigen");
-				btnKlantAanmaken.setText("Status wijzigen");
-				txfTitel.setDisable(true);
-				txaOmschrijving.setDisable(true);
-				txaOpmerkingen.setDisable(true);
-				txfKlantId.setDisable(true);
-				btnBestandenToevoegen.setDisable(true);
-			}
 
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
