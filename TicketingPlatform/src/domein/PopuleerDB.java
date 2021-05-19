@@ -40,12 +40,12 @@ public class PopuleerDB {
         Werknemer gebruiker3 = new Werknemer("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
         Werknemer gebruiker4 = new Werknemer("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
 
-        Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.InBehandeling, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1,klant1, technieker1, "Geen bijlage" );
+        Ticket ticket1 = new Ticket("2020-Error 109271", TicketStatus.Afgehandeld, LocalDateTime.now().minusDays(2), "loremIpsum","Geen opmerkingen", 3, klant1, technieker1, "Geen bijlage" );
+        Ticket ticket2 = new Ticket("2020-Error 2980", TicketStatus.InBehandeling, LocalDateTime.now().minusHours(1), "loremIpsum","Geen opmerkingen", 1,klant1, technieker1, "Geen bijlage" );
         Ticket ticket3 = new Ticket("2020-Authorisatie Probleem", TicketStatus.Geannuleerd, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        Ticket ticket4 = new Ticket("2020-Error 1212", TicketStatus.InBehandeling, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker2, "Geen bijlage" );
-        Ticket ticket5 = new Ticket("2020-Error 1940", TicketStatus.Aangemaakt, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker1, "Geen bijlage" );
-        Ticket ticket6 = new Ticket("2020-Error 1522", TicketStatus.Aangemaakt, LocalDateTime.now(), "loremIpsum","Geen opmerkingen", 1, klant1, technieker2, "Geen bijlage" );
+        Ticket ticket4 = new Ticket("2020-Error 1212", TicketStatus.InBehandeling, LocalDateTime.now().minusHours(3), "loremIpsum","Geen opmerkingen", 2, klant1, technieker1, "Geen bijlage" );
+        Ticket ticket5 = new Ticket("2020-Error 1940", TicketStatus.Aangemaakt, LocalDateTime.now().minusHours(3), "loremIpsum","Geen opmerkingen", 2, klant1, technieker1, "Geen bijlage" );
+        Ticket ticket6 = new Ticket("2020-Error 1522", TicketStatus.Aangemaakt, LocalDateTime.now().minusHours(1), "loremIpsum","Geen opmerkingen", 3, klant1, technieker1, "Geen bijlage" );
 
         ContractType contract24_7Email = new ContractType("Email Contract 24/7", ContractEnContractTypeStatus.Actief, ManierVanAanmakenTicket.Email, TijdstipTicketAanmaken.Altijd, 3, 10, 100);
         ContractType contract24_7Email2 = new ContractType("Email Contract 24/7 2 jaar", ContractEnContractTypeStatus.Actief, ManierVanAanmakenTicket.Email, TijdstipTicketAanmaken.Altijd, 2, 10, 100);

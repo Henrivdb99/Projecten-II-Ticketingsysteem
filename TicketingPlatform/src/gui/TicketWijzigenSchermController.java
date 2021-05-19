@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import domein.controllers.AangemeldeGebruikerController;
@@ -114,7 +115,7 @@ public class TicketWijzigenSchermController extends GridPane implements Initiali
 									if (cboStatus.getValue() != null) {
 
 										ac.wijzigTicket(selectedTicket.getId(), txfTitel.getText(),
-												TicketStatus.valueOf(cboStatus.getValue().toString()), LocalDate.now(),
+												TicketStatus.valueOf(cboStatus.getValue().toString()), LocalDateTime.now(),
 												txaOmschrijving.getText(), txaOpmerkingen.getText(),
 												Integer.parseInt(cboType.getValue().toString()),
 												Integer.parseInt(txfKlantId.getText()),
