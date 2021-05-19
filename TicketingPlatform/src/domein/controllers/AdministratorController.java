@@ -18,6 +18,14 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	
 	private Klant selectedKlant;
 	
+	public Klant getSelectedKlant() {
+		return selectedKlant;
+	}
+
+	private void setSelectedKlant(Klant selectedKlant) {
+		this.selectedKlant = selectedKlant;
+	}
+	
 	@Override
 	public WerknemerRol geefAangemeldeGebruikerType() {
 		// TODO Auto-generated method stub
@@ -60,6 +68,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 		actemium.voegKlantToe(naam, voornaam, email, telefoonnummers, wachtwoord, adres, bedrijfsnaam);
 	}
 	
+
 	@Override
 	public void selecteerKlant(int id) {
 		this.selectedKlant = actemium.geefKlant(id);

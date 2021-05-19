@@ -32,6 +32,10 @@ public abstract class AangemeldeGebruikerController {
 		this.aangemeldeGebruiker = aangemeldeGebruiker;
 	}
 	
+	public AangemeldeGebruikerController(Actemium actemium) {
+		this.actemium = actemium;
+	}
+
 	// === getters en setters ===
 
 	public Actemium getActemium() {
