@@ -3,6 +3,7 @@ package testen;
 import javax.persistence.EntityNotFoundException;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -63,7 +64,32 @@ class LoginControllerTest {
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
-
+	}
+	
+	@Test
+	public void meldAanGebruikerFouteGegevensTimeout() {
+		String email = "werknemer@gmail.com";
+		String juisteWachtwoord = "123456";
+		String fouteWachtwoord = "fout";
+				
+		//mock trainen
+		Werknemer werknemer = new Werknemer();
+		werknemer.setEmailAdres(email);
+		werknemer.setWachtwoord(juisteWachtwoord);
+		Mockito.when(gebruikerRepositoryDummy.getGebruikerByEmail(email)).
+		thenReturn(werknemer);
+		
+		//act
+		for (int x = 0; x < 5; x++) { //5 keer
+			Assertions.assertThrows(IllegalArgumentException.class, () -> gc.meldAan(email, fouteWachtwoord)); //mislukt uiteraard
+		}
+		
+		//assert
+		Assertions.assertThrows(IllegalArgumentException.class, () -> gc.meldAan(email, juisteWachtwoord)); //mislukt wegens te veel pogingen
+		Assertions.assertEquals(null, gc.getAangemeldeGebruiker());
+		
+		//mock verify
+		Mockito.verify(gebruikerRepositoryDummy, Mockito.times(6)).getGebruikerByEmail(email);
 	}
 
 }
