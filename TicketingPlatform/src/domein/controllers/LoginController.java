@@ -81,17 +81,6 @@ public class LoginController {
 		setAangemeldeGebruiker(null);
 	}
 
-	/*public TypeGebruiker geefTypeGebruiker() {
-		if(aangemeldeGebruiker == null)
-			throw new IllegalArgumentException("Er is geen gebruiker aangemeld");
-		return switch(aangemeldeGebruiker.getClass().getSimpleName()) {
-			case "Technieker" ->  TypeGebruiker.Technieker;
-			case "Administrator" ->  TypeGebruiker.Administrator;
-			case "SupportManager" ->  TypeGebruiker.SupportManager;
-			default -> throw new IllegalArgumentException("Unexpected value: " + aangemeldeGebruiker.getClass());
-		};
-	}*/
-	
 	public String geefNaamEnVoornaamAangemeldeGebruiker() throws IllegalArgumentException {
 		if(aangemeldeGebruiker == null)
 			throw new IllegalArgumentException("Er is geen gebruiker aangemeld");
@@ -101,10 +90,6 @@ public class LoginController {
 	private void setAangemeldeGebruiker(Werknemer gebruiker) {
 		this.aangemeldeGebruiker = gebruiker;
 	}
-	
-    public void close() {
-        GebruikerDaoJPA.closePersistency();
-    }
 
 
 	public GebruikerDaoJPA getGebruikerRepo() {

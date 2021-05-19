@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public interface ContractGegevens {
 
-	public int getContractNummer();
-	public String getContractType();
+	public int getContractId();
+	public ContractType getContractType();
 	public ContractEnContractTypeStatus getContractStatus();
-	public LocalDate getContractStart();
-	public LocalDate getContractEind();
+	public LocalDate getStartDatum();
+	public LocalDate getEindDatum();
 
 }

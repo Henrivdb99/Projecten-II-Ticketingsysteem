@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Contract implements Serializable {
+public class Contract implements Serializable, ContractGegevens {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +49,7 @@ public class Contract implements Serializable {
 		return contractId;
 	}
 
-	private void setContractId(int contractId) {
+	public void setContractId(int contractId) {
 		this.contractId = contractId;
 	}
 
