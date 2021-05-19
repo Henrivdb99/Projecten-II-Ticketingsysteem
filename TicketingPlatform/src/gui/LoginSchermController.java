@@ -59,6 +59,8 @@ public class LoginSchermController extends AnchorPane {
 			
 			DashboardSchermController child = new DashboardSchermController(this, ac);
 			
+			lblFout.setText("");
+			
 			Scene scene = new Scene(child);
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setScene(scene);
