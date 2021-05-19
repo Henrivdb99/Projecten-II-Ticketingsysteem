@@ -1,5 +1,8 @@
 package domein.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.persistence.EntityNotFoundException;
 
 import domein.models.Gebruiker;
@@ -10,7 +13,7 @@ public class LoginController {
 
 	private Werknemer aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
-
+	private int aanmeldCounter = 0;
 	public LoginController() {
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
@@ -34,13 +37,23 @@ public class LoginController {
 	public void meldAan(String email, String wachtwoord) throws IllegalArgumentException {
 		try {
 			Werknemer gevondenGebruiker = (Werknemer) gebruikerRepo.getGebruikerByEmail(email);
-			if (gevondenGebruiker.checkPassword(wachtwoord))
-		    {
-		    	setAangemeldeGebruiker(gevondenGebruiker);
-		        //System.out.println("Aangemeld als " + gevondenSpeler.getEmail());
-		    } else {
-		    	throw new IllegalArgumentException("Foute wachtwoord");
-		    }
+			if (gevondenGebruiker.isLockedOut == false) {
+				if (gevondenGebruiker.checkPassword(wachtwoord))
+			    {
+			    	setAangemeldeGebruiker(gevondenGebruiker);
+			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " GELUKT op " + LocalDateTime.now());
+			    } else {
+			    	aanmeldCounter++;
+			    	if(aanmeldCounter >= 5) {
+			    		gevondenGebruiker.isLockedOut = true;
+			    	}
+			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " MISLUKT op " + LocalDateTime.now());			    	
+			        throw new IllegalArgumentException("Foute wachtwoord");
+			    }	
+			}else {
+		    	throw new IllegalArgumentException("Te veel aanmeldpogingen, neem contact op met een beheerder");
+		    }	
+			
 		} catch(EntityNotFoundException e) {
 			throw new IllegalArgumentException("Email adres is niet gekend");
 		}

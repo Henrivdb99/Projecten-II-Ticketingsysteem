@@ -30,7 +30,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	private String wachtwoord;
 	@Column(name = "registratieDatum")
 	private LocalDate registratieDatum;
-	
+	public boolean isLockedOut;
 	private GebruikerStatus status;
 	private String naam;
 	private String voornaam;
@@ -56,6 +56,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 		setAdres(adres);
 		setTelefoonnummers(telefoonnummers);
 		setRegistratieDatum(LocalDate.now());
+		setIsLockedOut(false);
 	}
 
 	public Gebruiker() {
@@ -87,7 +88,13 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	public void setRegistratieDatum(LocalDate registratieDatum) {
 		this.registratieDatum = registratieDatum;
 	}
+	public boolean getIsLockedOut() {
+		return isLockedOut;
+	}
 
+	public void setIsLockedOut(boolean isLockedOut) {
+		this.isLockedOut = isLockedOut;
+	}
 	public GebruikerStatus getStatus() {
 		return status;
 	}
