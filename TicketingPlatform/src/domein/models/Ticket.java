@@ -2,6 +2,8 @@ package domein.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +24,7 @@ public class Ticket implements Serializable, TicketGegevens {
 	private int id;
 	private String titel;
 	private TicketStatus status;
-	private LocalDate datumAanmaken;
+	private LocalDateTime datumAanmaken;
 	private String omschrijving;
 	private String opmerkingen;
 	private String bijlage;
@@ -41,7 +43,7 @@ public class Ticket implements Serializable, TicketGegevens {
 
 	}
 
-	public Ticket(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, String opmerkingen,
+	public Ticket(String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving, String opmerkingen,
 			int typeTicket, Klant klant, Werknemer technieker, String bijlage) {
 		setTitel(titel);
 		setStatus(ticketStatus);
@@ -74,7 +76,7 @@ public class Ticket implements Serializable, TicketGegevens {
 		return status;
 	}
 
-	public LocalDate getDatumAanmaken() {
+	public LocalDateTime getDatumAanmaken() {
 		return datumAanmaken;
 	}
 
@@ -101,6 +103,11 @@ public class Ticket implements Serializable, TicketGegevens {
 	public String getNaamVoornaam() {
 		return klant.getVoornaam() + " " + klant.getNaam();
 	}
+	public String getDatumUur()
+	{
+		LocalDateTime date = getDatumAanmaken();
+		return String.format("%d %s %d | %d:%d", date.getDayOfMonth(), date.getMonth(), date.getYear(), date.getHour(), date.getMinute());
+	}
 
 	
 	public void setBijlage(String bijlage) {
@@ -120,7 +127,7 @@ public class Ticket implements Serializable, TicketGegevens {
 			this.status = status;
 		}else throw new IllegalArgumentException("Status is verplicht");	}
 
-	public void setDatumAanmaken(LocalDate datumAanmaken) {
+	public void setDatumAanmaken(LocalDateTime datumAanmaken) {
 		if(datumAanmaken != null)
 		{
 			this.datumAanmaken = datumAanmaken;

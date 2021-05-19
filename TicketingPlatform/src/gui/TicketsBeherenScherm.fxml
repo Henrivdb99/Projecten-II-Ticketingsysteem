@@ -54,7 +54,7 @@
             </GridPane>
             <TableView fx:id="tblView" onMouseClicked="#userClickedOnTable" prefHeight="725.0" prefWidth="805.0">
               <columns>
-                <TableColumn fx:id="colTicketId" prefWidth="140.44439017772675" text="ID" />
+                <TableColumn fx:id="colTicketDatum" prefWidth="140.44439017772675" text="Datum" />
                 <TableColumn fx:id="colTicketTitel" prefWidth="43.55560302734375" text="Titel" />
                   <TableColumn fx:id="colTicketType" prefWidth="75.0" text="Type" />
                   <TableColumn fx:id="colKlant" prefWidth="75.0" text="Klant" />

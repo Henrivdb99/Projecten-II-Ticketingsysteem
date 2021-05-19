@@ -1,6 +1,7 @@
 package domein.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -339,7 +340,7 @@ public class Actemium {
 		}
 	}
 
-	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving,
+	public void voegTicketToe(String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving,
 			String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 		Werknemer technieker = (Werknemer) gebruikerRepo.get(techniekerId);
 		Klant klant = (Klant) gebruikerRepo.get(klantId);
@@ -356,7 +357,7 @@ public class Actemium {
 		GenericDaoJPA.commitTransaction();
 	}
 	
-	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDate date, String omschrijving, 
+	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving, 
 			String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
 
 		Ticket ticket = tickets.stream().filter(t -> t.getId() == ticketId).findAny().orElse(null);
