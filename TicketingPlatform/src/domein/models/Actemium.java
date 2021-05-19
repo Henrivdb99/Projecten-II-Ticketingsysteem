@@ -3,6 +3,7 @@ package domein.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -323,11 +324,11 @@ public class Actemium {
 		try {
 			if (this.tickets == null) {
 				if (techniekerId != 0) {
-					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream()
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().sorted(Comparator.comparing(Ticket::getTypeTicket).thenComparing(Ticket::getDatumAanmaken))
 							.filter(ticket -> ticket.getTechnieker().getId() == techniekerId)
 							.collect(Collectors.toList()));
 				} else
-					this.tickets = FXCollections.observableList(ticketRepo.findAll());
+					this.tickets = FXCollections.observableList(ticketRepo.findAll().stream().sorted(Comparator.comparing(Ticket::getTypeTicket).thenComparing(Ticket::getDatumAanmaken)).collect(Collectors.toList()));
 				filteredTickets = new FilteredList<>(tickets, w -> true);
 				sortableTickets = new SortedList<>(filteredTickets);
 
