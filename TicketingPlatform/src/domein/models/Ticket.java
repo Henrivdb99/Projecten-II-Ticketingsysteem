@@ -115,7 +115,7 @@ public class Ticket implements Serializable, TicketGegevens {
 	}
 
 	public void setTitel(String titel) {
-		if(!titel.isBlank())
+		if(titel !=null && !titel.isBlank())
 		{
 			this.titel = titel;
 		}else throw new IllegalArgumentException("Titel is verplicht");
@@ -135,7 +135,7 @@ public class Ticket implements Serializable, TicketGegevens {
 		}
 
 	public void setOmschrijving(String omschrijving) {
-		if(!omschrijving.isBlank())
+		if(omschrijving !=null && !omschrijving.isBlank())
 		{
 			this.omschrijving = omschrijving;
 		}else throw new IllegalArgumentException("Omschrijving is verplicht");	}
