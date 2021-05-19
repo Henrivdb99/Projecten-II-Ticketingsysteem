@@ -46,12 +46,15 @@ public class LoginController {
 			    	GebruikerDaoJPA.startTransaction();
 			    	gevondenGebruiker.setFouteLogins(0);
 			    	GebruikerDaoJPA.commitTransaction();
-			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " GELUKT op " + LocalDateTime.now());
+			        
+			    	//System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " GELUKT op " + LocalDateTime.now());
 			    } else {
 			    	GebruikerDaoJPA.startTransaction();
 			    	gevondenGebruiker.setFouteLogins(fouteLogins + 1);
 			    	GebruikerDaoJPA.commitTransaction();
-			        System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " MISLUKT op " + LocalDateTime.now());
+			        
+			    	//System.out.println("Aanmeldpoging voor " + gevondenGebruiker.getEmailAdres() + " MISLUKT op " + LocalDateTime.now());
+			        
 			        int resterend = maxAanmeldPogingen - fouteLogins;
 			        if (resterend > 0)
 			        	throw new IllegalArgumentException(String.format("Foute wachtwoord, u heeft nog %d pogingen", resterend));

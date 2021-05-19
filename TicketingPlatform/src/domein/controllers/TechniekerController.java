@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import domein.models.GebruikerGegevens;
+import domein.models.Contract;
 import domein.models.ContractGegevens;
 import domein.models.KnowledgeBaseGegevens;
 import domein.models.Ticket;
@@ -35,6 +36,11 @@ public class TechniekerController extends AangemeldeGebruikerController {
 		return  (SortedList<TicketGegevens>) (Object) actemium.geefTicketsByTechnieker(getAangemeldeGebruiker().getId());
 	}
 	
+	@Override
+	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
+		actemium.wijzigTicket(ticketId, titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
+	}
+	
 	// === Beheer knowledgebase ===
 
 	@Override
@@ -44,8 +50,20 @@ public class TechniekerController extends AangemeldeGebruikerController {
 	public ObservableList<GebruikerGegevens> geefTechniekers() {
 		return  (ObservableList<GebruikerGegevens>) (Object) actemium.geefTechniekers();
 	}
+	
+	// === Statistieken ===
+	
 	@Override
-	public void wijzigTicket(int ticketId, String titel, TicketStatus ticketStatus, LocalDateTime date, String omschrijving,String opmerkingen, int typeTicket, int klantId, int techniekerId, String bijlage) {
-		actemium.wijzigTicket(ticketId, titel, ticketStatus, date, omschrijving,opmerkingen, typeTicket, klantId, techniekerId, bijlage);
+	public ObservableList<Contract> geefContracten() {
+		return actemium.geefContracten();
 	}
+	@Override
+	public SortedList<GebruikerGegevens> geefWerknemers() {
+		return actemium.geefWerknemers();
+	}
+	@Override
+	public ObservableList<GebruikerGegevens> geefKlanten() {
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
+	}
+	
 }
