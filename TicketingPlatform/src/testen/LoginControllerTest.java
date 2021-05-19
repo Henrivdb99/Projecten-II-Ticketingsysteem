@@ -12,10 +12,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import domein.controllers.LoginController;
-import domein.models.Administrator;
+import domein.models.Werknemer;
 import persistentie.GebruikerDaoJPA;
-import persistentie.*;
-import domein.controllers.*;
 
 @ExtendWith(MockitoExtension.class)
 class LoginControllerTest {
@@ -28,18 +26,21 @@ class LoginControllerTest {
 	
 	
 	@ParameterizedTest
-	@CsvSource({"klant@gmail.com, wachtwoord1", "supportmanager@gmail.com, wachtwoord2",
+	@CsvSource({"supportmanager@gmail.com, wachtwoord2",
 		"admin@gmail.com, wachtwoord3", "techinieker@gmail.com, wachtwoord4"})
-	public void meldAanGebruikerJuisteGegevens(String email, String wachtwoord) {
+	public void meldAanWerkenemrJuisteGegevens(String email, String wachtwoord) {
 		//mock trainen
+		Werknemer werknemer = new Werknemer();
+		werknemer.setEmailAdres(email);
+		werknemer.setWachtwoord(wachtwoord);
 		Mockito.when(gebruikerRepositoryDummy.getGebruikerByEmail(email)).
-		thenReturn(new Administrator(email, wachtwoord, null, "", "", null, null));
+		thenReturn(werknemer);
 		
 		//act
 		gc.meldAan(email, wachtwoord);
 		//assert
 		Assertions.assertEquals(email, gc.getAangemeldeGebruiker().getEmailAdres());
-		Assertions.assertEquals(wachtwoord, gc.getAangemeldeGebruiker().getWachtwoord());
+		Assertions.assertTrue(gc.getAangemeldeGebruiker().checkPassword(wachtwoord));
 		
 		//mock verify
 		Mockito.verify(gebruikerRepositoryDummy).getGebruikerByEmail(email);
