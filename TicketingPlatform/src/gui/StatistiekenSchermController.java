@@ -28,6 +28,12 @@ public class StatistiekenSchermController extends BorderPane implements Initiali
 	@FXML
 	private Label lblKb;
 	@FXML
+	private Label lblContracten;
+	@FXML
+	private Label lblGebruikers;
+	@FXML
+	private Label lblTickets;
+	@FXML
 	private Button btnTerug;
 	
 	private DashboardSchermController parent;
@@ -43,6 +49,9 @@ public class StatistiekenSchermController extends BorderPane implements Initiali
 			loader.load();
 			
 			lblKb.setText(Integer.toString(ac.geefKnowledgebaseItems().toArray().length));
+			lblContracten.setText(Integer.toString(ac.geefContracten().toArray().length));
+			lblGebruikers.setText(Integer.toString(ac.geefWerknemers().toArray().length) + Integer.toString(ac.geefKlanten().toArray().length));
+			lblTickets.setText(Integer.toString(ac.geefTickets().toArray().length));
 
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
