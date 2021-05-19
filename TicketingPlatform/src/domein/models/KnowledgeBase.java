@@ -49,10 +49,7 @@ public class KnowledgeBase implements KnowledgeBaseGegevens{
 	}
 
 	public void setDatumToevoegen(LocalDate datumToevoegen) {
-		if(datumToevoegen != null )
-		{
 			this.datumToevoegen = datumToevoegen;
-		} throw new IllegalArgumentException("Datum is verplicht.");
 	}
 
 	public String getOmschrijving() {
