@@ -195,6 +195,8 @@ public class WerknemersBeherenSchermController extends BorderPane implements Ini
 		ac.geefWerknemers().comparatorProperty().bind(tblView.comparatorProperty());
 		btnWerknemerDetails.setDisable(true);
 		btnWerknemerWijzigen.setDisable(true);
+        tblView.setPlaceholder(new Label("Er zijn geen werknemers beschikbaar voor de gewenste filter."));
+
 	}
 	
 	private void initializeFilter() {

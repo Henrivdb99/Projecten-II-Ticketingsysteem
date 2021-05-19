@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -194,7 +195,8 @@ public class KlantenBeherenSchermController extends BorderPane implements Initia
 		colStatus.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("status"));
 		colBedrijf.setCellValueFactory(new PropertyValueFactory<GebruikerGegevens, String>("bedrijfsnaam"));
 		tblView.setItems(ac.geefKlanten());
-        
+        tblView.setPlaceholder(new Label("Er zijn geen klanten beschikbaar voor de gewenste filter."));
+
 		btnKlantDetails.setDisable(true);
 		btnKlantWijzigen.setDisable(true);
 	}
