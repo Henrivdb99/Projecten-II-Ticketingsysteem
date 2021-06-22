@@ -22,7 +22,6 @@ import domein.BCrypt;
 
 })
 public abstract class Gebruiker implements Serializable, GebruikerGegevens{
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,6 +36,7 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	private String[] telefoonnummers;
 	
 	private int fouteLogins;
+	public static int maxAanmeldPogingen = 5;
 	
 	//enkel in werknemer:
 	@Column(name = "Rol")
@@ -72,14 +72,11 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	}
 
 	public boolean checkPassword(String password_plaintext) {
-		boolean password_verified = false;
-
+		
 		if (null == getWachtwoord() || !getWachtwoord().startsWith("$2a$"))
-			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+			throw new IllegalArgumentException("Invalid hash provided for comparison");
 
-		password_verified = BCrypt.checkpw(password_plaintext, getWachtwoord());
-
-		return (password_verified);
+		return BCrypt.checkpw(password_plaintext, getWachtwoord());
 	}
 
 	public LocalDate getRegistratieDatum() {
@@ -95,6 +92,9 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 	}
 
 	public void setStatus(GebruikerStatus status) {
+		if(this.status != null && this.status.equals(GebruikerStatus.GEBLOKKEERD) && !status.equals(GebruikerStatus.GEBLOKKEERD)) //if deblokkeren
+			this.setFouteLogins(0);
+			
 		this.status = status;
 	}
 
@@ -195,6 +195,8 @@ public abstract class Gebruiker implements Serializable, GebruikerGegevens{
 
 	public void setFouteLogins(int fouteLogins) {
 		this.fouteLogins = fouteLogins;
+		if(fouteLogins >= maxAanmeldPogingen)
+			this.status = GebruikerStatus.GEBLOKKEERD; //blokkeren
 	}
 
 

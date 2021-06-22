@@ -13,7 +13,7 @@ public class LoginController {
 
 	private Werknemer aangemeldeGebruiker;	
 	private GebruikerDaoJPA gebruikerRepo;
-	private static int maxAanmeldPogingen = 5;
+	private static int maxAanmeldPogingen = Gebruiker.maxAanmeldPogingen;
 	public LoginController() {
 		gebruikerRepo = new GebruikerDaoJPA();
 	}
@@ -59,10 +59,10 @@ public class LoginController {
 			        if (resterend > 0)
 			        	throw new IllegalArgumentException(String.format("Foute wachtwoord, u heeft nog %d pogingen", resterend));
 			        else
-			        	throw new IllegalArgumentException("Te veel aanmeldpogingen, neem contact op met een beheerder");
+			        	throw new IllegalArgumentException("Te veel mislukte aanmeldpogingen, neem contact op met een beheerder");
 			    }	
 			}else {
-		    	throw new IllegalArgumentException("Te veel aanmeldpogingen, neem contact op met een beheerder");
+		    	throw new IllegalArgumentException("Te veel mislukte aanmeldpogingen, neem contact op met een beheerder");
 		    }	
 			
 		} catch(EntityNotFoundException e) {

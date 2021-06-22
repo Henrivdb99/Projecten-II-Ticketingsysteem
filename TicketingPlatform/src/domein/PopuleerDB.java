@@ -29,18 +29,19 @@ public class PopuleerDB {
         GebruikerDaoJPA.startTransaction();
         
        
-        Klant klant1 = new Klant("klant@student.hogent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Joris", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
-        Klant klant2 = new Klant("klant@ugent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Borissen", "Boris", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "UGent");
-        Klant klant3 = new Klant("klant@artevelde.be", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Morissen", "Moris", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "Artevelde");
-        Werknemer supportManager1 = new Werknemer("supportmanager@gmail.com", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"}, WerknemerRol.SupportManager);
-        Werknemer administrator1 = new Werknemer("administrator@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Odinson", "Thor", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"}, WerknemerRol.Administrator);
-        Werknemer technieker1 = new Werknemer("technieker@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer technieker2 = new Werknemer("technieker2@gmail.com", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
+        Klant klant1 = new Klant("johan@actemium.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Jorissen", "Johan", new String[] {"Jorisstraat", "46", "9000","Gent"}, new String[] {"049952754", "092214365"}, "HoGent");
+        Klant klant2 = new Klant("stijn@vincke.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Vincke", "Stijn", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "UGent");
+        Klant klant3 = new Klant("moris@artevelde.be", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Morissen", "Moris", new String[] {"Borisstraat", "46", "9000","Gent"}, new String[] {"049352754", "092214365"}, "Artevelde");
+        
+        Werknemer supportManager1 = new Werknemer("supportmanager@hogent.be", "wachtwoord1",GebruikerStatus.ACTIEF, "Tomssen", "Tom", new String[]{"Tomstraat", "46", "9000", "Gent"}, new String[] {"04991754", "099914365"}, WerknemerRol.SupportManager);
+        Werknemer administrator1 = new Werknemer("administrator@hogent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Odinson", "Thor", new String[] {"Michaelstraat", "46", "9000", "Gent"}, new String[] {"049952804", "092214185"}, WerknemerRol.Administrator);
+        Werknemer technieker1 = new Werknemer("technieker@hogent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
+        Werknemer technieker2 = new Werknemer("technieker2@hogent.be", "wachtwoord1", GebruikerStatus.ACTIEF, "Jacobus", "Jacob", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
 
         Werknemer gebruiker1 = new Werknemer("techniekerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Morgan", "Arthur", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.Technieker);
-        Werknemer gebruiker2 = new Werknemer("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
-        Werknemer gebruiker3 = new Werknemer("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen", "Pieter", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
-        Werknemer gebruiker4 = new Werknemer("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Pieterssen","Pieter" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
+        Werknemer gebruiker2 = new Werknemer("supportmanagerOFF1@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Hoed", "Jan", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
+        Werknemer gebruiker3 = new Werknemer("supportmanagerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Lebowski", "Jef", new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
+        Werknemer gebruiker4 = new Werknemer("techniekerOFF2@gmail.com", "wachtwoord1", GebruikerStatus.NIETACTIEF, "Kennedy","Leon" ,new String[] {"Pieterstraat", "46", "9000", "Gent"}, new String[] {"049192754", "092217665"}, WerknemerRol.SupportManager);
         
         LocalDateTime date1= LocalDateTime.now().minusDays(2); 
         LocalDateTime date2 =LocalDateTime.now().minusHours(1);

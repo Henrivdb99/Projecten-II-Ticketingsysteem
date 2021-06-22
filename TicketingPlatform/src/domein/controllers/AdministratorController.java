@@ -57,7 +57,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 	
 	@Override
 	public ObservableList<GebruikerGegevens> geefKlanten() {
-		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten();
+		return (ObservableList<GebruikerGegevens>) (Object) actemium.geefKlanten(); //zonder contracten & tickets
 	}
 	
 
@@ -71,7 +71,7 @@ public class AdministratorController extends AangemeldeGebruikerController {
 
 	@Override
 	public void selecteerKlant(int id) {
-		this.selectedKlant = actemium.geefKlant(id);
+		this.selectedKlant = actemium.geefKlant(id); //met contracten (& tickets)
 	}
 
 	@Override
